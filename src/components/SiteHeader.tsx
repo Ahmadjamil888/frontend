@@ -7,8 +7,11 @@ type SiteHeaderProps = {
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
   { to: '/platform', label: 'Platform' },
   { to: '/integrations', label: 'Integrations' },
+  { to: '/docs', label: 'Docs' },
+  { to: '/changelog', label: 'Changelog' },
   { to: '/launch', label: 'Launch' },
 ]
 
@@ -16,19 +19,15 @@ export function SiteHeader({ dashboardUrl }: SiteHeaderProps) {
   const { isSignedIn } = useAuth()
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/8 bg-black/82 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-4">
         <Link to="/" className="flex items-center gap-3">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#30463C] bg-[#06140f] text-sm font-semibold text-[#27F3A9]">
-            C
-          </span>
-          <div>
-            <div className="text-sm font-semibold tracking-[0.18em] text-white">CONNECT</div>
-            <div className="text-xs text-neutral-500">Operator Frontend</div>
+          <div className="font-['YDYoonche_M','IBM_Plex_Sans',sans-serif] text-lg tracking-[0.28em] text-white">
+            CONNECT
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-5 md:flex">
+        <nav className="hidden items-center gap-6 md:flex">
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.to}
