@@ -27,7 +27,7 @@ export function DocsOverviewPage() {
             ['Operator backend', 'Dashboard, gateway, workflows, memory, sessions, connectors, and service mode.'],
             ['Identity bridge', 'Clerk sign-in on the web and verified token handoff back into the local CLI or dashboard session.'],
           ].map(([title, text]) => (
-            <div key={title} className="rounded-[1.6rem] border border-white/8 bg-white/[0.03] p-5">
+            <div key={title} className="rounded-[1.2rem] border border-white/10 bg-white/[0.03] p-5">
               <h2 className="text-xl text-white">{title}</h2>
               <p className="mt-3 text-sm leading-7 text-neutral-400">{text}</p>
             </div>

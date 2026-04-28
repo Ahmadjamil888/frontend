@@ -46,7 +46,7 @@ function GradientLine({ children }: { children: ReactNode }) {
         display: 'block',
         lineHeight: 1.1,
         marginBottom: '-0.22em',
-        background: 'linear-gradient(90deg, #333333 0%, #878787 50%, #333333 100%)',
+        background: 'linear-gradient(90deg, #4A4A4A 0%, #F1F1F1 50%, #4A4A4A 100%)',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
       }}
@@ -62,7 +62,7 @@ export default function HeroSection() {
       className="relative flex min-h-[calc(100vh-76px)] flex-col items-center justify-center overflow-hidden px-4 py-20 sm:px-6"
       style={{ background: '#000' }}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_14%,rgba(255,255,255,0.045),transparent_24%),radial-gradient(circle_at_18%_0%,rgba(39,243,169,0.06),transparent_22%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_14%,rgba(255,255,255,0.07),transparent_24%),radial-gradient(circle_at_18%_0%,rgba(255,255,255,0.04),transparent_22%),radial-gradient(circle_at_85%_10%,rgba(185,185,185,0.08),transparent_20%)]" />
       <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-2 text-center sm:px-4">
         <h1
           style={{
@@ -101,13 +101,15 @@ export default function HeroSection() {
 
         <button
           type="button"
-          className="mt-7 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0px_6px_32px_8px_rgba(39,243,169,0.22)] active:scale-[0.98]"
+          className="mt-7 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0px_6px_32px_8px_rgba(255,255,255,0.14)] active:scale-[0.98]"
           style={{
-            padding: '12px 28px',
-            background: '#000',
-            boxShadow: '0px 6px 24px 6px rgba(39, 243, 169, 0.15)',
-            borderRadius: 8,
-            outline: '1px solid #30463C',
+            padding: '14px 30px',
+            minWidth: 188,
+            minHeight: 48,
+            background: '#FFFFFF',
+            boxShadow: '0px 10px 28px 0px rgba(255, 255, 255, 0.12)',
+            borderRadius: 15,
+            outline: '1px solid rgba(255,255,255,0.12)',
             outlineOffset: -1,
             border: 'none',
             cursor: 'pointer',
@@ -120,7 +122,7 @@ export default function HeroSection() {
             window.location.href = '/platform'
           }}
         >
-          <span style={{ color: '#fff', fontSize: 14, fontWeight: 400 }}>Join The Movement!</span>
+          <span style={{ color: '#000', fontSize: 14, fontWeight: 500 }}>Join The Movement!</span>
         </button>
       </div>
     </section>

@@ -30,11 +30,11 @@ export function LaunchPage() {
         title="A practical launch path"
         description="This frontend is designed to sit in front of the operator backend. It gives you a public-facing narrative and a controlled sign-in path into the runtime."
       >
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8">
+        <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-8">
           <ol className="space-y-4 text-sm leading-7 text-neutral-300">
             {checklist.map((item, index) => (
               <li key={item} className="flex gap-4">
-                <span className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-full border border-[#27F3A9]/30 text-[#27F3A9]">
+                <span className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-[0.8rem] border border-white/14 text-white">
                   {index + 1}
                 </span>
                 <span>{item}</span>
@@ -51,7 +51,7 @@ export function LaunchPage() {
       >
         <div className="grid gap-4 md:grid-cols-3">
           {phases.map((phase) => (
-            <article key={phase.title} className="rounded-[2rem] border border-white/8 bg-[#090909] p-6">
+            <article key={phase.title} className="rounded-[1.4rem] border border-white/10 bg-[#090909] p-6">
               <h3 className="text-xl font-medium text-white">{phase.title}</h3>
               <p className="mt-4 text-sm leading-7 text-neutral-400">{phase.text}</p>
             </article>
@@ -64,7 +64,7 @@ export function LaunchPage() {
         title="The doctor report should be part of every rollout."
         description="The fastest way to catch broken launchers, wrong working directories, missing env, or dead providers is to check the system from the command the user will actually run."
       >
-        <div className="rounded-[2rem] border border-white/8 bg-black/50 p-6">
+        <div className="rounded-[1.4rem] border border-white/10 bg-black/50 p-6">
           <pre className="overflow-x-auto text-sm text-neutral-200">
             <code>{`connect --doctor
 connect login

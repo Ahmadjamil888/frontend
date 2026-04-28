@@ -19,9 +19,9 @@ const entries = [
 export function ChangelogPage() {
   return (
     <div className="bg-black pt-8">
-      <section className="border-b border-white/8 px-5 py-20">
+      <section className="border-b border-white/10 px-5 py-20">
         <div className="mx-auto max-w-7xl">
-          <div className="text-xs uppercase tracking-[0.22em] text-[#27F3A9]">Changelog</div>
+          <div className="text-xs uppercase tracking-[0.22em] text-neutral-400">Changelog</div>
           <h1 className="mt-4 max-w-4xl text-4xl font-light tracking-[-0.05em] text-white md:text-6xl">
             Product momentum, captured in public.
           </h1>
@@ -35,7 +35,7 @@ export function ChangelogPage() {
       <section className="px-5 py-16">
         <div className="mx-auto max-w-7xl space-y-4">
           {entries.map((entry) => (
-            <article key={entry.title} className="rounded-[2rem] border border-white/8 bg-white/[0.03] p-6">
+            <article key={entry.title} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-6">
               <div className="text-xs uppercase tracking-[0.16em] text-neutral-500">{entry.date}</div>
               <h2 className="mt-4 text-2xl text-white">{entry.title}</h2>
               <p className="mt-4 text-sm leading-7 text-neutral-400">{entry.text}</p>

@@ -22,10 +22,10 @@ const timeline = [
 export function AboutPage() {
   return (
     <div className="bg-black pt-8">
-      <section className="border-b border-white/8 px-5 py-20">
+      <section className="border-b border-white/10 px-5 py-20">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr]">
           <div>
-            <div className="text-xs uppercase tracking-[0.22em] text-[#27F3A9]">About CONNECT</div>
+            <div className="text-xs uppercase tracking-[0.22em] text-neutral-400">About CONNECT</div>
             <h1 className="mt-4 text-4xl font-light tracking-[-0.05em] text-white md:text-6xl">
               Built to operate AI systems like real software, not demos.
             </h1>
@@ -45,11 +45,11 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="border-b border-white/8 px-5 py-20">
+      <section className="border-b border-white/10 px-5 py-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-4 md:grid-cols-3">
             {principles.map((item) => (
-              <article key={item.title} className="rounded-[2rem] border border-white/8 bg-white/[0.03] p-6">
+              <article key={item.title} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-6">
                 <h2 className="text-2xl font-medium text-white">{item.title}</h2>
                 <p className="mt-4 text-sm leading-7 text-neutral-400">{item.text}</p>
               </article>
@@ -58,7 +58,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="border-b border-white/8 px-5 py-20">
+      <section className="border-b border-white/10 px-5 py-20">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.7fr_1.3fr]">
           <div>
             <div className="text-xs uppercase tracking-[0.22em] text-neutral-500">Why it matters</div>
@@ -73,7 +73,7 @@ export function AboutPage() {
               'A public frontend by itself does not make the runtime safer, more controllable, or more launchable.',
               'CONNECT treats those as one product problem instead of separate implementation chores.',
             ].map((text) => (
-              <div key={text} className="rounded-[1.6rem] border border-white/8 bg-[#090909] p-5 text-sm leading-7 text-neutral-300">
+              <div key={text} className="rounded-[1.2rem] border border-white/10 bg-[#090909] p-5 text-sm leading-7 text-neutral-300">
                 {text}
               </div>
             ))}
@@ -86,8 +86,8 @@ export function AboutPage() {
           <div className="text-xs uppercase tracking-[0.22em] text-neutral-500">Path</div>
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
             {timeline.map(([title, text], index) => (
-              <article key={title} className="rounded-[2rem] border border-white/8 bg-white/[0.03] p-6">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#27F3A9]/25 text-sm text-[#27F3A9]">
+              <article key={title} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-6">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-[0.95rem] border border-white/14 text-sm text-white">
                   0{index + 1}
                 </div>
                 <h3 className="mt-5 text-xl font-medium text-white">{title}</h3>

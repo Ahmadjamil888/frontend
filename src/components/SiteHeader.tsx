@@ -1,5 +1,7 @@
 import { SignInButton, SignUpButton, UserButton, useAuth } from '@clerk/react'
 import { Link, NavLink } from 'react-router-dom'
+import { BrandLogo } from './BrandLogo'
+import { brandPrimaryButtonClass, brandSecondaryButtonClass } from './brandTheme'
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home' },
@@ -12,13 +14,11 @@ export function SiteHeader() {
   const { isSignedIn } = useAuth()
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/8 bg-black/82 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/88 backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-4 py-4 sm:px-5">
         <div className="flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3">
-          <div className="font-['YDYoonche_M','IBM_Plex_Sans',sans-serif] text-lg tracking-[0.28em] text-white">
-            CONNECT
-          </div>
+          <BrandLogo className="h-9 w-auto sm:h-10" />
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
@@ -38,19 +38,19 @@ export function SiteHeader() {
         <div className="flex items-center gap-2 sm:gap-3">
           <Link
             to="/docs"
-            className="hidden rounded-full border border-white/10 px-4 py-2 text-sm text-neutral-200 transition hover:border-[#27F3A9]/50 hover:text-white md:inline-flex"
+            className={`hidden md:inline-flex ${brandSecondaryButtonClass}`}
           >
             Documentation
           </Link>
           {!isSignedIn ? (
             <>
               <SignInButton mode="modal">
-                <button className="rounded-full border border-white/10 px-4 py-2 text-sm text-neutral-200 transition hover:border-[#27F3A9]/50 hover:text-white">
+                <button className={brandSecondaryButtonClass}>
                   Sign in
                 </button>
               </SignInButton>
               <SignUpButton mode="modal">
-                <button className="rounded-full bg-[#27F3A9] px-4 py-2 text-sm font-medium text-black transition hover:brightness-110">
+                <button className={brandPrimaryButtonClass}>
                   Sign up
                 </button>
               </SignUpButton>
@@ -73,10 +73,10 @@ export function SiteHeader() {
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `shrink-0 rounded-full border px-3 py-2 text-xs transition ${
+                `shrink-0 rounded-[0.95rem] border px-3 py-2 text-xs transition ${
                   isActive
-                    ? 'border-[#27F3A9]/35 bg-[#09120f] text-white'
-                    : 'border-white/8 text-neutral-400 hover:border-white/14 hover:text-white'
+                    ? 'border-white/16 bg-white/[0.05] text-white'
+                    : 'border-white/10 text-neutral-400 hover:border-white/20 hover:text-white'
                 }`
               }
             >

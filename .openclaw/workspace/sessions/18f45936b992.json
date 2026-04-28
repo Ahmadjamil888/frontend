@@ -1,0 +1,17 @@
+{
+  "id": "18f45936b992",
+  "name": "default",
+  "created_at": "2026-04-28T11:56:07.467127",
+  "updated_at": "2026-04-28T11:56:07.564130",
+  "status": "error",
+  "profile": "coding",
+  "parent_id": "",
+  "target": "",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hello",
+      "ts": "2026-04-28T11:56:07.492164"
+    }
+  ]
+}

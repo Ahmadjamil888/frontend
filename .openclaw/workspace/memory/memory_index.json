@@ -1,0 +1,11 @@
+[
+  {
+    "ts": "2026-04-28T11:56:07.518343",
+    "kind": "user",
+    "session_id": "18f45936b992",
+    "content": "hello",
+    "metadata": {
+      "role": "user"
+    }
+  }
+]

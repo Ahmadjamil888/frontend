@@ -22,7 +22,7 @@ export function IntegrationsPage() {
       >
         <div className="grid gap-4 md:grid-cols-3">
           {Object.entries(integrationGroups).map(([group, items]) => (
-            <div key={group} className="rounded-[2rem] border border-white/8 bg-[#07120f] p-6">
+            <div key={group} className="rounded-[1.4rem] border border-white/10 bg-[#0a0a0a] p-6">
               <h3 className="text-xl font-medium text-white">{group}</h3>
               <ul className="mt-4 space-y-2 text-sm leading-7 text-neutral-300">
                 {items.map((item) => (
@@ -41,7 +41,7 @@ export function IntegrationsPage() {
       >
         <div className="grid gap-4">
           {notes.map((note) => (
-            <div key={note} className="rounded-[2rem] border border-white/8 bg-white/[0.03] p-6 text-sm leading-7 text-neutral-400">
+            <div key={note} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-6 text-sm leading-7 text-neutral-400">
               {note}
             </div>
           ))}

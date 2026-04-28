@@ -21,8 +21,8 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(39, 243, 169, 0.08), transparent 26%),
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.06), transparent 22%),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 26%),
+    radial-gradient(circle at top right, rgba(184, 184, 184, 0.05), transparent 22%),
     #000000;
   color: #ffffff;
 }

@@ -16,16 +16,18 @@ import { DocsInstallationPage } from './pages/docs/DocsInstallationPage'
 import { DocsOperationsPage } from './pages/docs/DocsOperationsPage'
 import { DocsOverviewPage } from './pages/docs/DocsOverviewPage'
 import { DocsRuntimePage } from './pages/docs/DocsRuntimePage'
+import { BrandLogo } from './components/BrandLogo'
+import { brandPrimaryButtonClass, brandSecondaryButtonClass, brandStatusClass } from './components/brandTheme'
 
 function Footer() {
   const { isSignedIn } = useAuth()
   const { user } = useUser()
 
   return (
-    <footer className="border-t border-white/8 bg-[#070707] px-4 py-16 sm:px-5">
+    <footer className="border-t border-white/10 bg-[#050505] px-4 py-16 sm:px-5">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr]">
         <div>
-          <div className="font-['YDYoonche_M','IBM_Plex_Sans',sans-serif] text-2xl tracking-[0.18em] text-white">CONNECT</div>
+          <BrandLogo className="h-12 w-auto" />
           <p className="mt-4 max-w-2xl text-sm leading-7 text-neutral-400">
             Operator-grade AI infrastructure with one public frontend, one authenticated control plane, and one runtime that actually executes work across tools, sessions, memory, and channels.
           </p>
@@ -53,16 +55,16 @@ function Footer() {
             <div className="mt-4 flex flex-col items-start gap-3">
               {!isSignedIn ? (
                 <SignInButton mode="modal">
-                  <button className="rounded-full border border-white/10 px-4 py-2 text-sm text-neutral-200 transition hover:border-[#27F3A9]/50 hover:text-white">
+                  <button className={brandSecondaryButtonClass}>
                     Sign in
                   </button>
                 </SignInButton>
               ) : (
-                <div className="rounded-full border border-[#27F3A9]/25 px-4 py-2 text-sm text-[#9af6d0]">
+                <div className={brandStatusClass}>
                   Signed in as {user?.primaryEmailAddress?.emailAddress || user?.id}
                 </div>
               )}
-              <a href="/docs" className="rounded-full bg-[#27F3A9] px-4 py-2 text-sm font-medium text-black transition hover:brightness-110">
+              <a href="/docs" className={brandPrimaryButtonClass}>
                 Documentation
               </a>
             </div>

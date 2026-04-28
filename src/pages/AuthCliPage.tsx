@@ -1,6 +1,7 @@
 import { RedirectToSignIn, SignInButton, SignUpButton, useAuth, useUser } from '@clerk/react'
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { brandPrimaryButtonClass, brandSecondaryButtonClass, brandStatusClass } from '../components/brandTheme'
 
 type BridgeState = 'idle' | 'posting' | 'success' | 'error'
 
@@ -63,8 +64,8 @@ export function AuthCliPage() {
       <>
         <RedirectToSignIn signInForceRedirectUrl={returnUrl} signInFallbackRedirectUrl={returnUrl} />
         <main className="min-h-screen bg-black px-5 py-16">
-          <div className="mx-auto max-w-3xl rounded-[2rem] border border-white/8 bg-[#0a0d0c] p-8 text-center">
-            <div className="text-xs uppercase tracking-[0.22em] text-[#27F3A9]">CLI Sign-In</div>
+          <div className="mx-auto max-w-3xl rounded-[1.4rem] border border-white/10 bg-[#0a0a0a] p-8 text-center">
+            <div className="text-xs uppercase tracking-[0.22em] text-neutral-400">CLI Sign-In</div>
             <h1 className="mt-4 text-4xl font-light tracking-[-0.04em] text-white md:text-5xl">
               Redirecting to Clerk sign-in.
             </h1>
@@ -73,12 +74,12 @@ export function AuthCliPage() {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <SignInButton mode="redirect" forceRedirectUrl={returnUrl} fallbackRedirectUrl={returnUrl}>
-                <button className="rounded-full border border-white/10 px-5 py-3 text-sm text-white transition hover:border-[#27F3A9]/50">
+                <button className={brandSecondaryButtonClass}>
                   Continue to sign in
                 </button>
               </SignInButton>
               <SignUpButton mode="redirect" forceRedirectUrl={returnUrl} fallbackRedirectUrl={returnUrl}>
-                <button className="rounded-full bg-[#27F3A9] px-5 py-3 text-sm font-medium text-black transition hover:brightness-110">
+                <button className={brandPrimaryButtonClass}>
                   Create account
                 </button>
               </SignUpButton>
@@ -92,8 +93,8 @@ export function AuthCliPage() {
   return (
     <main className="min-h-[calc(100vh-81px)] bg-black px-5 py-16">
       <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-        <section className="rounded-[2rem] border border-white/8 bg-[#060606] p-8">
-          <div className="text-xs uppercase tracking-[0.22em] text-[#27F3A9]">CLI Sign-In</div>
+        <section className="rounded-[1.4rem] border border-white/10 bg-[#060606] p-8">
+          <div className="text-xs uppercase tracking-[0.22em] text-neutral-400">CLI Sign-In</div>
           <h1 className="mt-4 max-w-xl text-4xl font-light tracking-[-0.04em] text-white md:text-6xl">
             Authenticate once. Return to the terminal already signed in.
           </h1>
@@ -108,13 +109,13 @@ export function AuthCliPage() {
           </div>
         </section>
 
-        <section className="rounded-[2rem] border border-white/8 bg-[#0a0d0c] p-8">
+        <section className="rounded-[1.4rem] border border-white/10 bg-[#0a0a0a] p-8">
           <div className="text-xs uppercase tracking-[0.22em] text-neutral-500">Status</div>
-          <div className="mt-4 rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-6">
+          <div className="mt-4 rounded-[1.1rem] border border-white/10 bg-white/[0.03] p-6">
             <div
               className={`text-sm uppercase tracking-[0.18em] ${
                 bridgeState === 'success'
-                  ? 'text-[#27F3A9]'
+                  ? 'text-white'
                   : bridgeState === 'error'
                     ? 'text-[#ff8b8b]'
                     : 'text-neutral-500'
@@ -128,18 +129,18 @@ export function AuthCliPage() {
           {!isSignedIn ? (
             <div className="mt-6 flex flex-wrap gap-3">
               <SignInButton mode="redirect" forceRedirectUrl={returnUrl} fallbackRedirectUrl={returnUrl}>
-                <button className="rounded-full border border-white/10 px-5 py-3 text-sm text-white transition hover:border-[#27F3A9]/50">
+                <button className={brandSecondaryButtonClass}>
                   Sign in
                 </button>
               </SignInButton>
               <SignUpButton mode="redirect" forceRedirectUrl={returnUrl} fallbackRedirectUrl={returnUrl}>
-                <button className="rounded-full bg-[#27F3A9] px-5 py-3 text-sm font-medium text-black transition hover:brightness-110">
+                <button className={brandPrimaryButtonClass}>
                   Create account
                 </button>
               </SignUpButton>
             </div>
           ) : (
-            <div className="mt-6 rounded-[1.5rem] border border-[#27F3A9]/18 bg-[#08110d] p-5 text-sm leading-7 text-neutral-300">
+            <div className={`mt-6 ${brandStatusClass} block`}>
               Signed in as {user?.primaryEmailAddress?.emailAddress || user?.id}.
             </div>
           )}

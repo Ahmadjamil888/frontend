@@ -1,6 +1,8 @@
 import { SignInButton, SignUpButton, UserButton, useAuth } from '@clerk/react'
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { BrandLogo } from './BrandLogo'
+import { brandPanelStrongClass, brandPrimaryButtonClass, brandSecondaryButtonClass } from './brandTheme'
 import { DocSidebar, type DocItem } from './DocSidebar'
 
 export const DOC_ITEMS: DocItem[] = [
@@ -44,10 +46,10 @@ export function DocsShell({ title, description, children }: DocsShellProps) {
 
   return (
     <div className="flex h-dvh min-h-dvh flex-col overflow-hidden bg-black text-white">
-      <header className="z-50 shrink-0 border-b border-[#1d1a14] bg-black/92 backdrop-blur-xl">
+      <header className="z-50 shrink-0 border-b border-white/10 bg-black/92 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-3 px-4 py-4 sm:px-5">
-          <Link to="/" className="shrink-0 font-['YDYoonche_M','IBM_Plex_Sans',sans-serif] text-lg tracking-[0.28em] text-white">
-            CONNECT
+          <Link to="/" className="shrink-0">
+            <BrandLogo className="h-9 w-auto sm:h-10" />
           </Link>
 
           <div className="mx-2 hidden max-w-2xl flex-1 md:block">
@@ -55,7 +57,7 @@ export function DocsShell({ title, description, children }: DocsShellProps) {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search documentation"
-              className="w-full rounded-full border border-white/10 bg-[#0f0d0a] px-5 py-3 text-sm text-white outline-none transition placeholder:text-neutral-500 focus:border-[#27F3A9]/40"
+              className="w-full rounded-[1rem] border border-white/12 bg-[#0d0d0d] px-5 py-3 text-sm text-white outline-none transition placeholder:text-neutral-500 focus:border-white/24"
             />
           </div>
 
@@ -63,12 +65,12 @@ export function DocsShell({ title, description, children }: DocsShellProps) {
             {!isSignedIn ? (
               <>
                 <SignInButton mode="modal">
-                  <button className="rounded-full border border-white/10 px-4 py-2 text-sm text-neutral-200 transition hover:border-[#27F3A9]/50 hover:text-white">
+                  <button className={brandSecondaryButtonClass}>
                     Sign in
                   </button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                  <button className="rounded-full bg-[#27F3A9] px-4 py-2 text-sm font-medium text-black transition hover:brightness-110">
+                  <button className={brandPrimaryButtonClass}>
                     Sign up
                   </button>
                 </SignUpButton>
@@ -90,7 +92,7 @@ export function DocsShell({ title, description, children }: DocsShellProps) {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search documentation"
-            className="w-full rounded-full border border-white/10 bg-[#0f0d0a] px-5 py-3 text-sm text-white outline-none transition placeholder:text-neutral-500 focus:border-[#27F3A9]/40"
+            className="w-full rounded-[1rem] border border-white/12 bg-[#0d0d0d] px-5 py-3 text-sm text-white outline-none transition placeholder:text-neutral-500 focus:border-white/24"
           />
         </div>
       </header>
@@ -99,8 +101,8 @@ export function DocsShell({ title, description, children }: DocsShellProps) {
         <DocSidebar items={filteredItems} />
 
         <section ref={contentRef} className="min-h-0 min-w-0 overflow-y-auto">
-          <div className="border-b border-[#1d1a14] px-4 py-10 sm:px-6 lg:px-10 lg:py-14">
-            <div className="text-xs uppercase tracking-[0.22em] text-[#27F3A9]">Documentation</div>
+          <div className="border-b border-white/10 px-4 py-10 sm:px-6 lg:px-10 lg:py-14">
+            <div className="text-xs uppercase tracking-[0.22em] text-neutral-400">Documentation</div>
             <h1 className="mt-4 max-w-4xl text-3xl font-light tracking-[-0.05em] text-white sm:text-4xl lg:text-6xl">
               {title}
             </h1>
@@ -108,7 +110,7 @@ export function DocsShell({ title, description, children }: DocsShellProps) {
           </div>
 
           <div className="px-4 py-6 sm:px-6 lg:px-10 lg:py-8">
-            <div className="rounded-[2rem] border border-[#1d1a14] bg-[#0b0a08] p-5 sm:p-8 lg:p-10">{children}</div>
+            <div className={`${brandPanelStrongClass} p-5 sm:p-8 lg:p-10`}>{children}</div>
           </div>
         </section>
       </div>

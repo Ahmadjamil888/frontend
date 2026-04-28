@@ -1,6 +1,7 @@
 import { SignInButton, useAuth } from '@clerk/react'
 import HeroSection from '../components/HeroSection'
 import { SectionBlock } from '../components/SectionBlock'
+import { brandPrimaryButtonClass, brandSecondaryButtonClass, brandStatusClass } from '../components/brandTheme'
 
 type HomePageProps = {
   dashboardUrl: string
@@ -70,14 +71,14 @@ const featureTiles = [
 
 function PreviewPanel({ title, lines }: { title: string; lines: string[] }) {
   return (
-    <div className="rounded-[2rem] border border-[#26231c] bg-[#12100d] p-3 sm:p-4">
-      <div className="rounded-[1.6rem] border border-white/6 bg-[#0b0a08] p-4 sm:p-5">
+    <div className="rounded-[1.4rem] border border-white/10 bg-[#101010] p-3 sm:p-4">
+      <div className="rounded-[1.15rem] border border-white/8 bg-[#0b0b0b] p-4 sm:p-5">
         <div className="flex items-center justify-between border-b border-white/6 pb-3">
           <div className="text-sm text-neutral-400">{title}</div>
           <div className="flex gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
             <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#27F3A9]/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-white/75" />
           </div>
         </div>
         <div className="mt-4 grid gap-3">
@@ -107,10 +108,10 @@ function ShowcaseBand({
 }) {
   const text = (
     <div className="order-2 flex flex-col justify-center lg:order-none">
-      <div className="text-xs uppercase tracking-[0.22em] text-[#27F3A9]">{eyebrow}</div>
+      <div className="text-xs uppercase tracking-[0.22em] text-neutral-400">{eyebrow}</div>
       <h3 className="mt-4 max-w-md text-[1.8rem] font-light tracking-[-0.045em] text-white sm:text-4xl">{title}</h3>
       <p className="mt-4 max-w-md text-sm leading-7 text-neutral-400 sm:text-[15px]">{body}</p>
-      <div className="mt-5 text-sm text-[#f0a640]">{accent} {'->'}</div>
+      <div className="mt-5 text-sm text-neutral-200">{accent} {'->'}</div>
     </div>
   )
 
@@ -129,7 +130,7 @@ function ShowcaseBand({
   )
 
   return (
-    <section className="border-t border-[#1d1a14] px-4 py-14 sm:px-5 md:py-18">
+    <section className="border-t border-white/10 px-4 py-14 sm:px-5 md:py-18">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2 lg:items-center">
         {align === 'left' ? text : preview}
         {align === 'left' ? preview : text}
@@ -145,7 +146,7 @@ export function HomePage({ dashboardUrl }: HomePageProps) {
     <div className="bg-black">
       <HeroSection />
 
-      <section className="border-t border-[#1d1a14] px-4 py-8 sm:px-5">
+      <section className="border-t border-white/10 px-4 py-8 sm:px-5">
         <div className="mx-auto max-w-7xl">
           <div className="mb-5 text-center text-[11px] uppercase tracking-[0.24em] text-neutral-500">
             Trusted workflow patterns from teams building production software
@@ -154,7 +155,7 @@ export function HomePage({ dashboardUrl }: HomePageProps) {
             {logoStrip.map((name) => (
               <div
                 key={name}
-                className="flex min-h-14 items-center justify-center rounded-2xl border border-[#201d18] bg-[#100f0d] px-3 text-center text-sm text-neutral-300"
+                className="flex min-h-14 items-center justify-center rounded-[1rem] border border-white/10 bg-[#0e0e0e] px-3 text-center text-sm text-neutral-300"
               >
                 {name}
               </div>
@@ -172,16 +173,16 @@ export function HomePage({ dashboardUrl }: HomePageProps) {
         title="The public site, sign-in, and runtime handoff now share one path."
         description="The browser layer carries the product narrative, Clerk handles identity, and the operator dashboard takes over only when the user is ready to do real work."
       >
-        <div className="rounded-[2rem] border border-[#201d18] bg-[#0c0b09] p-5 sm:p-8">
+        <div className="rounded-[1.4rem] border border-white/10 bg-[#0c0c0c] p-5 sm:p-8">
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-[1.5rem] border border-[#201d18] bg-[#12110f] p-5">
+            <div className="rounded-[1.1rem] border border-white/10 bg-[#111111] p-5">
               <div className="text-xs uppercase tracking-[0.2em] text-neutral-500">Frontend</div>
               <div className="mt-3 text-lg text-white">Vercel-hosted sign-in and landing experience</div>
               <p className="mt-3 text-sm leading-7 text-neutral-400">
                 Users sign in once through Clerk and move cleanly into the operator runtime without having to re-enter credentials in the terminal.
               </p>
             </div>
-            <div className="rounded-[1.5rem] border border-[#201d18] bg-[#12110f] p-5">
+            <div className="rounded-[1.1rem] border border-white/10 bg-[#111111] p-5">
               <div className="text-xs uppercase tracking-[0.2em] text-neutral-500">Backend</div>
               <div className="mt-3 text-lg text-white">Authenticated dashboard and local control plane</div>
               <p className="mt-3 text-sm leading-7 text-neutral-400">
@@ -194,18 +195,18 @@ export function HomePage({ dashboardUrl }: HomePageProps) {
               href={dashboardUrl}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-[#27F3A9] px-5 py-3 text-sm font-medium text-black transition hover:brightness-110"
+              className={brandPrimaryButtonClass}
             >
               Open Operator Dashboard
             </a>
             {!isSignedIn ? (
               <SignInButton mode="modal">
-                <button className="rounded-full border border-white/10 px-5 py-3 text-sm text-white transition hover:border-[#27F3A9]/50">
+                <button className={brandSecondaryButtonClass}>
                   Sign in first
                 </button>
               </SignInButton>
             ) : (
-              <div className="rounded-full border border-[#27F3A9]/25 px-5 py-3 text-sm text-[#9af6d0]">
+              <div className={brandStatusClass}>
                 Signed in. Operator handoff is ready.
               </div>
             )}
@@ -213,14 +214,14 @@ export function HomePage({ dashboardUrl }: HomePageProps) {
         </div>
       </SectionBlock>
 
-      <section className="border-t border-[#1d1a14] px-4 py-20 sm:px-5">
+      <section className="border-t border-white/10 px-4 py-20 sm:px-5">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-center text-4xl font-light tracking-[-0.04em] text-white md:text-5xl">
             The new way to operate software.
           </h2>
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {testimonials.map((item) => (
-              <article key={item.quote} className="rounded-[2rem] border border-[#201d18] bg-[#0f0e0c] p-6">
+              <article key={item.quote} className="rounded-[1.4rem] border border-white/10 bg-[#0f0f0f] p-6">
                 <p className="text-sm leading-7 text-neutral-300">"{item.quote}"</p>
                 <div className="mt-8 text-sm text-white">{item.author}</div>
                 <div className="text-sm text-neutral-500">{item.role}</div>
@@ -230,13 +231,13 @@ export function HomePage({ dashboardUrl }: HomePageProps) {
         </div>
       </section>
 
-      <section className="border-t border-[#1d1a14] px-4 py-20 sm:px-5">
+      <section className="border-t border-white/10 px-4 py-20 sm:px-5">
         <div className="mx-auto max-w-7xl">
           <div className="text-xs uppercase tracking-[0.22em] text-neutral-500">Stay on the frontier</div>
           <div className="mt-6 grid gap-4 lg:grid-cols-3">
             {featureTiles.map((tile, index) => (
-              <article key={tile.title} className="rounded-[2rem] border border-[#201d18] bg-[#0c0b09] p-6">
-                <div className="mb-6 h-48 rounded-[1.5rem] border border-[#24211b] bg-[#15120e] p-4">
+              <article key={tile.title} className="rounded-[1.4rem] border border-white/10 bg-[#0c0c0c] p-6">
+                <div className="mb-6 h-48 rounded-[1.1rem] border border-white/10 bg-[#141414] p-4">
                   <div className="grid h-full gap-3">
                     <div className="rounded-2xl border border-white/5 bg-black/30" />
                     <div className={`${index === 2 ? 'grid grid-cols-2 gap-3' : 'grid grid-cols-3 gap-3'}`}>
@@ -248,14 +249,14 @@ export function HomePage({ dashboardUrl }: HomePageProps) {
                 </div>
                 <h3 className="text-xl font-medium text-white">{tile.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-neutral-400">{tile.text}</p>
-                <div className="mt-5 text-sm text-[#f0a640]">Explore more {'->'}</div>
+                <div className="mt-5 text-sm text-neutral-200">Explore more {'->'}</div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-[#1d1a14] px-4 py-16 sm:px-5">
+      <section className="border-t border-white/10 px-4 py-16 sm:px-5">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.72fr_1.28fr]">
           <div>
             <div className="text-xs uppercase tracking-[0.22em] text-neutral-500">Changelog</div>
@@ -267,7 +268,7 @@ export function HomePage({ dashboardUrl }: HomePageProps) {
               ['Apr 26, 2026', 'Dashboard, gateway, sessions, and workflow control plane'],
               ['Apr 26, 2026', 'Messaging connectors and node/canvas runtime surface'],
             ].map(([date, text]) => (
-              <div key={text} className="rounded-[1.6rem] border border-[#201d18] bg-[#0f0e0c] p-5">
+              <div key={text} className="rounded-[1.2rem] border border-white/10 bg-[#0f0f0f] p-5">
                 <div className="text-xs uppercase tracking-[0.16em] text-neutral-500">{date}</div>
                 <div className="mt-4 text-sm leading-7 text-neutral-300">{text}</div>
               </div>
