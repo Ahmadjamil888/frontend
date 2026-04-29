@@ -20,11 +20,8 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5">
       <div className="mx-auto max-w-7xl rounded-[1.6rem] border border-white/10 bg-black/82 px-4 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.42)] backdrop-blur-2xl sm:px-5">
         <div className="flex items-center justify-between gap-4">
-          <Link to="/" className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
-              <BrandLogo className="h-5 w-8" />
-            </span>
-            <span className="text-sm font-semibold tracking-[0.3em] text-white">VEX</span>
+          <Link to="/" className="flex items-center">
+            <BrandLogo className="text-xl tracking-[0.04em]" />
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">

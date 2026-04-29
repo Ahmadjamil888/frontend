@@ -1,14 +1,12 @@
 import { SignInButton, useAuth, useUser } from '@clerk/react'
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
-import { AuthCliPage } from './pages/AuthCliPage'
+import { BrandLogo } from './components/BrandLogo'
 import { SiteHeader } from './components/SiteHeader'
+import { brandPrimaryButtonClass, brandSecondaryButtonClass, brandStatusClass } from './components/brandTheme'
 import { AboutPage } from './pages/AboutPage'
+import { AuthCliPage } from './pages/AuthCliPage'
 import { ChangelogPage } from './pages/ChangelogPage'
 import { DocsPage } from './pages/DocsPage'
-import { HomePage } from './pages/HomePage'
-import { IntegrationsPage } from './pages/IntegrationsPage'
-import { LaunchPage } from './pages/LaunchPage'
-import { PlatformPage } from './pages/PlatformPage'
 import { DocsAuthenticationPage } from './pages/docs/DocsAuthenticationPage'
 import { DocsConnectorsPage } from './pages/docs/DocsConnectorsPage'
 import { DocsDashboardPage } from './pages/docs/DocsDashboardPage'
@@ -16,8 +14,10 @@ import { DocsInstallationPage } from './pages/docs/DocsInstallationPage'
 import { DocsOperationsPage } from './pages/docs/DocsOperationsPage'
 import { DocsOverviewPage } from './pages/docs/DocsOverviewPage'
 import { DocsRuntimePage } from './pages/docs/DocsRuntimePage'
-import { BrandLogo } from './components/BrandLogo'
-import { brandPrimaryButtonClass, brandSecondaryButtonClass, brandStatusClass } from './components/brandTheme'
+import { HomePage } from './pages/HomePage'
+import { IntegrationsPage } from './pages/IntegrationsPage'
+import { LaunchPage } from './pages/LaunchPage'
+import { PlatformPage } from './pages/PlatformPage'
 
 function Footer() {
   const { isSignedIn } = useAuth()
@@ -48,11 +48,8 @@ function Footer() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 lg:grid-cols-[1.25fr_0.75fr_0.75fr_0.9fr]">
           <div>
-            <Link to="/" className="inline-flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] shadow-[0_0_30px_rgba(255,255,255,0.06)]">
-                <BrandLogo className="h-6 w-10" />
-              </span>
-              <span className="text-sm font-medium tracking-[0.28em] text-white">VEX</span>
+            <Link to="/" className="inline-flex items-center">
+              <BrandLogo className="text-xl tracking-[0.04em]" />
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-7 text-neutral-400">
               Built to make operator-grade AI execution feel crisp, coherent, and deployable across browser, runtime,
@@ -93,7 +90,7 @@ function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-4 border-t border-white/8 pt-6 text-xs text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
-          <div>© 2026 VEX. Built for clean operator flow.</div>
+          <div>© 2026 connect AI. Built for clean operator flow.</div>
           <div className="flex gap-5">
             <span>Desktop</span>
             <span>Mobile</span>
@@ -110,10 +107,11 @@ const dashboardUrl = import.meta.env.VITE_CONNECT_DASHBOARD_URL || 'http://127.0
 function AppRoutes() {
   const location = useLocation()
   const isDocsRoute = location.pathname === '/docs' || location.pathname.startsWith('/docs/')
+  const isHomeRoute = location.pathname === '/'
 
   return (
     <div className="min-h-screen bg-[#050505] text-white">
-      {!isDocsRoute ? <SiteHeader /> : null}
+      {!isDocsRoute && !isHomeRoute ? <SiteHeader /> : null}
       <main>
         <Routes>
           <Route path="/" element={<HomePage dashboardUrl={dashboardUrl} />} />
@@ -133,7 +131,7 @@ function AppRoutes() {
           <Route path="/launch" element={<LaunchPage />} />
         </Routes>
       </main>
-      {!isDocsRoute ? <Footer /> : null}
+      {!isDocsRoute && !isHomeRoute ? <Footer /> : null}
     </div>
   )
 }
