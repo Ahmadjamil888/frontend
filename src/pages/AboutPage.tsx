@@ -23,7 +23,7 @@ const timeline = [
 
 export function AboutPage() {
   return (
-    <div className="bg-[#050505] pt-6 md:pt-10">
+    <div className="pt-6 md:pt-10">
       <section className="border-b border-white/8 px-5 py-20 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           <div>

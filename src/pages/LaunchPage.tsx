@@ -25,7 +25,7 @@ const phases = [
 
 export function LaunchPage() {
   return (
-    <div className="bg-[#050505] pt-6 md:pt-10">
+    <div className="pt-6 md:pt-10">
       <SectionBlock
         eyebrow="Launch"
         title="A practical launch path"

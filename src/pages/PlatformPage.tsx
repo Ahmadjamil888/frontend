@@ -25,7 +25,7 @@ const deepDives = [
 
 export function PlatformPage() {
   return (
-    <div className="bg-[#050505] pt-6 md:pt-10">
+    <div className="pt-6 md:pt-10">
       <SectionBlock
         eyebrow="Architecture"
         title="One operator system, multiple surfaces"

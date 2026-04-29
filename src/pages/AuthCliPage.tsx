@@ -63,7 +63,7 @@ export function AuthCliPage() {
     return (
       <>
         <RedirectToSignIn signInForceRedirectUrl={returnUrl} signInFallbackRedirectUrl={returnUrl} />
-        <main className="min-h-screen bg-[#050505] px-5 py-16">
+        <main className="site-page-shell min-h-screen px-5 py-16">
           <div className={`mx-auto max-w-3xl p-8 text-center ${brandPanelStrongClass}`}>
             <div className="text-xs font-medium uppercase tracking-[0.22em] text-neutral-500">CLI Sign-In</div>
             <h1 className="mt-5 text-4xl font-light tracking-[-0.04em] text-white md:text-5xl">
@@ -91,7 +91,7 @@ export function AuthCliPage() {
   }
 
   return (
-    <main className="min-h-[calc(100vh-81px)] bg-[#050505] px-5 py-16">
+    <main className="site-page-shell min-h-[calc(100vh-81px)] px-5 py-16">
       <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.95fr_1.05fr]">
         <section className={`${brandPanelStrongClass} p-8`}>
           <div className="text-xs font-medium uppercase tracking-[0.22em] text-neutral-500">CLI Sign-In</div>

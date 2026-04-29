@@ -20,7 +20,7 @@ const entries = [
 
 export function ChangelogPage() {
   return (
-    <div className="bg-[#050505] pt-6 md:pt-10">
+    <div className="pt-6 md:pt-10">
       <section className="border-b border-white/8 px-5 py-20 md:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="text-xs font-medium uppercase tracking-[0.22em] text-neutral-500">Changelog</div>

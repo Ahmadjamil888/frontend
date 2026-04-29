@@ -133,22 +133,19 @@ export function HomePage({ dashboardUrl }: HomePageProps) {
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.4),transparent_18%,transparent_82%,rgba(0,0,0,0.4))]" />
         </div>
 
-        <nav className="relative z-20 px-6 py-6">
-          <div className="liquid-glass mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full px-6 py-3">
-            <div className="flex items-center gap-8">
+        <nav className="relative z-20 px-4 py-4 sm:px-6 sm:py-6">
+          <div className="liquid-glass mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-[2rem] px-4 py-3 sm:rounded-full sm:px-6">
+            <div className="flex items-center gap-6 sm:gap-8">
               <Link to="/" className="flex items-center">
-                <BrandLogo className="text-lg tracking-[0.04em]" />
+                <BrandLogo className="text-base sm:text-lg" />
               </Link>
 
               <div className="hidden items-center gap-8 md:flex">
                 <Link to="/platform" className="text-sm font-medium text-white/80 transition-colors hover:text-white">
                   Features
                 </Link>
-                <Link
-                  to="/launch"
-                  className="text-sm font-medium text-white/80 transition-colors hover:text-white"
-                >
-                  Pricing
+                <Link to="/docs" className="text-sm font-medium text-white/80 transition-colors hover:text-white">
+                  Docs
                 </Link>
                 <Link to="/about" className="text-sm font-medium text-white/80 transition-colors hover:text-white">
                   About
@@ -156,14 +153,17 @@ export function HomePage({ dashboardUrl }: HomePageProps) {
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <SignUpButton mode="modal">
-                <button type="button" className="text-sm font-medium text-white">
+                <button type="button" className="px-1 text-sm font-medium text-white sm:px-0">
                   Sign Up
                 </button>
               </SignUpButton>
               <SignInButton mode="modal">
-                <button type="button" className="liquid-glass rounded-full px-6 py-2 text-sm font-medium text-white">
+                <button
+                  type="button"
+                  className="liquid-glass rounded-full px-4 py-2 text-sm font-medium text-white sm:px-6"
+                >
                   Login
                 </button>
               </SignInButton>
@@ -171,41 +171,41 @@ export function HomePage({ dashboardUrl }: HomePageProps) {
           </div>
         </nav>
 
-        <main className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-12 text-center -translate-y-[20%]">
+        <main className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pb-20 pt-12 text-center sm:pt-16 md:pb-24 md:pt-20">
           <h1
-            className="mb-8 whitespace-nowrap text-5xl tracking-tight text-white md:text-6xl lg:text-7xl"
+            className="mb-8 max-w-[11ch] text-4xl leading-[0.95] tracking-tight text-white sm:text-5xl md:max-w-none md:text-6xl lg:text-7xl"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
             Built for the curious
           </h1>
 
-          <div className="w-full max-w-xl space-y-4">
-            <form
-              className="liquid-glass flex items-center gap-3 rounded-full py-2 pl-6 pr-2"
-              onSubmit={(event) => event.preventDefault()}
-            >
-              <input
-                type="email"
-                placeholder="Enter your email"
-                aria-label="Enter your email"
-                className="w-full bg-transparent text-base text-white outline-none placeholder:text-white/40"
-              />
-              <button type="submit" className="rounded-full bg-white p-3 text-black" aria-label="Submit email">
-                <ArrowRight size={20} />
-              </button>
-            </form>
-
+          <div className="w-full max-w-xl space-y-6">
             <p className="px-4 text-sm leading-relaxed text-white">
               Stay updated with the latest news and insights. Subscribe to our newsletter today and never miss out on
               exciting updates.
             </p>
 
-            <div className="flex justify-center">
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <SignUpButton mode="modal">
+                <button
+                  type="button"
+                  className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black sm:w-auto"
+                >
+                  Get Started
+                  <ArrowRight size={18} />
+                </button>
+              </SignUpButton>
+              <Link
+                to="/docs"
+                className="liquid-glass inline-flex min-h-12 w-full items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5 sm:w-auto"
+              >
+                Explore Docs
+              </Link>
               <a
                 href={dashboardUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="liquid-glass rounded-full px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
+                className="liquid-glass inline-flex min-h-12 w-full items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5 sm:w-auto"
               >
                 Manifesto
               </a>
@@ -213,7 +213,7 @@ export function HomePage({ dashboardUrl }: HomePageProps) {
           </div>
         </main>
 
-        <footer className="relative z-10 flex justify-center gap-4 pb-12">
+        <footer className="relative z-10 flex flex-wrap justify-center gap-4 px-6 pb-10 sm:pb-12">
           <button
             type="button"
             aria-label="Instagram"

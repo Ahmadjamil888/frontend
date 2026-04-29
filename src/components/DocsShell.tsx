@@ -45,11 +45,11 @@ export function DocsShell({ title, description, children }: DocsShellProps) {
   }, [query])
 
   return (
-    <div className="flex h-dvh min-h-dvh flex-col overflow-hidden bg-black text-white">
-      <header className="z-50 shrink-0 border-b border-white/10 bg-black/92 backdrop-blur-xl">
+    <div className="site-page-shell flex h-dvh min-h-dvh flex-col overflow-hidden text-white">
+      <header className="z-50 shrink-0 border-b border-white/10 bg-black/68 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-3 px-4 py-4 sm:px-5">
-          <Link to="/" className="shrink-0 rounded-[1rem] bg-white/[0.03] px-4 py-3">
-            <BrandLogo className="text-xl tracking-[0.04em] sm:text-2xl" />
+          <Link to="/" className="liquid-glass shrink-0 rounded-[1rem] px-4 py-3">
+            <BrandLogo className="text-xl sm:text-2xl" />
           </Link>
 
           <div className="mx-2 hidden max-w-2xl flex-1 md:block">

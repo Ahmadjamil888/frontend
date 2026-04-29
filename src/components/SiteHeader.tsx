@@ -18,10 +18,10 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5">
-      <div className="mx-auto max-w-7xl rounded-[1.6rem] border border-white/10 bg-black/82 px-4 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.42)] backdrop-blur-2xl sm:px-5">
+      <div className="liquid-glass mx-auto max-w-7xl rounded-[1.6rem] px-4 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.42)] sm:px-5">
         <div className="flex items-center justify-between gap-4">
           <Link to="/" className="flex items-center">
-            <BrandLogo className="text-xl tracking-[0.04em]" />
+            <BrandLogo className="text-lg sm:text-xl" />
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">

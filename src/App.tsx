@@ -44,12 +44,12 @@ function Footer() {
   ]
 
   return (
-    <footer className="border-t border-white/8 bg-[#090908] px-4 py-18 sm:px-6 md:py-22">
+    <footer className="border-t border-white/8 bg-black/55 px-4 py-18 backdrop-blur-xl sm:px-6 md:py-22">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 lg:grid-cols-[1.25fr_0.75fr_0.75fr_0.9fr]">
           <div>
             <Link to="/" className="inline-flex items-center">
-              <BrandLogo className="text-xl tracking-[0.04em]" />
+              <BrandLogo className="text-xl" />
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-7 text-neutral-400">
               Built to make operator-grade AI execution feel crisp, coherent, and deployable across browser, runtime,
@@ -110,7 +110,7 @@ function AppRoutes() {
   const isHomeRoute = location.pathname === '/'
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
+    <div className="site-page-shell min-h-screen text-white">
       {!isDocsRoute && !isHomeRoute ? <SiteHeader /> : null}
       <main>
         <Routes>

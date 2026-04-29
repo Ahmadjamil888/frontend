@@ -15,7 +15,7 @@ const notes = [
 
 export function IntegrationsPage() {
   return (
-    <div className="bg-[#050505] pt-6 md:pt-10">
+    <div className="pt-6 md:pt-10">
       <SectionBlock
         eyebrow="Integrations"
         title="Connectors and operators in one fabric"
