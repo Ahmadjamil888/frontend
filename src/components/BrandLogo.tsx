@@ -1,40 +1,87 @@
+import { useId } from 'react'
+
 type BrandLogoProps = {
   className?: string
 }
 
 export function BrandLogo({ className = '' }: BrandLogoProps) {
+  const glowId = useId()
+  const gradientId = useId()
+  const orbitLeftId = useId()
+  const orbitRightId = useId()
+
   return (
     <svg
-      viewBox="0 0 420 140"
-      aria-label="Connect AI logo"
+      width="48"
+      height="24"
+      viewBox="0 0 240 120"
+      aria-label="Connect logo"
       role="img"
       className={className}
       fill="none"
+      preserveAspectRatio="xMidYMid meet"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M120 28H214L194 60H126C101 60 81 81 81 106C81 131 101 152 126 152H214L194 184H120C78 184 44 150 44 108C44 66 78 28 120 28Z"
-        fill="url(#brandGradient)"
-        transform="translate(0 -22) scale(1 0.86)"
-      />
-      <path
-        d="M216 121L261 68H291L277 91H295L305 75H337L309 121H278L291 99H274L260 121H216Z"
-        fill="url(#brandGradient)"
-      />
-      <path
-        d="M281 121L339 28H373L420 121H385L355 61L322 121H281Z"
-        fill="url(#brandGradient)"
-      />
-      <path d="M86 96L248 35" stroke="url(#brandGradient)" strokeWidth="12" strokeLinecap="round" />
-      <path d="M193 69L238 101" stroke="url(#brandGradient)" strokeWidth="12" strokeLinecap="round" />
-      <circle cx="84" cy="96" r="17" fill="url(#brandGradient)" />
-      <circle cx="192" cy="69" r="17" fill="url(#brandGradient)" />
-      <circle cx="249" cy="36" r="17" fill="url(#brandGradient)" />
+      <g filter={`url(#${glowId})`}>
+        <path
+          d="M38 60C53 24 83 24 101 60C119 96 149 96 164 60C149 24 119 24 101 60C83 96 53 96 38 60Z"
+          stroke={`url(#${gradientId})`}
+          strokeWidth="8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M24 60C24 37 40 18 64 18C80 18 94 26 102 39"
+          stroke={`url(#${orbitLeftId})`}
+          strokeWidth="2.75"
+          strokeLinecap="round"
+        />
+        <path
+          d="M24 60C24 83 40 102 64 102C80 102 94 94 102 81"
+          stroke={`url(#${orbitLeftId})`}
+          strokeWidth="2.75"
+          strokeLinecap="round"
+        />
+        <path
+          d="M138 39C146 26 160 18 176 18C200 18 216 37 216 60"
+          stroke={`url(#${orbitRightId})`}
+          strokeWidth="2.75"
+          strokeLinecap="round"
+        />
+        <path
+          d="M138 81C146 94 160 102 176 102C200 102 216 83 216 60"
+          stroke={`url(#${orbitRightId})`}
+          strokeWidth="2.75"
+          strokeLinecap="round"
+        />
+        <circle cx="24" cy="60" r="4" fill="#FFFFFF" />
+        <circle cx="63" cy="18" r="4.8" fill="#FFFFFF" />
+        <circle cx="63" cy="102" r="4.8" fill="#FFFFFF" />
+        <circle cx="216" cy="60" r="4" fill="#FFFFFF" />
+        <circle cx="177" cy="18" r="4.8" fill="#FFFFFF" />
+        <circle cx="177" cy="102" r="4.8" fill="#FFFFFF" />
+        <circle cx="120" cy="60" r="4.4" fill="#FFFFFF" />
+      </g>
       <defs>
-        <linearGradient id="brandGradient" x1="36" y1="16" x2="387" y2="138" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#F7F7F7" />
-          <stop offset="0.5" stopColor="#FFFFFF" />
-          <stop offset="1" stopColor="#D8D8D8" />
+        <filter id={glowId} x="0" y="0" width="240" height="120" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <feGaussianBlur stdDeviation="1.8" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <linearGradient id={gradientId} x1="38" y1="60" x2="164" y2="60" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FFFFFF" />
+          <stop offset="0.55" stopColor="#FFF8F4" />
+          <stop offset="1" stopColor="#FFFFFF" />
+        </linearGradient>
+        <linearGradient id={orbitLeftId} x1="24" y1="18" x2="102" y2="102" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FFFFFF" />
+          <stop offset="1" stopColor="#DADADA" />
+        </linearGradient>
+        <linearGradient id={orbitRightId} x1="138" y1="18" x2="216" y2="102" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FFFFFF" />
+          <stop offset="1" stopColor="#DADADA" />
         </linearGradient>
       </defs>
     </svg>

@@ -9,12 +9,12 @@ type SectionBlockProps = {
 
 export function SectionBlock({ eyebrow, title, description, children }: SectionBlockProps) {
   return (
-    <section className="border-t border-white/10 px-4 py-20 sm:px-5">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.82fr_1.18fr]">
+    <section className="border-t border-white/10 px-4 py-24 sm:px-5 md:py-28">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
         <div>
-          <div className="text-xs uppercase tracking-[0.2em] text-neutral-400">{eyebrow}</div>
-          <h2 className="mt-4 max-w-lg text-3xl font-light tracking-[-0.05em] text-white md:text-5xl">{title}</h2>
-          <p className="mt-4 max-w-lg text-[15px] leading-7 text-neutral-400">{description}</p>
+          <div className="text-xs font-medium uppercase tracking-[0.24em] text-neutral-500">{eyebrow}</div>
+          <h2 className="mt-5 max-w-lg text-4xl font-light tracking-[-0.05em] text-white md:text-6xl">{title}</h2>
+          <p className="mt-5 max-w-lg text-base leading-8 text-neutral-300">{description}</p>
         </div>
         <div>{children}</div>
       </div>

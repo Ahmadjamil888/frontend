@@ -64,12 +64,12 @@ export function AuthCliPage() {
       <>
         <RedirectToSignIn signInForceRedirectUrl={returnUrl} signInFallbackRedirectUrl={returnUrl} />
         <main className="min-h-screen bg-black px-5 py-16">
-          <div className="mx-auto max-w-3xl rounded-[1.4rem] border border-white/10 bg-[#0a0a0a] p-8 text-center">
-            <div className="text-xs uppercase tracking-[0.22em] text-neutral-400">CLI Sign-In</div>
-            <h1 className="mt-4 text-4xl font-light tracking-[-0.04em] text-white md:text-5xl">
+          <div className="mx-auto max-w-3xl rounded-[1.5rem] border border-white/10 bg-[#0a0a0a] p-8 text-center">
+            <div className="text-xs font-medium uppercase tracking-[0.22em] text-neutral-500">CLI Sign-In</div>
+            <h1 className="mt-5 text-4xl font-light tracking-[-0.04em] text-white md:text-5xl">
               Redirecting to Clerk sign-in.
             </h1>
-            <p className="mt-5 text-base leading-7 text-neutral-400">
+            <p className="mt-5 text-base leading-8 text-neutral-300">
               If the redirect does not start automatically, use the sign-in button below.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -93,25 +93,25 @@ export function AuthCliPage() {
   return (
     <main className="min-h-[calc(100vh-81px)] bg-black px-5 py-16">
       <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-        <section className="rounded-[1.4rem] border border-white/10 bg-[#060606] p-8">
-          <div className="text-xs uppercase tracking-[0.22em] text-neutral-400">CLI Sign-In</div>
-          <h1 className="mt-4 max-w-xl text-4xl font-light tracking-[-0.04em] text-white md:text-6xl">
+        <section className="rounded-[1.5rem] border border-white/10 bg-[#060606] p-8">
+          <div className="text-xs font-medium uppercase tracking-[0.22em] text-neutral-500">CLI Sign-In</div>
+          <h1 className="mt-5 max-w-xl text-4xl font-light tracking-[-0.04em] text-white md:text-6xl">
             Authenticate once. Return to the terminal already signed in.
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-neutral-400">
+          <p className="mt-5 max-w-xl text-base leading-8 text-neutral-300">
             CONNECT opens this page from the CLI, waits on a localhost callback, and stores the validated Clerk session on the backend only after the token is verified.
           </p>
-          <div className="mt-8 grid gap-3 text-sm text-neutral-300">
-            <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">Origin: {searchParams.get('origin') || 'browser'}</div>
+          <div className="mt-8 grid gap-4 text-sm text-neutral-300">
+            <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5">Origin: {searchParams.get('origin') || 'browser'}</div>
             <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-4 break-all">
               Callback: {callbackUrl || 'missing'}
             </div>
           </div>
         </section>
 
-        <section className="rounded-[1.4rem] border border-white/10 bg-[#0a0a0a] p-8">
-          <div className="text-xs uppercase tracking-[0.22em] text-neutral-500">Status</div>
-          <div className="mt-4 rounded-[1.1rem] border border-white/10 bg-white/[0.03] p-6">
+        <section className="rounded-[1.5rem] border border-white/10 bg-[#0a0a0a] p-8">
+          <div className="text-xs font-medium uppercase tracking-[0.22em] text-neutral-500">Status</div>
+          <div className="mt-5 rounded-[1.1rem] border border-white/10 bg-white/[0.03] p-6">
             <div
               className={`text-sm uppercase tracking-[0.18em] ${
                 bridgeState === 'success'
@@ -123,7 +123,7 @@ export function AuthCliPage() {
             >
               {bridgeState}
             </div>
-            <p className="mt-4 text-base leading-7 text-neutral-300">{message}</p>
+            <p className="mt-4 text-base leading-8 text-neutral-300">{message}</p>
           </div>
 
           {!isSignedIn ? (

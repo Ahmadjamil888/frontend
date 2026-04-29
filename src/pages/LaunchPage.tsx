@@ -30,11 +30,11 @@ export function LaunchPage() {
         title="A practical launch path"
         description="This frontend is designed to sit in front of the operator backend. It gives you a public-facing narrative and a controlled sign-in path into the runtime."
       >
-        <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-8">
-          <ol className="space-y-4 text-sm leading-7 text-neutral-300">
+        <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-8">
+          <ol className="space-y-5 text-base leading-8 text-neutral-300">
             {checklist.map((item, index) => (
               <li key={item} className="flex gap-4">
-                <span className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-[0.8rem] border border-white/14 text-white">
+                <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-[0.9rem] border border-white/14 bg-white/[0.03] text-sm font-medium text-white">
                   {index + 1}
                 </span>
                 <span>{item}</span>
@@ -49,11 +49,11 @@ export function LaunchPage() {
         title="Launch is a sequence, not a slogan."
         description="A real launch requires the public site, auth flow, launcher path, runtime health, and connector validation to all agree with each other."
       >
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-3">
           {phases.map((phase) => (
-            <article key={phase.title} className="rounded-[1.4rem] border border-white/10 bg-[#090909] p-6">
+            <article key={phase.title} className="rounded-[1.4rem] border border-white/10 bg-[#090909] p-7">
               <h3 className="text-xl font-medium text-white">{phase.title}</h3>
-              <p className="mt-4 text-sm leading-7 text-neutral-400">{phase.text}</p>
+              <p className="mt-4 text-base leading-8 text-neutral-300">{phase.text}</p>
             </article>
           ))}
         </div>
@@ -64,8 +64,9 @@ export function LaunchPage() {
         title="The doctor report should be part of every rollout."
         description="The fastest way to catch broken launchers, wrong working directories, missing env, or dead providers is to check the system from the command the user will actually run."
       >
-        <div className="rounded-[1.4rem] border border-white/10 bg-black/50 p-6">
-          <pre className="overflow-x-auto text-sm text-neutral-200">
+        <div className="rounded-[1.5rem] border border-white/10 bg-black/50 p-7">
+          <div className="mb-4 text-xs font-medium uppercase tracking-[0.22em] text-neutral-500">Launch commands</div>
+          <pre className="overflow-x-auto text-sm leading-7 text-neutral-200">
             <code>{`connect --doctor
 connect login
 connect dashboard`}</code>

@@ -22,15 +22,15 @@ const timeline = [
 export function AboutPage() {
   return (
     <div className="bg-black pt-8">
-      <section className="border-b border-white/10 px-5 py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+      <section className="border-b border-white/10 px-5 py-24 md:py-28">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           <div>
-            <div className="text-xs uppercase tracking-[0.22em] text-neutral-400">About CONNECT</div>
-            <h1 className="mt-4 text-4xl font-light tracking-[-0.05em] text-white md:text-6xl">
+            <div className="text-xs font-medium uppercase tracking-[0.22em] text-neutral-500">About CONNECT</div>
+            <h1 className="mt-5 text-4xl font-light tracking-[-0.05em] text-white md:text-6xl">
               Built to operate AI systems like real software, not demos.
             </h1>
           </div>
-          <div className="space-y-5 text-base leading-8 text-neutral-400">
+          <div className="space-y-6 text-base leading-8 text-neutral-300">
             <p>
               CONNECT exists to turn AI from an isolated chat surface into an operator-grade system. It combines gateway
               routing, authenticated access, sessions, memory, tools, workflows, and messaging into one runtime that can
@@ -45,24 +45,27 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="border-b border-white/10 px-5 py-20">
+      <section className="border-b border-white/10 px-5 py-24 md:py-28">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-4 md:grid-cols-3">
-            {principles.map((item) => (
-              <article key={item.title} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-6">
-                <h2 className="text-2xl font-medium text-white">{item.title}</h2>
-                <p className="mt-4 text-sm leading-7 text-neutral-400">{item.text}</p>
+          <div className="grid gap-5 md:grid-cols-3">
+            {principles.map((item, index) => (
+              <article key={item.title} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-7">
+                <div className="flex items-center gap-3">
+                  <span className={`h-2.5 w-2.5 rounded-full ${index === 0 ? 'bg-white' : 'bg-white/40'}`} />
+                  <h2 className="text-2xl font-medium text-white">{item.title}</h2>
+                </div>
+                <p className="mt-4 text-base leading-8 text-neutral-300">{item.text}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-b border-white/10 px-5 py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.7fr_1.3fr]">
+      <section className="border-b border-white/10 px-5 py-24 md:py-28">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
           <div>
-            <div className="text-xs uppercase tracking-[0.22em] text-neutral-500">Why it matters</div>
-            <h2 className="mt-4 text-3xl font-light tracking-[-0.04em] text-white md:text-5xl">
+            <div className="text-xs font-medium uppercase tracking-[0.22em] text-neutral-500">Why it matters</div>
+            <h2 className="mt-5 text-4xl font-light tracking-[-0.04em] text-white md:text-5xl">
               AI systems fail when execution, context, and identity do not stay aligned.
             </h2>
           </div>
@@ -73,7 +76,7 @@ export function AboutPage() {
               'A public frontend by itself does not make the runtime safer, more controllable, or more launchable.',
               'CONNECT treats those as one product problem instead of separate implementation chores.',
             ].map((text) => (
-              <div key={text} className="rounded-[1.2rem] border border-white/10 bg-[#090909] p-5 text-sm leading-7 text-neutral-300">
+              <div key={text} className="rounded-[1.2rem] border border-white/10 bg-[#090909] p-6 text-base leading-8 text-neutral-300">
                 {text}
               </div>
             ))}
@@ -81,17 +84,17 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="px-5 py-20">
+      <section className="px-5 py-24 md:py-28">
         <div className="mx-auto max-w-7xl">
-          <div className="text-xs uppercase tracking-[0.22em] text-neutral-500">Path</div>
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          <div className="text-xs font-medium uppercase tracking-[0.22em] text-neutral-500">Path</div>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {timeline.map(([title, text], index) => (
-              <article key={title} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-6">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-[0.95rem] border border-white/14 text-sm text-white">
+              <article key={title} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-7">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-[0.95rem] border border-white/14 bg-white/[0.03] text-sm text-white">
                   0{index + 1}
                 </div>
                 <h3 className="mt-5 text-xl font-medium text-white">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-neutral-400">{text}</p>
+                <p className="mt-4 text-base leading-8 text-neutral-300">{text}</p>
               </article>
             ))}
           </div>
