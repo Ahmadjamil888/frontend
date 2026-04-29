@@ -1,123 +1,44 @@
-import { useEffect, useRef, type ReactNode } from 'react'
-
-const VIDEO_HUMAN =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260424_090051_64ea5059-da6b-492b-a171-aa7ecc767dc3.mp4'
-const VIDEO_AI =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260424_093237_ff0ddc63-c068-4e29-96da-fdd0e40af133.mp4'
-
-type VideoIconProps = {
-  src: string
-  size?: number
-}
-
-function VideoIcon({ src, size = 72 }: VideoIconProps) {
-  const videoRef = useRef<HTMLVideoElement | null>(null)
-
-  useEffect(() => {
-    videoRef.current?.play().catch(() => {})
-  }, [])
-
-  return (
-    <span
-      className="inline-block align-middle rounded-full overflow-hidden"
-      style={{
-        width: `clamp(48px, 10vw, ${size}px)`,
-        height: `clamp(48px, 10vw, ${size}px)`,
-        flexShrink: 0,
-      }}
-    >
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
-        src={src}
-        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-      />
-    </span>
-  )
-}
-
-function GradientLine({ children }: { children: ReactNode }) {
-  return (
-    <span
-      style={{
-        display: 'block',
-        lineHeight: 1.1,
-        marginBottom: '-0.22em',
-        background: 'linear-gradient(90deg, #4A4A4A 0%, #F1F1F1 50%, #4A4A4A 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-      }}
-    >
-      {children}
-    </span>
-  )
-}
+import { Link } from 'react-router-dom'
+import { brandPrimaryButtonClass, brandSecondaryButtonClass } from './brandTheme'
 
 export default function HeroSection() {
   return (
-    <section
-      className="relative flex min-h-[calc(100vh-76px)] flex-col items-center justify-center overflow-hidden border-b border-white/10 px-4 py-24 sm:px-6 md:py-28"
-      style={{ background: '#000' }}
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_14%,rgba(255,255,255,0.08),transparent_24%),radial-gradient(circle_at_18%_0%,rgba(255,255,255,0.05),transparent_22%),radial-gradient(circle_at_85%_10%,rgba(185,185,185,0.08),transparent_20%)]" />
-      <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-2 text-center sm:px-4">
-        <div className="mb-6 rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-300">
-          Human operators, model execution, one runtime
-        </div>
-        <h1
-          style={{
-            fontFamily: "'YDYoonche L', 'YDYoonche M', sans-serif",
-            fontWeight: 300,
-            letterSpacing: '-0.03em',
-            lineHeight: 1.02,
-            color: '#fff',
-            fontSize: 'clamp(3.5rem, 9vw, 7rem)',
-          }}
-        >
-          <GradientLine>The vision</GradientLine>
-          <GradientLine>of engineering</GradientLine>
-          <span className="mt-2 flex flex-wrap items-center justify-center gap-2 sm:gap-3" style={{ color: '#fff' }}>
-            <span style={{ color: '#8A8A8A' }}>is</span>
-            <VideoIcon src={VIDEO_HUMAN} size={110} />
-            <span>human</span>
-            <span style={{ color: '#8A8A8A', position: 'relative', top: '0.15em', marginLeft: '0.25em' }}>+</span>
-            <VideoIcon src={VIDEO_AI} size={110} />
-            <span>AI</span>
-          </span>
-        </h1>
+    <section className="relative overflow-hidden px-4 pb-18 pt-10 sm:px-6 md:pb-24 md:pt-12">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute inset-x-[18%] top-0 h-full border-l border-r border-white/[0.04]" />
+        <div className="absolute left-[-8%] top-[8%] h-44 w-44 rounded-full border border-white/16 opacity-70 blur-[1px]" />
+        <div className="absolute right-[-6%] top-[7%] h-44 w-44 rounded-full border border-white/16 opacity-70 blur-[1px]" />
+        <div className="absolute bottom-[-14rem] left-[-12rem] h-[26rem] w-[26rem] rounded-full bg-[radial-gradient(circle,rgba(225,239,247,0.95),rgba(195,210,219,0.28)_38%,rgba(255,255,255,0)_72%)] opacity-95 blur-[10px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(255,255,255,0.08),transparent_28%),radial-gradient(circle_at_72%_26%,rgba(255,255,255,0.04),transparent_18%),radial-gradient(circle_at_27%_76%,rgba(255,255,255,0.035),transparent_22%)]" />
+        <div className="absolute inset-0 opacity-55 [background-image:radial-gradient(rgba(255,255,255,0.42)_0.55px,transparent_0.55px)] [background-size:26px_26px]" />
+      </div>
 
-        <p
-          className="mt-8 max-w-[42rem] px-2 text-center"
-          style={{
-            fontSize: 'clamp(1.05rem, 2vw, 1.2rem)',
-            color: '#B8B8B8',
-            lineHeight: 1.7,
-            fontWeight: 400,
-          }}
-        >
-          CONNECT helps teams orchestrate models, tools, memory, and messaging into one operational layer that actually
-          ships work.
-        </p>
-
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-          <button
-            type="button"
-            className="inline-flex min-h-[52px] min-w-[208px] items-center justify-center rounded-[1rem] border border-white bg-white px-7 py-3 text-sm font-semibold text-black shadow-[0_16px_40px_rgba(255,255,255,0.14)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-200 active:translate-y-0"
-            onClick={() => {
-              window.location.href = '/platform'
-            }}
-          >
-            Join The Movement
-          </button>
-          <a
-            href="/docs"
-            className="inline-flex min-h-[52px] min-w-[208px] items-center justify-center rounded-[1rem] border border-white/14 bg-white/[0.03] px-7 py-3 text-sm font-medium text-neutral-100 transition hover:border-white/24 hover:bg-white/[0.06] hover:text-white"
-          >
-            Read the platform docs
-          </a>
+      <div className="mx-auto max-w-7xl">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.015))] px-5 py-18 shadow-[0_45px_120px_rgba(0,0,0,0.6)] backdrop-blur-xl sm:px-8 md:min-h-[720px] md:px-12 md:py-24">
+          <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
+            <div className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-neutral-300">
+              Tomorrow. Build. Ship.
+            </div>
+            <h1 className="mt-14 max-w-2xl text-[2.7rem] font-light leading-[0.96] tracking-[-0.06em] text-white sm:text-[4rem] md:text-[4.65rem]">
+              Shaping tomorrow
+              <br />
+              with vision and action.
+            </h1>
+            <p className="mt-6 max-w-xl text-sm leading-7 text-neutral-400 sm:text-base">
+              We build interfaces and control systems that feel bold, coherent, and ready to execute.
+            </p>
+            <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
+              <Link to="/launch" className={`${brandPrimaryButtonClass} min-w-[10rem]`}>
+                Start a chat
+              </Link>
+              <Link to="/platform" className={`${brandSecondaryButtonClass} min-w-[10rem]`}>
+                Explore now
+              </Link>
+            </div>
+            <div className="mt-14 rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-sm text-neutral-300 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+              Innovation. Vision. Action.
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -22,71 +22,63 @@ import { brandPrimaryButtonClass, brandSecondaryButtonClass, brandStatusClass } 
 function Footer() {
   const { isSignedIn } = useAuth()
   const { user } = useUser()
-  const productLinks = [
-    { to: '/platform', label: 'Platform' },
-    { to: '/launch', label: 'Launch' },
-    { to: '/changelog', label: 'Changelog' },
-  ]
-  const resourceLinks = [
-    { to: '/docs', label: 'Docs' },
-    { to: '/about', label: 'About' },
-    { to: '/integrations', label: 'Integrations' },
+
+  const columns = [
+    {
+      title: 'Product',
+      links: [
+        { to: '/', label: 'Home' },
+        { to: '/platform', label: 'Platform' },
+        { to: '/launch', label: 'Launch' },
+        { to: '/integrations', label: 'Integrations' },
+      ],
+    },
+    {
+      title: 'Resources',
+      links: [
+        { to: '/docs', label: 'Docs' },
+        { to: '/changelog', label: 'Changelog' },
+        { to: '/about', label: 'About' },
+      ],
+    },
   ]
 
   return (
-    <footer className="border-t border-white/10 bg-[#050505] px-4 py-20 sm:px-5 md:py-24">
+    <footer className="border-t border-white/8 bg-[#090908] px-4 py-18 sm:px-6 md:py-22">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-10 h-px bg-white/10" />
         <div className="grid gap-12 lg:grid-cols-[1.25fr_0.75fr_0.75fr_0.9fr]">
           <div>
-          <div className="flex items-center gap-4">
-              <div className="flex h-16 min-w-[8.5rem] items-center justify-center rounded-[1rem] bg-white/[0.03] px-4">
-                <BrandLogo className="h-7 w-auto sm:h-8" />
-              </div>
-              <div>
-                <div className="text-base font-semibold uppercase tracking-[0.24em] text-white">Connect</div>
-                <div className="mt-1 text-sm text-neutral-500">Human operators with AI execution</div>
-              </div>
-            </div>
+            <Link to="/" className="inline-flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] shadow-[0_0_30px_rgba(255,255,255,0.06)]">
+                <BrandLogo className="h-6 w-10" />
+              </span>
+              <span className="text-sm font-medium tracking-[0.28em] text-white">VEX</span>
+            </Link>
             <p className="mt-6 max-w-sm text-sm leading-7 text-neutral-400">
-              Operator-grade AI infrastructure with one public frontend, one authenticated control plane, and one runtime that actually executes work across tools, sessions, memory, and channels.
+              Built to make operator-grade AI execution feel crisp, coherent, and deployable across browser, runtime,
+              and shell surfaces.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3 text-[14px] text-white/50">
-              <span>Gateway</span>
-              <span>Runtime</span>
-              <span>Canvas</span>
-              <span>Messaging</span>
-              <span>Automation</span>
-            </div>
           </div>
-          <div>
-            <div className="text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Product</div>
-            <div className="mt-5 grid gap-3 text-[14px] text-white/50">
-              {productLinks.map((item) => (
-                <Link key={item.to} to={item.to} className="transition hover:text-white">
-                  {item.label}
-                </Link>
-              ))}
+
+          {columns.map((column) => (
+            <div key={column.title}>
+              <div className="text-[11px] uppercase tracking-[0.26em] text-neutral-500">{column.title}</div>
+              <div className="mt-5 grid gap-3 text-sm text-neutral-300">
+                {column.links.map((link) => (
+                  <Link key={link.to} to={link.to} className="transition hover:text-white">
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
+          ))}
+
           <div>
-            <div className="text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Resources</div>
-            <div className="mt-5 grid gap-3 text-[14px] text-white/50">
-              {resourceLinks.map((item) => (
-                <Link key={item.to} to={item.to} className="transition hover:text-white">
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div className="text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Account</div>
+            <div className="text-[11px] uppercase tracking-[0.26em] text-neutral-500">Account</div>
             <div className="mt-5 flex flex-col items-start gap-3">
               {!isSignedIn ? (
                 <SignInButton mode="modal">
-                  <button className={brandSecondaryButtonClass}>
-                    Sign in
-                  </button>
+                  <button className={brandSecondaryButtonClass}>Sign in</button>
                 </SignInButton>
               ) : (
                 <div className={brandStatusClass}>
@@ -94,9 +86,18 @@ function Footer() {
                 </div>
               )}
               <Link to="/docs" className={brandPrimaryButtonClass}>
-                Documentation
+                Open docs
               </Link>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/8 pt-6 text-xs text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
+          <div>© 2026 VEX. Built for clean operator flow.</div>
+          <div className="flex gap-5">
+            <span>Desktop</span>
+            <span>Mobile</span>
+            <span>Runtime</span>
           </div>
         </div>
       </div>
@@ -111,7 +112,7 @@ function AppRoutes() {
   const isDocsRoute = location.pathname === '/docs' || location.pathname.startsWith('/docs/')
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#050505] text-white">
       {!isDocsRoute ? <SiteHeader /> : null}
       <main>
         <Routes>

@@ -1,4 +1,5 @@
 import { SectionBlock } from '../components/SectionBlock'
+import { brandPanelStrongClass } from '../components/brandTheme'
 
 const blocks = [
   ['Gateway', 'Routes sessions, messaging, node state, memory, and workflows through one control plane.'],
@@ -24,7 +25,7 @@ const deepDives = [
 
 export function PlatformPage() {
   return (
-    <div className="bg-black pt-8">
+    <div className="bg-[#050505] pt-6 md:pt-10">
       <SectionBlock
         eyebrow="Architecture"
         title="One operator system, multiple surfaces"
@@ -32,12 +33,12 @@ export function PlatformPage() {
       >
         <div className="grid gap-5 md:grid-cols-2">
           {blocks.map(([title, text], index) => (
-            <div key={title} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-7">
+            <div key={title} className={`${brandPanelStrongClass} p-7`}>
               <div className="flex items-center gap-3">
                 <span className={`h-2.5 w-2.5 rounded-full ${index === 0 ? 'bg-white' : 'bg-white/35'}`} />
                 <h3 className="text-xl font-medium text-white">{title}</h3>
               </div>
-              <p className="mt-4 text-base leading-8 text-neutral-300">{text}</p>
+              <p className="mt-4 text-[15px] leading-7 text-neutral-400">{text}</p>
             </div>
           ))}
         </div>
@@ -50,9 +51,9 @@ export function PlatformPage() {
       >
         <div className="grid gap-5">
           {deepDives.map((item) => (
-            <article key={item.title} className="rounded-[1.4rem] border border-white/10 bg-[#090909] p-7">
-              <h3 className="text-2xl font-medium text-white">{item.title}</h3>
-              <p className="mt-4 text-base leading-8 text-neutral-300">{item.text}</p>
+            <article key={item.title} className={`${brandPanelStrongClass} p-7`}>
+              <h3 className="text-2xl font-light tracking-[-0.04em] text-white">{item.title}</h3>
+              <p className="mt-4 text-[15px] leading-7 text-neutral-400">{item.text}</p>
             </article>
           ))}
         </div>
@@ -63,18 +64,18 @@ export function PlatformPage() {
         title="The frontend and operator surfaces are separate on purpose."
         description="A public product site should explain, convert, and authenticate. An operator surface should expose live state, execution, and control. CONNECT now treats those as different jobs."
       >
-        <div className="rounded-[1.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-8">
+        <div className={`${brandPanelStrongClass} p-8`}>
           <div className="grid gap-5 md:grid-cols-2">
             {[
               ['Public frontend', 'Long-form product narrative, sign-in, navigation, docs, and launch framing.'],
               ['Operator backend', 'Dashboard, workflows, node pairing, messaging, gateway status, and live runtime control.'],
             ].map(([title, text], index) => (
-              <div key={title} className="rounded-[1.2rem] border border-white/10 bg-black/25 p-6">
+              <div key={title} className="rounded-[1.2rem] border border-white/8 bg-black/30 p-6">
                 <div className="flex items-center gap-3">
                   <span className={`h-2.5 w-2.5 rounded-full ${index === 0 ? 'bg-white' : 'bg-white/40'}`} />
                   <h3 className="text-xl font-medium text-white">{title}</h3>
                 </div>
-                <p className="mt-4 text-base leading-8 text-neutral-300">{text}</p>
+                <p className="mt-4 text-[15px] leading-7 text-neutral-400">{text}</p>
               </div>
             ))}
           </div>

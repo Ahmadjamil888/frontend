@@ -1,4 +1,5 @@
 import { SignInButton, SignUpButton, UserButton, useAuth } from '@clerk/react'
+import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { BrandLogo } from './BrandLogo'
 import { brandPrimaryButtonClass, brandSecondaryButtonClass } from './brandTheme'
@@ -8,32 +9,31 @@ const NAV_ITEMS = [
   { to: '/platform', label: 'Platform' },
   { to: '/docs', label: 'Docs' },
   { to: '/launch', label: 'Launch' },
+  { to: '/about', label: 'About' },
 ]
 
 export function SiteHeader() {
   const { isSignedIn } = useAuth()
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/88 backdrop-blur-xl">
-      <div className="mx-auto max-w-7xl px-4 py-4 sm:px-5">
+    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5">
+      <div className="mx-auto max-w-7xl rounded-[1.6rem] border border-white/10 bg-black/82 px-4 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.42)] backdrop-blur-2xl sm:px-5">
         <div className="flex items-center justify-between gap-4">
-          <Link to="/" className="flex items-center gap-4 rounded-[1rem] border border-transparent pr-3 transition hover:border-white/10">
-            <div className="flex h-16 min-w-[8.5rem] items-center justify-center rounded-[1rem] bg-white/[0.03] px-4">
-              <BrandLogo className="h-7 w-auto sm:h-8" />
-            </div>
-            <div className="hidden sm:block">
-              <div className="text-sm font-semibold uppercase tracking-[0.24em] text-white">Connect</div>
-              <div className="mt-1 text-xs tracking-[0.16em] text-neutral-500">Operator infrastructure</div>
-            </div>
+          <Link to="/" className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
+              <BrandLogo className="h-5 w-8" />
+            </span>
+            <span className="text-sm font-semibold tracking-[0.3em] text-white">VEX</span>
           </Link>
 
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-8 md:flex">
             {NAV_ITEMS.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
-                  `text-sm transition-colors ${isActive ? 'text-white' : 'text-neutral-400 hover:text-neutral-100'}`
+                  `text-sm transition-colors ${isActive ? 'text-white' : 'text-neutral-400 hover:text-white'}`
                 }
               >
                 {item.label}
@@ -41,55 +41,84 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <Link
-              to="/docs"
-              className={`hidden md:inline-flex ${brandSecondaryButtonClass}`}
-            >
-              Documentation
-            </Link>
+          <div className="hidden items-center gap-2 md:flex">
             {!isSignedIn ? (
               <>
                 <SignInButton mode="modal">
-                  <button className={brandSecondaryButtonClass}>
-                    Sign in
-                  </button>
+                  <button className={brandSecondaryButtonClass}>Sign in</button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                  <button className={brandPrimaryButtonClass}>
-                    Sign up
-                  </button>
+                  <button className={`${brandPrimaryButtonClass} min-w-[7.5rem]`}>Start a chat</button>
                 </SignUpButton>
               </>
             ) : (
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: 'h-10 w-10',
-                  },
-                }}
-              />
+              <>
+                <Link to="/docs" className={brandSecondaryButtonClass}>
+                  Docs
+                </Link>
+                <UserButton
+                  appearance={{
+                    elements: {
+                      avatarBox: 'h-10 w-10',
+                    },
+                  }}
+                />
+              </>
             )}
           </div>
+
+          <button
+            type="button"
+            aria-label="Open navigation"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white md:hidden"
+            onClick={() => setMobileOpen((value) => !value)}
+          >
+            <span className="flex flex-col gap-1.5">
+              <span className="h-px w-4 bg-white" />
+              <span className="h-px w-4 bg-white" />
+              <span className="h-px w-4 bg-white" />
+            </span>
+          </button>
         </div>
 
-        <nav className="mt-4 flex gap-2 overflow-x-auto pb-1 md:hidden">
-          {NAV_ITEMS.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                `shrink-0 rounded-[0.95rem] border px-3 py-2 text-xs transition ${
-                  isActive
-                    ? 'border-white/16 bg-white/[0.05] text-white'
-                    : 'border-white/10 text-neutral-400 hover:border-white/20 hover:text-white'
-                }`
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
+        {mobileOpen ? (
+          <div className="mt-4 border-t border-white/8 pt-4 md:hidden">
+            <nav className="grid gap-2">
+              {NAV_ITEMS.map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `rounded-xl border px-4 py-3 text-sm transition ${
+                      isActive
+                        ? 'border-white/16 bg-white/[0.06] text-white'
+                        : 'border-white/10 bg-white/[0.02] text-neutral-300'
+                    }`
+                  }
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </nav>
+            <div className="mt-3 grid gap-2">
+              {!isSignedIn ? (
+                <>
+                  <SignInButton mode="modal">
+                    <button className={`${brandSecondaryButtonClass} w-full`}>Sign in</button>
+                  </SignInButton>
+                  <SignUpButton mode="modal">
+                    <button className={`${brandPrimaryButtonClass} w-full`}>Start a chat</button>
+                  </SignUpButton>
+                </>
+              ) : (
+                <Link to="/docs" className={`${brandSecondaryButtonClass} w-full`} onClick={() => setMobileOpen(false)}>
+                  Open docs
+                </Link>
+              )}
+            </div>
+          </div>
+        ) : null}
       </div>
     </header>
   )
