@@ -1,25 +1,25 @@
-import { SectionBlock } from '../components/SectionBlock'
+﻿import { SectionBlock } from '../components/SectionBlock'
 import { brandPanelStrongClass } from '../components/brandTheme'
 
 const checklist = [
-  'Run the backend with `connect dashboard` or `python ai_assistant.py --dashboard`.',
-  'Sign in through Clerk in the frontend or by using `connect login` in the CLI.',
-  'Use the operator dashboard for sessions, tools, workflows, and runtime status.',
-  'Validate live connectors with the CLI test commands once credentials are present.',
+  'Run the local operator with `connect` or open the responsive local dashboard with `connect dashboard`.',
+  'If no local session exists, the CLI opens the Clerk sign-in handoff automatically and resumes after login.',
+  'Use the dashboard for streamed chat, tasks, processes, audit, cost tracking, MCP visibility, and the embedded terminal.',
+  'Pick any provider/model pair from setup or later through the CLI model picker and verify one real executable task.',
 ]
 
 const phases = [
   {
     title: 'Installation',
-    text: 'Install the repo, verify the global launcher path, and confirm `connect --doctor` reports the right repo launcher from any working directory.',
+    text: 'Install the repo, verify the global launcher path, and confirm the runtime resolves from any working directory.',
   },
   {
     title: 'Authentication',
-    text: 'Ensure Clerk env is present on the frontend and backend, then use the browser-to-localhost handoff flow to establish the local session.',
+    text: 'Ensure Clerk env is present on the frontend and backend. If no local session exists, `connect` and `connect dashboard` trigger the browser-to-localhost sign-in handoff automatically.',
   },
   {
     title: 'Runtime validation',
-    text: 'Confirm provider readiness, dashboard availability, session creation, and at least one working connector path before broad rollout.',
+    text: 'Confirm provider readiness, streamed dashboard availability, session creation, model selection, and at least one working task, process, or MCP path before broad rollout.',
   },
 ]
 
@@ -29,7 +29,7 @@ export function LaunchPage() {
       <SectionBlock
         eyebrow="Launch"
         title="A practical launch path"
-        description="This frontend is designed to sit in front of the operator backend. It gives you a public-facing narrative and a controlled sign-in path into the runtime."
+        description="This frontend now reflects the real local operator runtime instead of a placeholder shell. It gives you the public auth surface and the operator launch sequence that matches the current CLI."
       >
         <div className={`${brandPanelStrongClass} p-8`}>
           <ol className="space-y-5 text-[15px] leading-7 text-neutral-300">
@@ -48,7 +48,7 @@ export function LaunchPage() {
       <SectionBlock
         eyebrow="Readiness"
         title="Launch is a sequence, not a slogan."
-        description="A real launch requires the public site, auth flow, launcher path, runtime health, and connector validation to all agree with each other."
+        description="A real launch requires the public site, auth flow, launcher path, runtime health, dashboard streaming, and connector validation to all agree with each other."
       >
         <div className="grid gap-5 md:grid-cols-3">
           {phases.map((phase) => (
@@ -62,15 +62,19 @@ export function LaunchPage() {
 
       <SectionBlock
         eyebrow="Operator discipline"
-        title="The doctor report should be part of every rollout."
-        description="The fastest way to catch broken launchers, wrong working directories, missing env, or dead providers is to check the system from the command the user will actually run."
+        title="Verify from the real launcher path."
+        description="The fastest way to catch broken launchers, missing env, wrong workspace binding, dead providers, or stale docs is to validate the exact commands the operator will actually run."
       >
         <div className={`${brandPanelStrongClass} p-7`}>
           <div className="mb-4 text-xs font-medium uppercase tracking-[0.22em] text-neutral-500">Launch commands</div>
           <pre className="overflow-x-auto rounded-[1.1rem] border border-white/8 bg-black/35 p-5 text-sm leading-7 text-neutral-200">
-            <code>{`connect --doctor
-connect login
-connect dashboard`}</code>
+            <code>{`connect login
+connect dashboard
+connect
+/git status
+/tasks
+/processes
+/audit`}</code>
           </pre>
         </div>
       </SectionBlock>
