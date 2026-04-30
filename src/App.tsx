@@ -90,7 +90,7 @@ function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-4 border-t border-white/8 pt-6 text-xs text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
-          <div>© 2026 connect AI. Built for clean operator flow.</div>
+          <div>&copy; 2026 connect AI. Built for clean operator flow.</div>
           <div className="flex gap-5">
             <span>Desktop</span>
             <span>Mobile</span>
