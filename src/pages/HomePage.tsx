@@ -1,242 +1,386 @@
-import { SignInButton, SignUpButton } from '@clerk/react'
-import { ArrowRight, Camera, Globe, X } from 'lucide-react'
-import { useEffect, useRef } from 'react'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import { ArrowRight, Check } from 'lucide-react'
+import { useRef, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { BrandLogo } from '../components/BrandLogo'
+import { WordsPullUp } from '../components/WordsPullUp'
+import { WordsPullUpMultiStyle } from '../components/WordsPullUpMultiStyle'
 
-type HomePageProps = {
-  dashboardUrl: string
-}
-
-const HERO_VIDEO_URL =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_115001_bcdaa3b4-03de-47e7-ad63-ae3e392c32d4.mp4'
-
-const FADE_DURATION_MS = 500
-const LOOP_RESET_DELAY_MS = 100
-const FADE_OUT_LEAD_SECONDS = 0.55
-
-export function HomePage({ dashboardUrl }: HomePageProps) {
-  const videoRef = useRef<HTMLVideoElement | null>(null)
-  const opacityRef = useRef(0)
-  const animationFrameRef = useRef<number | null>(null)
-  const restartTimeoutRef = useRef<number | null>(null)
-  const fadingOutRef = useRef(false)
-
-  useEffect(() => {
-    const video = videoRef.current
-
-    if (!video) {
-      return
-    }
-
-    const cancelActiveAnimation = () => {
-      if (animationFrameRef.current !== null) {
-        cancelAnimationFrame(animationFrameRef.current)
-        animationFrameRef.current = null
-      }
-    }
-
-    const setOpacity = (value: number) => {
-      const nextOpacity = Math.max(0, Math.min(1, value))
-      opacityRef.current = nextOpacity
-      video.style.opacity = String(nextOpacity)
-    }
-
-    const fadeTo = (targetOpacity: number, durationMs: number, onComplete?: () => void) => {
-      cancelActiveAnimation()
-
-      const startOpacity = opacityRef.current
-      const delta = targetOpacity - startOpacity
-      const startTime = performance.now()
-
-      const tick = (now: number) => {
-        const progress = Math.min((now - startTime) / durationMs, 1)
-        setOpacity(startOpacity + delta * progress)
-
-        if (progress < 1) {
-          animationFrameRef.current = requestAnimationFrame(tick)
-          return
-        }
-
-        animationFrameRef.current = null
-        onComplete?.()
-      }
-
-      animationFrameRef.current = requestAnimationFrame(tick)
-    }
-
-    const handleLoadedData = () => {
-      fadingOutRef.current = false
-      void video.play().catch(() => {})
-      fadeTo(1, FADE_DURATION_MS)
-    }
-
-    const handleTimeUpdate = () => {
-      if (fadingOutRef.current || !Number.isFinite(video.duration)) {
-        return
-      }
-
-      const remaining = video.duration - video.currentTime
-      if (remaining <= FADE_OUT_LEAD_SECONDS) {
-        fadingOutRef.current = true
-        fadeTo(0, FADE_DURATION_MS)
-      }
-    }
-
-    const handleEnded = () => {
-      cancelActiveAnimation()
-      setOpacity(0)
-
-      if (restartTimeoutRef.current !== null) {
-        window.clearTimeout(restartTimeoutRef.current)
-      }
-
-      restartTimeoutRef.current = window.setTimeout(() => {
-        video.currentTime = 0
-        fadingOutRef.current = false
-        void video.play().catch(() => {})
-        fadeTo(1, FADE_DURATION_MS)
-      }, LOOP_RESET_DELAY_MS)
-    }
-
-    setOpacity(0)
-    video.addEventListener('loadeddata', handleLoadedData)
-    video.addEventListener('timeupdate', handleTimeUpdate)
-    video.addEventListener('ended', handleEnded)
-
-    return () => {
-      cancelActiveAnimation()
-      video.removeEventListener('loadeddata', handleLoadedData)
-      video.removeEventListener('timeupdate', handleTimeUpdate)
-      video.removeEventListener('ended', handleEnded)
-
-      if (restartTimeoutRef.current !== null) {
-        window.clearTimeout(restartTimeoutRef.current)
-      }
-    }
-  }, [])
+function AnimatedLetter({
+  char,
+  index,
+  total,
+  scrollYProgress,
+}: {
+  char: string
+  index: number
+  total: number
+  scrollYProgress: ReturnType<typeof useScroll>['scrollYProgress']
+}) {
+  const charProgress = index / total
+  const opacity = useTransform(scrollYProgress, [charProgress - 0.1, charProgress + 0.05], [0.2, 1])
 
   return (
-    <div className="min-h-screen overflow-hidden bg-black">
-      <div className="relative flex min-h-screen flex-col">
-        <div className="absolute inset-0">
-          <video
-            ref={videoRef}
-            className="absolute inset-0 h-full w-full translate-y-[17%] object-cover"
-            src={HERO_VIDEO_URL}
-            muted
-            autoPlay
-            playsInline
-            preload="auto"
-          />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03),transparent_38%),linear-gradient(180deg,rgba(0,0,0,0.62),rgba(0,0,0,0.34)_35%,rgba(0,0,0,0.76))]" />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.4),transparent_18%,transparent_82%,rgba(0,0,0,0.4))]" />
+    <motion.span style={{ opacity }} className="inline-block whitespace-pre">
+      {char}
+    </motion.span>
+  )
+}
+
+function FeatureCard({
+  children,
+  delay = 0,
+}: {
+  children: ReactNode
+  delay?: number
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ scale: 0.95, opacity: 0 }}
+      animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.95, opacity: 0 }}
+      transition={{ delay, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="flex flex-col overflow-hidden rounded-2xl bg-[#212121]"
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+const HERO_VIDEO =
+  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4'
+
+const FEATURE_VIDEO =
+  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4'
+
+const ABOUT_BODY =
+  'Over the last several years, IMOS has evolved into a controlled operator system for teams that need AI sessions, routing, dashboard visibility, and real execution to stay aligned from prompt to delivery.'
+
+const FEATURE_SECTIONS = [
+  {
+    number: '01',
+    title: 'Project Storyboard.',
+    href: '/platform',
+    image:
+      'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171918_4a5edc79-d78f-4637-ac8b-53c43c220606.png&w=1280&q=85',
+    items: [
+      'Map runtime flows and operator objectives',
+      'Keep sessions and delivery context attached',
+      'Coordinate tools without losing narrative state',
+      'Launch from one visible command surface',
+    ],
+  },
+  {
+    number: '02',
+    title: 'Smart Critiques.',
+    href: '/docs',
+    image:
+      'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171741_ed9845ab-f5b2-4018-8ce7-07cc01823522.png&w=1280&q=85',
+    items: [
+      'AI analysis tied to operator-visible reasoning',
+      'Creative notes, revisions, and execution feedback',
+      'Tool integrations that remain inspectable',
+    ],
+  },
+  {
+    number: '03',
+    title: 'Immersion Capsule.',
+    href: '/launch',
+    image:
+      'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171809_f56666dc-c099-4778-ad82-9ad4f209567b.png&w=1280&q=85',
+    items: [
+      'Silence noise during active launch windows',
+      'Ambient dashboards for long-running sessions',
+      'Sync schedules to runtime state and readiness',
+    ],
+  },
+]
+
+const TESTIMONIALS = [
+  {
+    quote: 'IMOS gave us one place to watch AI work instead of guessing what happened across four tools and six tabs.',
+    name: 'Nadia Rahim',
+    role: 'Head of Operations, Fieldnorth',
+  },
+  {
+    quote: 'The runtime feels authored, not improvised. Sessions, memory, and launch flow finally move like one system.',
+    name: 'Marcus Vale',
+    role: 'Creative Systems Lead, Obsidian Works',
+  },
+  {
+    quote: 'We adopted it because the dashboard was visible, the commands were real, and the handoff to execution stayed accountable.',
+    name: 'Areeb Hassan',
+    role: 'Product Director, Driftline',
+  },
+]
+
+const FAQS = [
+  {
+    question: 'What is IMOS actually for?',
+    answer: 'IMOS is an operator system that combines CLI control, dashboard visibility, sessions, memory, tools, and runtime execution into one surface.',
+  },
+  {
+    question: 'Can it run locally and still expose a polished frontend?',
+    answer: 'Yes. The site handles public narrative and auth, while the local runtime and dashboard remain the execution layer.',
+  },
+  {
+    question: 'Which surfaces are available right now?',
+    answer: 'The current product includes the CLI, local dashboard, streaming chat, task and process views, audit logs, memory, skills, and terminal sessions.',
+  },
+]
+
+function AboutScrollText() {
+  const ref = useRef<HTMLParagraphElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start 0.8', 'end 0.2'],
+  })
+  const chars = ABOUT_BODY.split('')
+
+  return (
+    <p ref={ref} className="text-xs leading-relaxed text-[#DEDBC8] sm:text-sm md:text-base">
+      {chars.map((char, index) => (
+        <AnimatedLetter
+          key={`${char}-${index}`}
+          char={char}
+          index={index}
+          total={chars.length}
+          scrollYProgress={scrollYProgress}
+        />
+      ))}
+    </p>
+  )
+}
+
+export function HomePage() {
+  return (
+    <div className="overflow-x-hidden bg-black text-white">
+      <section id="hero" className="h-screen p-4 md:p-6">
+        <div className="relative h-full overflow-hidden rounded-2xl md:rounded-[2rem]">
+          <video className="absolute inset-0 h-full w-full object-cover" src={HERO_VIDEO} autoPlay loop muted playsInline />
+          <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.7] mix-blend-overlay" aria-hidden="true" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(242,140,40,0.2),transparent_24%)]" />
+
+          <div className="absolute bottom-0 left-0 right-0 z-10 grid grid-cols-12 items-end px-4 pb-6 md:px-8 md:pb-10">
+            <div className="col-span-12 lg:col-span-8">
+              <h1
+                className="text-[26vw] font-medium leading-[0.85] tracking-[-0.07em] sm:text-[24vw] md:text-[22vw] lg:text-[20vw] xl:text-[19vw] 2xl:text-[20vw]"
+                style={{ color: '#E1E0CC' }}
+              >
+                <WordsPullUp text="IMOS" showAsterisk />
+              </h1>
+            </div>
+
+            <div className="col-span-12 flex flex-col gap-5 pb-2 lg:col-span-4 lg:pb-4 lg:pl-6">
+              <motion.p
+                className="text-xs text-primary/70 sm:text-sm md:text-base"
+                style={{ lineHeight: 1.2 }}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              >
+                IMOS is a cinematic operator network for teams that need sessions, memory, tooling, and delivery to move as one controlled system.
+              </motion.p>
+
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.7, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Link
+                  to="/docs"
+                  className="group inline-flex items-center gap-2 rounded-full bg-primary pl-5 pr-1.5 py-1.5 text-sm font-medium text-black transition-all hover:gap-3 sm:text-base"
+                >
+                  Join the system
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-110 sm:h-10 sm:w-10">
+                    <ArrowRight size={16} className="text-[#DEDBC8]" />
+                  </span>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <nav className="relative z-20 px-4 py-4 sm:px-6 sm:py-6">
-          <div className="liquid-glass mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-[2rem] px-4 py-3 sm:rounded-full sm:px-6">
-            <div className="flex items-center gap-6 sm:gap-8">
-              <Link to="/" className="flex items-center">
-                <BrandLogo className="text-base sm:text-lg" />
-              </Link>
+      <section id="about" className="bg-black px-4 py-20 md:px-6 md:py-28">
+        <div className="mx-auto max-w-6xl rounded-3xl bg-[#101010] p-8 text-center md:p-14">
+          <div className="mb-8 text-[10px] text-primary sm:text-xs">Operator systems</div>
 
-              <div className="hidden items-center gap-8 md:flex">
-                <Link to="/platform" className="text-sm font-medium text-white/80 transition-colors hover:text-white">
-                  Features
-                </Link>
-                <Link to="/docs" className="text-sm font-medium text-white/80 transition-colors hover:text-white">
-                  Docs
-                </Link>
-                <Link to="/about" className="text-sm font-medium text-white/80 transition-colors hover:text-white">
-                  About
-                </Link>
+          <div className="mx-auto mb-10 max-w-3xl text-3xl leading-[0.95] sm:text-4xl sm:leading-[0.9] md:text-5xl lg:text-6xl xl:text-7xl">
+            <WordsPullUpMultiStyle
+              segments={[
+                { text: 'We build runtime clarity,', className: 'font-normal' },
+                { text: 'not vague automation.', className: 'font-serif italic font-normal' },
+                { text: 'IMOS is shaped for routing, memory, dashboard control, and launch execution.', className: 'font-normal' },
+              ]}
+              containerClassName="mx-auto max-w-3xl text-3xl leading-[0.95] sm:text-4xl sm:leading-[0.9] md:text-5xl lg:text-6xl xl:text-7xl"
+            />
+          </div>
+
+          <div className="mx-auto mt-8 max-w-2xl">
+            <AboutScrollText />
+          </div>
+        </div>
+      </section>
+
+      <section id="features" className="relative min-h-screen bg-black px-4 py-20 md:px-6 md:py-28">
+        <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.15]" aria-hidden="true" />
+
+        <div className="relative mx-auto max-w-7xl">
+          <div className="mb-12 text-center md:mb-16">
+            <WordsPullUpMultiStyle
+              segments={[
+                {
+                  text: 'Studio-grade workflows for visionary operators.',
+                  className: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal',
+                },
+              ]}
+              containerClassName="mb-3 block"
+            />
+            <WordsPullUpMultiStyle
+              segments={[
+                {
+                  text: 'Built for pure control. Powered by action.',
+                  className: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-gray-500',
+                },
+              ]}
+              containerClassName="block"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 sm:gap-2 md:grid-cols-2 md:gap-1 lg:h-[480px] lg:grid-cols-4">
+            <FeatureCard delay={0}>
+              <div className="relative min-h-[280px] flex-1 lg:min-h-0">
+                <video className="absolute inset-0 h-full w-full object-cover" src={FEATURE_VIDEO} autoPlay loop muted playsInline />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-sm font-medium" style={{ color: '#E1E0CC' }}>
+                    Your creative canvas.
+                  </p>
+                </div>
               </div>
-            </div>
+            </FeatureCard>
 
-            <div className="flex items-center gap-2 sm:gap-4">
-              <SignUpButton mode="modal">
-                <button type="button" className="px-1 text-sm font-medium text-white sm:px-0">
-                  Sign Up
-                </button>
-              </SignUpButton>
-              <SignInButton mode="modal">
-                <button
-                  type="button"
-                  className="liquid-glass rounded-full px-4 py-2 text-sm font-medium text-white sm:px-6"
-                >
-                  Login
-                </button>
-              </SignInButton>
-            </div>
+            {FEATURE_SECTIONS.map((section, index) => (
+              <FeatureCard key={section.title} delay={0.15 * (index + 1)}>
+                <div className="flex h-full flex-col p-6">
+                  <img src={section.image} alt="" className="mb-4 h-10 w-10 rounded object-cover sm:h-12 sm:w-12" />
+                  <div className="mb-3 flex items-baseline gap-2">
+                    <span className="font-mono text-[10px] text-gray-500">{section.number}</span>
+                    <h3 className="text-base font-medium" style={{ color: '#E1E0CC' }}>
+                      {section.title}
+                    </h3>
+                  </div>
+                  <ul className="flex-1 space-y-2">
+                    {section.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <Check size={14} className="mt-0.5 shrink-0 text-primary" />
+                        <span className="text-xs text-gray-400">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to={section.href}
+                    className="mt-4 inline-flex items-center gap-1 text-xs text-primary transition-colors hover:text-orange-300"
+                  >
+                    Learn more
+                    <ArrowRight size={12} style={{ transform: 'rotate(-45deg)' }} />
+                  </Link>
+                </div>
+              </FeatureCard>
+            ))}
           </div>
-        </nav>
+        </div>
+      </section>
 
-        <main className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pb-20 pt-12 text-center sm:pt-16 md:pb-24 md:pt-20">
-          <h1
-            className="mb-8 max-w-[11ch] text-4xl leading-[0.95] tracking-tight text-white sm:text-5xl md:max-w-none md:text-6xl lg:text-7xl"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-          >
-            Built for the curious
-          </h1>
-
-          <div className="w-full max-w-xl space-y-6">
-            <p className="px-4 text-sm leading-relaxed text-white">
-              Stay updated with the latest news and insights. Subscribe to our newsletter today and never miss out on
-              exciting updates.
-            </p>
-
-            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <SignUpButton mode="modal">
-                <button
-                  type="button"
-                  className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black sm:w-auto"
-                >
-                  Get Started
-                  <ArrowRight size={18} />
-                </button>
-              </SignUpButton>
-              <Link
-                to="/docs"
-                className="liquid-glass inline-flex min-h-12 w-full items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5 sm:w-auto"
-              >
-                Explore Docs
-              </Link>
-              <a
-                href={dashboardUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="liquid-glass inline-flex min-h-12 w-full items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5 sm:w-auto"
-              >
-                Manifesto
-              </a>
+      <section className="bg-black px-4 py-20 md:px-6 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
+          {[
+            ['38', 'Loaded skills across the runtime'],
+            ['16+', 'Live API and dashboard endpoints'],
+            ['1', 'Unified operating system for AI execution'],
+          ].map(([value, label]) => (
+            <div key={label} className="rounded-3xl border border-white/8 bg-[#101010] p-8 text-center">
+              <div className="text-5xl font-light tracking-[-0.05em]" style={{ color: '#E1E0CC' }}>
+                {value}
+              </div>
+              <div className="mt-3 text-sm text-gray-400">{label}</div>
             </div>
-          </div>
-        </main>
+          ))}
+        </div>
+      </section>
 
-        <footer className="relative z-10 flex flex-wrap justify-center gap-4 px-6 pb-10 sm:pb-12">
-          <button
-            type="button"
-            aria-label="Instagram"
-            className="liquid-glass rounded-full p-4 text-white/80 transition-all hover:bg-white/5 hover:text-white"
-          >
-            <Camera size={20} />
-          </button>
-          <button
-            type="button"
-            aria-label="Twitter"
-            className="liquid-glass rounded-full p-4 text-white/80 transition-all hover:bg-white/5 hover:text-white"
-          >
-            <X size={20} />
-          </button>
-          <button
-            type="button"
-            aria-label="Website"
-            className="liquid-glass rounded-full p-4 text-white/80 transition-all hover:bg-white/5 hover:text-white"
-          >
-            <Globe size={20} />
-          </button>
-        </footer>
-      </div>
+      <section className="bg-black px-4 py-20 md:px-6 md:py-28">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 text-center md:mb-16">
+            <WordsPullUpMultiStyle
+              segments={[
+                {
+                  text: 'Trusted by teams that need execution to stay visible.',
+                  className: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal',
+                },
+              ]}
+              containerClassName="block"
+            />
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-3">
+            {TESTIMONIALS.map((item) => (
+              <div key={item.name} className="rounded-3xl border border-white/8 bg-[#101010] p-8">
+                <p className="text-lg leading-8" style={{ color: '#E1E0CC' }}>
+                  {item.quote}
+                </p>
+                <div className="mt-8">
+                  <div className="text-sm font-medium text-primary">{item.name}</div>
+                  <div className="mt-1 text-sm text-gray-500">{item.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-black px-4 py-20 md:px-6 md:py-28">
+        <div className="mx-auto max-w-5xl rounded-3xl bg-[#101010] p-8 md:p-12">
+          <div className="mb-10 text-center">
+            <WordsPullUpMultiStyle
+              segments={[
+                {
+                  text: 'Questions before launch.',
+                  className: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal',
+                },
+              ]}
+              containerClassName="block"
+            />
+          </div>
+
+          <div className="space-y-4">
+            {FAQS.map((item) => (
+              <div key={item.question} className="rounded-2xl border border-white/8 bg-black/30 p-6">
+                <div className="text-base font-medium" style={{ color: '#E1E0CC' }}>
+                  {item.question}
+                </div>
+                <p className="mt-3 text-sm leading-7 text-gray-400">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 flex justify-center">
+            <Link
+              to="/launch"
+              className="group inline-flex items-center gap-2 rounded-full bg-primary pl-5 pr-1.5 py-1.5 text-sm font-medium text-black transition-all hover:gap-3 sm:text-base"
+            >
+              Plan your launch
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-110 sm:h-10 sm:w-10">
+                <ArrowRight size={16} className="text-[#DEDBC8]" />
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -1,19 +1,7 @@
-import { SignInButton, SignUpButton, UserButton, useAuth } from '@clerk/react'
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { BrandLogo } from './BrandLogo'
-import { brandPanelStrongClass, brandPrimaryButtonClass, brandSecondaryButtonClass } from './brandTheme'
-import { DocSidebar, type DocItem } from './DocSidebar'
-
-export const DOC_ITEMS: DocItem[] = [
-  { path: '/docs/overview', label: 'Overview' },
-  { path: '/docs/installation', label: 'Installation' },
-  { path: '/docs/authentication', label: 'Authentication' },
-  { path: '/docs/runtime', label: 'Gateway and Runtime' },
-  { path: '/docs/dashboard', label: 'Dashboard' },
-  { path: '/docs/connectors', label: 'Messaging and Connectors' },
-  { path: '/docs/operations', label: 'Operations' },
-]
+import { useMemo, useState, type ReactNode } from 'react'
+import { brandPanelStrongClass } from './brandTheme'
+import { DocSidebar } from './DocSidebar'
+import { DOC_ITEMS } from './docsNav'
 
 type DocsShellProps = {
   title: string
@@ -21,22 +9,8 @@ type DocsShellProps = {
   children: ReactNode
 }
 
-export function DocsShell({ title, description, children }: DocsShellProps) {
-  const { isSignedIn } = useAuth()
-  const location = useLocation()
+export function DocsShell({ title, children }: DocsShellProps) {
   const [query, setQuery] = useState('')
-  const contentRef = useRef<HTMLElement | null>(null)
-
-  useEffect(() => {
-    document.body.classList.add('docs-shell-active')
-    return () => {
-      document.body.classList.remove('docs-shell-active')
-    }
-  }, [])
-
-  useEffect(() => {
-    contentRef.current?.scrollTo({ top: 0, behavior: 'auto' })
-  }, [location.pathname])
 
   const filteredItems = useMemo(() => {
     const value = query.trim().toLowerCase()
@@ -45,73 +19,13 @@ export function DocsShell({ title, description, children }: DocsShellProps) {
   }, [query])
 
   return (
-    <div className="site-page-shell flex h-dvh min-h-dvh flex-col overflow-hidden text-white">
-      <header className="z-50 shrink-0 border-b border-white/10 bg-black/68 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-3 px-4 py-4 sm:px-5">
-          <Link to="/" className="liquid-glass shrink-0 rounded-[1rem] px-4 py-3">
-            <BrandLogo className="text-xl sm:text-2xl" />
-          </Link>
+    <div className="site-page-shell h-[calc(100vh-4rem)] overflow-hidden px-4 pb-4 pt-4 text-white sm:px-6 lg:h-[calc(100vh-4.5rem)] lg:pb-6 lg:pt-6">
+      <div className="mx-auto flex h-full max-w-7xl flex-col gap-4 lg:flex-row lg:gap-6">
+        <DocSidebar items={filteredItems} query={query} onQueryChange={setQuery} />
 
-          <div className="mx-2 hidden max-w-2xl flex-1 md:block">
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search documentation"
-              className="w-full rounded-[1rem] border border-white/12 bg-[#0d0d0d] px-5 py-3 text-sm text-white outline-none transition placeholder:text-neutral-500 focus:border-white/24"
-            />
-          </div>
-
-          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            {!isSignedIn ? (
-              <>
-                <SignInButton mode="modal">
-                  <button className={brandSecondaryButtonClass}>
-                    Sign in
-                  </button>
-                </SignInButton>
-                <SignUpButton mode="modal">
-                  <button className={brandPrimaryButtonClass}>
-                    Sign up
-                  </button>
-                </SignUpButton>
-              </>
-            ) : (
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: 'h-10 w-10',
-                  },
-                }}
-              />
-            )}
-          </div>
-        </div>
-
-        <div className="mx-auto px-4 pb-4 md:hidden sm:px-5">
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search documentation"
-            className="w-full rounded-[1rem] border border-white/12 bg-[#0d0d0d] px-5 py-3 text-sm text-white outline-none transition placeholder:text-neutral-500 focus:border-white/24"
-          />
-        </div>
-      </header>
-
-      <div className="mx-auto grid min-h-0 w-full max-w-[1500px] flex-1 grid-cols-[168px_minmax(0,1fr)] sm:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[280px_minmax(0,1fr)]">
-        <DocSidebar items={filteredItems} />
-
-        <section ref={contentRef} className="min-h-0 min-w-0 overflow-y-auto">
-          <div className="border-b border-white/10 px-4 py-10 sm:px-6 lg:px-10 lg:py-14">
-            <div className="text-xs uppercase tracking-[0.22em] text-neutral-400">Documentation</div>
-            <h1 className="mt-4 max-w-4xl text-3xl font-light tracking-[-0.05em] text-white sm:text-4xl lg:text-6xl">
-              {title}
-            </h1>
-            <p className="mt-6 max-w-3xl text-sm leading-7 text-neutral-400 sm:text-base sm:leading-8">{description}</p>
-          </div>
-
-          <div className="px-4 py-6 sm:px-6 lg:px-10 lg:py-8">
-            <div className={`${brandPanelStrongClass} p-5 sm:p-8 lg:p-10`}>{children}</div>
-          </div>
+        <section className={`${brandPanelStrongClass} min-h-0 min-w-0 flex-1 overflow-y-auto p-5 sm:p-8 lg:p-10`}>
+          <div className="mb-6 text-xs uppercase tracking-[0.22em] text-orange-200/45">{title}</div>
+          <div className="space-y-6 text-[#cfb69a]">{children}</div>
         </section>
       </div>
     </div>

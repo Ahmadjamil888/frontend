@@ -12,7 +12,7 @@ export function DocsDashboardPage() {
           Users can open the operator dashboard through the CLI. If no verified local Clerk session exists yet, the
           dashboard launch path triggers the existing sign-in handoff first and then continues locally.
         </p>
-        <CodeBlock label="Run the dashboard locally" code={'connect dashboard'} />
+        <CodeBlock label="Run the dashboard locally" code={'imos dashboard'} />
         <p>
           The dashboard now includes a responsive chat panel with streamed assistant output, a live activity feed for
           tool and process events, token and cost counters, task and process registries, MCP tool visibility, and a

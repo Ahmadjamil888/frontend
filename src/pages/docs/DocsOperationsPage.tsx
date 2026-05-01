@@ -9,8 +9,8 @@ export function DocsOperationsPage() {
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-400">
         <p>
-          Common operator commands now include <code>connect</code>, <code>connect dashboard</code>,{' '}
-          <code>connect login</code>, <code>connect logout</code>, <code>/pickmodel</code>, <code>/git</code>,{' '}
+          Common operator commands now include <code>imos</code>, <code>imos dashboard</code>,{' '}
+          <code>imos login</code>, <code>imos logout</code>, <code>/pickmodel</code>, <code>/git</code>,{' '}
           <code>/mcp</code>, <code>/terminal</code>, <code>/tasks</code>, <code>/processes</code>, and{' '}
           <code>/audit</code>.
         </p>
@@ -20,9 +20,9 @@ export function DocsOperationsPage() {
         </p>
         <CodeBlock
           label="Recommended checks"
-          code={`connect login
-connect dashboard
-connect
+          code={`imos login
+imos dashboard
+imos
 /git status
 /tasks
 /processes

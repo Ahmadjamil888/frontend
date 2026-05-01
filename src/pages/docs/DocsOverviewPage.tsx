@@ -3,12 +3,12 @@ import { DocsShell } from '../../components/DocsShell'
 export function DocsOverviewPage() {
   return (
     <DocsShell
-      title="Everything needed to install, authenticate, operate, and extend CONNECT."
+      title="Everything needed to install, authenticate, operate, and extend IMOS."
       description="This section is split into real pages so operators can move directly to the exact part of the system they need without scrolling through one oversized document."
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-400">
         <p>
-          CONNECT combines a public frontend, a Clerk-authenticated entry flow, a local or cloud gateway, and an AI
+          IMOS combines a public frontend, a Clerk-authenticated entry flow, a local or cloud gateway, and an AI
           runtime that manages sessions, memory, tools, messaging, workflows, and delivery.
         </p>
         <p>

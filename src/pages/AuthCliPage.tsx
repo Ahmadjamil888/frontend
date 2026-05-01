@@ -11,7 +11,7 @@ export function AuthCliPage() {
   const { user } = useUser()
   const callbackUrl = searchParams.get('callback') || ''
   const [bridgeState, setBridgeState] = useState<BridgeState>('idle')
-  const [message, setMessage] = useState('Sign in with Clerk to finish the CONNECT CLI handoff.')
+  const [message, setMessage] = useState('Sign in with Clerk to finish the IMOS CLI handoff.')
   const returnUrl = typeof window !== 'undefined' ? window.location.href : '/auth/cli'
 
   const callbackOriginOk = useMemo(() => {
@@ -31,7 +31,7 @@ export function AuthCliPage() {
       }
       try {
         setBridgeState('posting')
-        setMessage('Completing secure handoff to your local CONNECT CLI...')
+        setMessage('Completing secure handoff to your local IMOS CLI...')
         const token = await getToken()
         if (!token) {
           throw new Error('Clerk token is unavailable for this session.')
@@ -49,7 +49,7 @@ export function AuthCliPage() {
           throw new Error(payload.error || 'CLI callback rejected the sign-in.')
         }
         setBridgeState('success')
-        setMessage('Signed in successfully. You can return to the CONNECT CLI.')
+        setMessage('Signed in successfully. You can return to the IMOS CLI.')
       } catch (error) {
         setBridgeState('error')
         setMessage(error instanceof Error ? error.message : 'Sign-in handoff failed.')
@@ -99,7 +99,7 @@ export function AuthCliPage() {
             Authenticate once. Return to the terminal already signed in.
           </h1>
           <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-400">
-            CONNECT opens this page from the CLI, waits on a localhost callback, and stores the validated Clerk session on the backend only after the token is verified.
+            IMOS opens this page from the CLI, waits on a localhost callback, and stores the validated Clerk session on the backend only after the token is verified.
           </p>
           <div className="mt-8 grid gap-4 text-sm text-neutral-300">
             <div className="rounded-2xl border border-white/8 bg-black/30 p-5">Origin: {searchParams.get('origin') || 'browser'}</div>

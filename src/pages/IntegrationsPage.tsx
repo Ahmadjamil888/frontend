@@ -25,10 +25,10 @@ export function IntegrationsPage() {
           {Object.entries(integrationGroups).map(([group, items], groupIndex) => (
             <div key={group} className={`${brandPanelStrongClass} p-7`}>
               <div className="flex items-center gap-3">
-                <span className={`h-2.5 w-2.5 rounded-full ${groupIndex === 0 ? 'bg-white' : 'bg-white/35'}`} />
-                <h3 className="text-xl font-medium text-white">{group}</h3>
+                <span className={`h-2.5 w-2.5 rounded-full ${groupIndex === 0 ? 'bg-[#E1E0CC]' : 'bg-[#E1E0CC]/35'}`} />
+                <h3 className="text-xl font-medium text-[#E1E0CC]">{group}</h3>
               </div>
-              <ul className="mt-5 space-y-3 text-[15px] leading-7 text-neutral-400">
+              <ul className="mt-5 space-y-3 text-[15px] leading-7 text-[#cfb69a]">
                 {items.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <span className="mt-3 h-1.5 w-1.5 rounded-full bg-white/50" />
@@ -44,13 +44,13 @@ export function IntegrationsPage() {
       <SectionBlock
         eyebrow="Operational notes"
         title="Integrations are only useful when they stay accountable."
-        description="CONNECT treats messaging, workflows, and nodes as operator surfaces, not magical black boxes. That means state should remain observable and delivery should remain constrained."
+        description="IMOS treats messaging, workflows, and nodes as operator surfaces, not magical black boxes. That means state should remain observable and delivery should remain constrained."
       >
         <div className="grid gap-4">
           {notes.map((note, index) => (
-            <div key={note} className={`${brandPanelStrongClass} p-6 text-[15px] leading-7 text-neutral-300`}>
+            <div key={note} className={`${brandPanelStrongClass} p-6 text-[15px] leading-7 text-[#e6ceb1]`}>
               <div className="flex items-start gap-4">
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-[0.8rem] border border-white/10 bg-white/[0.04] text-sm text-white">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-[0.8rem] border border-white/10 bg-white/[0.04] text-sm text-[#E1E0CC]">
                   0{index + 1}
                 </span>
                 <span>{note}</span>

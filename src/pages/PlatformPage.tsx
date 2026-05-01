@@ -35,10 +35,10 @@ export function PlatformPage() {
           {blocks.map(([title, text], index) => (
             <div key={title} className={`${brandPanelStrongClass} p-7`}>
               <div className="flex items-center gap-3">
-                <span className={`h-2.5 w-2.5 rounded-full ${index === 0 ? 'bg-white' : 'bg-white/35'}`} />
-                <h3 className="text-xl font-medium text-white">{title}</h3>
+                <span className={`h-2.5 w-2.5 rounded-full ${index === 0 ? 'bg-[#E1E0CC]' : 'bg-[#E1E0CC]/35'}`} />
+                <h3 className="text-xl font-medium text-[#E1E0CC]">{title}</h3>
               </div>
-              <p className="mt-4 text-[15px] leading-7 text-neutral-400">{text}</p>
+              <p className="mt-4 text-[15px] leading-7 text-[#cfb69a]">{text}</p>
             </div>
           ))}
         </div>
@@ -47,13 +47,13 @@ export function PlatformPage() {
       <SectionBlock
         eyebrow="Runtime model"
         title="Structured enough to govern, dynamic enough to think."
-        description="CONNECT is not meant to be a fixed workflow runner disguised as an assistant. The goal is a runtime that can reason dynamically while still remaining observable and operable."
+        description="IMOS is not meant to be a fixed workflow runner disguised as an assistant. The goal is a runtime that can reason dynamically while still remaining observable and operable."
       >
         <div className="grid gap-5">
           {deepDives.map((item) => (
             <article key={item.title} className={`${brandPanelStrongClass} p-7`}>
-              <h3 className="text-2xl font-light tracking-[-0.04em] text-white">{item.title}</h3>
-              <p className="mt-4 text-[15px] leading-7 text-neutral-400">{item.text}</p>
+              <h3 className="text-2xl font-light tracking-[-0.04em] text-[#E1E0CC]">{item.title}</h3>
+              <p className="mt-4 text-[15px] leading-7 text-[#cfb69a]">{item.text}</p>
             </article>
           ))}
         </div>
@@ -62,7 +62,7 @@ export function PlatformPage() {
       <SectionBlock
         eyebrow="Experience"
         title="The frontend and operator surfaces are separate on purpose."
-        description="A public product site should explain, convert, and authenticate. An operator surface should expose live state, execution, and control. CONNECT now treats those as different jobs."
+        description="A public product site should explain, convert, and authenticate. An operator surface should expose live state, execution, and control. IMOS treats those as different jobs."
       >
         <div className={`${brandPanelStrongClass} p-8`}>
           <div className="grid gap-5 md:grid-cols-2">
@@ -72,10 +72,10 @@ export function PlatformPage() {
             ].map(([title, text], index) => (
               <div key={title} className="rounded-[1.2rem] border border-white/8 bg-black/30 p-6">
                 <div className="flex items-center gap-3">
-                  <span className={`h-2.5 w-2.5 rounded-full ${index === 0 ? 'bg-white' : 'bg-white/40'}`} />
-                  <h3 className="text-xl font-medium text-white">{title}</h3>
+                  <span className={`h-2.5 w-2.5 rounded-full ${index === 0 ? 'bg-[#E1E0CC]' : 'bg-[#E1E0CC]/40'}`} />
+                  <h3 className="text-xl font-medium text-[#E1E0CC]">{title}</h3>
                 </div>
-                <p className="mt-4 text-[15px] leading-7 text-neutral-400">{text}</p>
+                <p className="mt-4 text-[15px] leading-7 text-[#cfb69a]">{text}</p>
               </div>
             ))}
           </div>
