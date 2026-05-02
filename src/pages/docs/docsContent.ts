@@ -22,6 +22,25 @@ export type CliCommandDoc = {
 
 export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
+    slug: 'start',
+    label: 'imos',
+    command: 'imos',
+    title: 'Start IMOS from any terminal.',
+    summary: 'Launches the main IMOS interactive session with one unified runtime.',
+    description:
+      'This is the primary entrypoint. Start IMOS from any terminal, prompt it directly, and let the central runtime coordinate models, IDEs, browser actions, apps, files, system tasks, and delivery workflows from one command surface.',
+    whenToUse: [
+      'You want the main IMOS experience instead of one-shot subcommands.',
+      'You want one AI runtime that can think dynamically across services and sessions.',
+      'You want IMOS to stay the central operator while it coordinates other tools and platforms.',
+    ],
+    notes: [
+      'After installation, `imos` should be available globally from any terminal.',
+      'Use the dashboard and adapter controls to connect services without exposing internal launch details.',
+    ],
+    related: ['/docs/installation', '/docs/runtime', '/docs/dashboard'],
+  },
+  {
     slug: 'run',
     label: 'imos run',
     command: 'imos run "<prompt>"',
@@ -151,93 +170,15 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
     label: 'imos mcp install',
     command: 'imos mcp install',
     title: 'Install IMOS MCP configs for supported editors.',
-    summary: 'Writes Cursor and Windsurf MCP config files pointing at the IMOS MCP server.',
+    summary: 'Registers local editor bridge configs so IMOS can coordinate with supported editors.',
     description:
-      'This command generates the local editor configs that let supported IDEs connect to `python -m imos.mcp_server` and call IMOS tools directly.',
+      'Use this when you want IMOS to work alongside supported editors. The command writes the local bridge configuration so the IMOS runtime can coordinate with editor sessions as part of the larger workflow.',
     whenToUse: [
-      'You want Cursor or Windsurf to call IMOS tools.',
+      'You want IMOS to connect with Cursor or other supported editors.',
       'You have just installed the repo on a new workstation.',
       'You want to repair editor integration after config drift.',
     ],
     related: ['/docs/runtime', '/docs/dashboard'],
-  },
-  {
-    slug: 'python-imos',
-    label: 'python ai_assistant.py --imos',
-    command: 'python ai_assistant.py --imos "<prompt>"',
-    title: 'Route one prompt through IMOS from the existing Python launcher.',
-    summary: 'Uses the existing script entrypoint but sends work through the IMOS orchestrator.',
-    description:
-      'This is the compatibility path when you want to keep using the current Python launcher script but still execute through the new IMOS runtime instead of the interactive shell.',
-    whenToUse: [
-      'You want a scriptable IMOS entrypoint before installing the console command.',
-      'You are validating the IMOS integration inside the existing launcher.',
-      'You are comparing legacy shell behavior against IMOS orchestration behavior.',
-    ],
-    related: ['/docs/runtime', '/docs/operations'],
-  },
-  {
-    slug: 'assistant-file',
-    label: 'python ai_assistant.py',
-    command: 'python ai_assistant.py',
-    title: 'Start the original shell from ai_assistant.py.',
-    summary: 'Uses the repository entry file directly when you want the original interactive shell.',
-    description:
-      'This is the direct file-based launcher for the original terminal chat loop and slash-command shell. Use it when you want the shell experience from the repo entry file instead of the one-shot IMOS orchestration path.',
-    whenToUse: [
-      'You want the interactive shell from the repo entry file.',
-      'You need slash commands, provider switching, or the older terminal workflow.',
-      'You are documenting the file-based start path alongside the new IMOS command.',
-    ],
-    notes: ['Use `python ai_assistant.py --imos "<prompt>"` when you want the same file to dispatch into the IMOS orchestrator.'],
-    related: ['/docs/authentication', '/docs/operations'],
-  },
-  {
-    slug: 'doctor',
-    label: 'python ai_assistant.py --doctor',
-    command: 'python ai_assistant.py --doctor',
-    title: 'Run the IMOS-aware doctor report from ai_assistant.py.',
-    summary: 'Prints adapter health, missing credentials, and MCP install state from the main file launcher.',
-    description:
-      'The doctor path now includes IMOS-specific checks, so it is the first command to run after installation, adapter changes, or editor integration updates.',
-    whenToUse: [
-      'You need the fastest diagnostics pass.',
-      'You are validating a machine after setup.',
-      'You want to see missing credentials and editor MCP install state from one command.',
-    ],
-    related: ['/docs/operations', '/docs/runtime'],
-  },
-  {
-    slug: 'assistant-shell',
-    label: 'python ai_assistant.py shell',
-    command: 'python ai_assistant.py',
-    title: 'Use the existing interactive shell from ai_assistant.py.',
-    summary: 'Starts the original terminal chat loop and slash-command shell that still ships alongside IMOS.',
-    description:
-      'The repository still has its original interactive shell entrypoint. Use it when you want the live terminal experience, provider switching, workflows, sessions, process inspection, and shell slash commands rather than the one-shot IMOS orchestration path.',
-    whenToUse: [
-      'You want the original live chat loop and slash-command shell.',
-      'You need direct operator control over sessions, tasks, audit, and Git inside one prompt.',
-      'You are documenting or supporting the legacy shell while IMOS grows around it.',
-    ],
-    notes: ['Use `imos run` as the primary orchestration command when you want the new IMOS path.'],
-    related: ['/docs/cli/assistant-shell-slash', '/docs/authentication', '/docs/operations'],
-  },
-  {
-    slug: 'assistant-shell-slash',
-    label: 'ai_assistant.py shell slash commands',
-    command: '/help',
-    title: 'Use slash commands inside the ai_assistant.py interactive shell.',
-    summary: 'Documents the built-in slash commands available after you launch the shell from ai_assistant.py.',
-    description:
-      'Inside the existing shell you can still use the runtime command layer for provider inspection, setup, dashboard launch, sessions, tasks, audit, Git, MCP, memory, and workspace management.',
-    whenToUse: [
-      'You are already inside the interactive shell.',
-      'You want to inspect shell-time runtime state without leaving the prompt.',
-      'You need the shell operations that are separate from `imos run`.',
-    ],
-    notes: ['Common commands include `/help`, `/model`, `/provider`, `/skills`, `/workflows`, `/tasks`, `/audit`, `/git`, `/mcp`, `/memory`, `/dashboard`, and `/config`.'],
-    related: ['/docs/cli/assistant-shell', '/docs/dashboard', '/docs/operations'],
   },
 ]
 

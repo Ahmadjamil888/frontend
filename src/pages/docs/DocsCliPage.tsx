@@ -3,7 +3,8 @@ import { CodeBlock } from '../../components/CodeBlock'
 import { DocsShell } from '../../components/DocsShell'
 import { CLI_COMMAND_DOCS } from './docsContent'
 
-const cliCommands = `imos run "Write a Python hello world and save it"
+const cliCommands = `imos
+imos run "Write a Python hello world and save it"
 imos dashboard
 imos adapters list
 imos adapters add model openai_main
@@ -11,42 +12,26 @@ imos adapters test openai_main
 imos adapters remove openai_main
 imos history
 imos status
-imos mcp install
-python ai_assistant.py --imos "Summarize the repo state"`
-
-const shellCommands = `python ai_assistant.py
-/help
-/model
-/provider
-/skills
-/workflows
-/tasks
-/audit
-/git
-/mcp
-/memory
-/dashboard
-/config`
+imos mcp install`
 
 export function DocsCliPage() {
   return (
     <DocsShell
-      title="Use `imos` as the primary start command and `ai_assistant.py` as the file-based launcher."
-      description="The command pages below now center the new IMOS CLI while still documenting the interactive shell that starts from `ai_assistant.py`."
+      title="Use `imos` as the start command from any terminal."
+      description="The command pages below present only the public IMOS command surface: start the runtime, run tasks, manage adapters, open the dashboard, and connect editor bridges."
       eyebrow="CLI Overview"
     >
       <div className="space-y-8 text-sm leading-8 text-neutral-300">
         <p>
-          The IMOS CLI is the primary orchestration surface. It runs task graphs, manages adapters, installs MCP
-          config, prints history and status, and can open the IMOS dashboard. The original interactive shell still
-          exists, but the file-based launcher for that path is <code>ai_assistant.py</code>.
+          IMOS is the primary orchestration surface. Start it with <code>imos</code>, prompt it directly, and let the
+          central runtime coordinate models, editors, browser actions, apps, files, system tasks, and delivery
+          workflows from one command surface.
         </p>
         <CodeBlock label="Primary CLI commands" code={cliCommands} />
         <p>
-          The interactive shell remains useful for terminal-first operator sessions. Those slash commands are separate
-          from the new IMOS subcommands and are launched directly from <code>ai_assistant.py</code>.
+          IMOS stays the central brain. Editors, models, browser sessions, services, and integrations are connected to
+          IMOS as controlled runtime surfaces rather than treated as separate operator entrypoints.
         </p>
-        <CodeBlock label="Shell commands from ai_assistant.py" code={shellCommands} />
 
         <section className="rounded-[1.8rem] border border-white/10 bg-black p-6">
           <div className="text-[11px] uppercase tracking-[0.24em] text-white/40">Command Pages</div>

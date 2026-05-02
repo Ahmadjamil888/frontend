@@ -11,15 +11,15 @@ const checklist = [
 const phases = [
   {
     title: 'Installation',
-    text: 'Install the repo, bootstrap `.env` and `~/.imos`, and confirm both the `imos` CLI and the `ai_assistant.py` shell launcher resolve from the right workspace.',
+    text: 'Install from the GitHub repository, run the platform installer, and confirm the global `imos` command resolves from a fresh terminal.',
   },
   {
     title: 'Runtime wiring',
     text: 'Confirm adapter discovery, dashboard route health, MCP config generation, permission gates, and one real IMOS orchestration path before broader rollout.',
   },
   {
-    title: 'Shell compatibility',
-    text: 'Keep the `ai_assistant.py` interactive shell documented and working while the new IMOS CLI, dashboard, and universal-control surfaces ship on top of the same repo.',
+    title: 'Unified control',
+    text: 'Keep IMOS positioned as the central brain while editors, websites, apps, browser sessions, services, and machine actions stay connected as runtime surfaces.',
   },
 ]
 
@@ -32,7 +32,7 @@ export function LaunchPage() {
           { text: 'A practical launch path,', className: 'font-normal' },
           { text: 'not a placeholder shell.', className: 'font-serif italic font-normal' },
         ]}
-        body="This frontend now reflects the real IMOS runtime and the existing shell that still ships with it. The launch sequence should match the commands, permission prompts, and control surfaces operators will actually use."
+        body="This frontend now reflects the real IMOS runtime. The launch sequence should match the commands, permission prompts, and control surfaces operators will actually use."
       />
 
       <ContentSection

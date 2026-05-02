@@ -19,6 +19,10 @@ export function DocsDashboardPage() {
           status counters, a settings panel, a dedicated permission-setup panel for PC/browser/IDE/app/admin access,
           recent task history, quick adapter targeting, and a WebSocket-backed live execution log.
         </p>
+        <p>
+          Voice input is available directly in the prompt runner. That keeps IMOS as the central operator surface while
+          the dashboard captures prompts hands-free and routes them into the same runtime.
+        </p>
         <CodeBlock
           label="Dashboard route surface"
           code={`POST /imos/run

@@ -11,7 +11,7 @@ export function AuthCliPage() {
   const { user } = useUser()
   const callbackUrl = searchParams.get('callback') || ''
   const [bridgeState, setBridgeState] = useState<BridgeState>('idle')
-  const [message, setMessage] = useState('Sign in with Clerk to finish the existing shell or dashboard handoff.')
+  const [message, setMessage] = useState('Sign in with Clerk to finish the dashboard or runtime handoff.')
   const returnUrl = typeof window !== 'undefined' ? window.location.href : '/auth/cli'
 
   const callbackOriginOk = useMemo(() => {

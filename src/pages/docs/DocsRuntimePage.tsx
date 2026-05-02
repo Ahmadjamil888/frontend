@@ -3,25 +3,26 @@ import { DocsShell } from '../../components/DocsShell'
 export function DocsRuntimePage() {
   return (
     <DocsShell
-      title="The IMOS runtime now adds a second execution path on top of the existing shell."
-      description="The codebase now contains the original interactive runtime launched from `ai_assistant.py` plus the new IMOS adapter bus, orchestrator, MCP server, dashboard routes, and YAML-backed registry."
+      title="The IMOS runtime is the central brain across services and work surfaces."
+      description="IMOS owns orchestration, permissions, memory, adapter routing, and result synthesis while coordinating editors, websites, apps, browser sessions, machine actions, and connected services."
       eyebrow="Runtime"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
-          IMOS introduces an explicit orchestration layer. Prompts are decomposed by the router, mapped onto adapter
-          capabilities, executed through a registry, and synthesized back into one response.
+          IMOS decomposes prompts into work that can span models, editors, browser actions, app controls, messaging,
+          file operations, Git workflows, deployments, and OS-level tasks. Those steps remain attached to one runtime
+          history instead of being scattered across disconnected tabs and tools.
         </p>
         <p>
-          The new runtime surface includes <code>imos/adapters/*</code>, <code>imos/router.py</code>,{' '}
-          <code>imos/orchestrator.py</code>, <code>imos/synthesizer.py</code>, <code>imos/context.py</code>, and{' '}
-          <code>imos/mcp_server.py</code>. Those components sit beside the interactive shell started from{' '}
-          <code>ai_assistant.py</code> rather than replacing it outright.
+          Editors such as Cursor are connected surfaces inside that larger runtime. IMOS can coordinate with them, but
+          the orchestration logic, memory, preferences, permission gates, and final synthesis stay in IMOS rather than
+          moving into the editor itself.
         </p>
         <p>
-          The dashboard now talks to <code>/imos/run</code>, <code>/imos/adapters</code>, <code>/imos/history</code>,{' '}
-          <code>/imos/status</code>, <code>/imos/settings</code>, <code>/imos/capabilities</code>, and{' '}
-          <code>/imos/ws</code>. IDEs can also connect through the IMOS MCP server.
+          The dashboard route surface exposes runtime control through <code>/imos/run</code>,{' '}
+          <code>/imos/adapters</code>, <code>/imos/history</code>, <code>/imos/status</code>,{' '}
+          <code>/imos/settings</code>, <code>/imos/permissions</code>, <code>/imos/capabilities</code>, and{' '}
+          <code>/imos/ws</code>. That is how the product keeps execution visible while the runtime remains dynamic.
         </p>
       </div>
     </DocsShell>
