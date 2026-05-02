@@ -17,7 +17,7 @@ export function WordsPullUp({ text, className = '', showAsterisk = false }: Word
       {words.map((word, i) => {
         const isLast = i === words.length - 1
         return (
-          <span key={i} className="overflow-hidden inline-block mr-[0.25em]">
+          <span key={i} className="inline-block mr-[0.25em] overflow-visible pb-[0.08em]">
             <motion.span
               className="inline-block relative"
               initial={{ y: 20, opacity: 0 }}

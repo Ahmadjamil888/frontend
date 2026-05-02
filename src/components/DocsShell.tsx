@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { brandPrimaryButtonClass } from './brandTheme'
 import { DocSidebar } from './DocSidebar'
 import { DOC_GROUPS } from './docsNav'
 
@@ -64,7 +65,7 @@ export function DocsShell({ title, description, eyebrow = 'Documentation', child
                 className="w-[240px] rounded-full border border-white/10 bg-[#1f1f1f] px-5 py-2.5 text-sm text-white outline-none placeholder:text-white/45 focus:border-white/20 lg:w-[280px]"
               />
             </div>
-            <Link to="/launch" className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-[#ededed]">
+            <Link to="/launch" className={brandPrimaryButtonClass}>
               Install CLI
             </Link>
           </div>

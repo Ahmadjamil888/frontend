@@ -208,7 +208,7 @@ export function HomePage() {
           <div className="absolute bottom-0 left-0 right-0 z-10 grid grid-cols-12 items-end px-4 pb-6 md:px-8 md:pb-10">
             <div className="col-span-12 lg:col-span-8">
               <h1
-                className="text-[26vw] font-medium leading-[0.85] tracking-[-0.07em] sm:text-[24vw] md:text-[22vw] lg:text-[20vw] xl:text-[19vw] 2xl:text-[20vw]"
+                className="overflow-visible text-[25vw] font-medium leading-[0.92] tracking-[-0.06em] sm:text-[23vw] md:text-[21vw] lg:text-[19vw] xl:text-[18vw] 2xl:text-[19vw]"
                 style={{ color: '#E1E0CC' }}
               >
                 <WordsPullUp text="IMOS" showAsterisk />

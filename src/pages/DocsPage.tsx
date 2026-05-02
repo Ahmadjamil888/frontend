@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { brandPrimaryButtonClass, brandSecondaryButtonClass } from '../components/brandTheme'
 import { DocsShell } from '../components/DocsShell'
 import { CLI_COMMAND_DOCS } from './docs/docsContent'
 
@@ -51,10 +52,10 @@ export function DocsPage() {
               Start the IMOS CLI in minutes. Learn the real launch path, auth handoff, and command structure without digging through one oversized page.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link to="/docs/installation" className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-[#ededed]">
+              <Link to="/docs/installation" className={brandPrimaryButtonClass}>
                 Get started
               </Link>
-              <Link to="/docs/cli" className="rounded-full bg-[#313131] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#3a3a3a]">
+              <Link to="/docs/cli" className={brandSecondaryButtonClass}>
                 Browse commands
               </Link>
             </div>
@@ -79,11 +80,11 @@ export function DocsPage() {
             <Link
               key={item.title}
               to={item.href}
-              className="rounded-[1.2rem] border border-white/10 bg-[#1f1f1f] p-5 transition hover:border-white/16 hover:bg-[#242424]"
+              className="group rounded-[1.2rem] border border-white/10 bg-[#1f1f1f] p-5 transition hover:border-white/16 hover:bg-[#242424]"
             >
               <h3 className="text-2xl font-medium text-white">{item.title}</h3>
               <p className="mt-3 max-w-xl text-base leading-8 text-white/72">{item.body}</p>
-              <div className="mt-7 text-base font-medium text-white">Open guide ↗</div>
+              <div className="mt-7 text-base font-medium text-white/92 transition group-hover:text-white">Open guide ↗</div>
             </Link>
           ))}
         </div>
@@ -98,13 +99,13 @@ export function DocsPage() {
         </div>
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
         {docCards.map((item) => (
-          <Link
-            key={item.title}
-            to={item.href}
-            className="rounded-[1.2rem] border border-white/10 bg-[#1f1f1f] p-5 transition hover:border-white/16 hover:bg-[#242424]"
+            <Link
+              key={item.title}
+              to={item.href}
+              className="group rounded-[1.2rem] border border-white/10 bg-[#1f1f1f] p-5 transition hover:border-white/16 hover:bg-[#242424]"
           >
-            <h3 className="text-2xl font-medium leading-tight text-white">{item.title}</h3>
-            <p className="mt-3 text-base leading-8 text-white/72">{item.body}</p>
+              <h3 className="text-2xl font-medium leading-tight text-white">{item.title}</h3>
+              <p className="mt-3 text-base leading-8 text-white/72 transition group-hover:text-white/82">{item.body}</p>
           </Link>
         ))}
         </div>
@@ -126,11 +127,11 @@ export function DocsPage() {
             <Link
               key={item.slug}
               to={`/docs/cli/${item.slug}`}
-              className="rounded-[1.2rem] border border-white/10 bg-[#1f1f1f] px-4 py-4 transition hover:border-white/16 hover:bg-[#242424]"
+              className="group rounded-[1.2rem] border border-white/10 bg-[#1f1f1f] px-4 py-4 transition hover:border-white/16 hover:bg-[#242424]"
             >
               <div className="text-[11px] font-medium text-white/55">CLI</div>
               <div className="mt-2 text-lg text-white">{item.label}</div>
-              <p className="mt-2 text-sm leading-7 text-white/62">{item.summary}</p>
+              <p className="mt-2 text-sm leading-7 text-white/62 transition group-hover:text-white/82">{item.summary}</p>
             </Link>
           ))}
         </div>

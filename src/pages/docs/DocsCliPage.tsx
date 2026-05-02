@@ -65,10 +65,10 @@ export function DocsCliPage() {
               <Link
                 key={item.slug}
                 to={`/docs/cli/${item.slug}`}
-                className="rounded-[1.2rem] border border-white/10 bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white hover:text-black"
+                className="group rounded-[1.2rem] border border-white/10 bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-[#242424]"
               >
                 <div className="text-base text-white">{item.label}</div>
-                <div className="mt-2 text-sm leading-6 text-white/60">{item.summary}</div>
+                <div className="mt-2 text-sm leading-6 text-white/60 transition group-hover:text-white/82">{item.summary}</div>
               </Link>
             ))}
           </div>
