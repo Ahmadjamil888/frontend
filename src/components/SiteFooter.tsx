@@ -37,7 +37,7 @@ export function SiteFooter() {
                 <BrandLogo className="text-2xl text-[#E1E0CC]" />
               </Link>
               <p className="mt-4 max-w-sm text-sm leading-7 text-[rgba(225,224,204,0.72)]">
-                Intelligent Machine Operating System for teams that need one controlled surface for runtime, sessions, dashboard, and delivery.
+                Intelligent Machine Operating System for teams that need one controlled surface for models, IDEs, apps, browser control, runtime sessions, dashboard visibility, and delivery.
               </p>
             </div>
 

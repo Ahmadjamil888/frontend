@@ -2,24 +2,24 @@ import { ContentSection, StatementSection } from '../components/MarketingSection
 import { brandPanelStrongClass } from '../components/brandTheme'
 
 const blocks = [
-  ['Gateway', 'Routes sessions, messaging, node state, memory, and workflows through one control plane.'],
-  ['Runtime', 'Invokes models, executes tools, persists state, and manages delivery back into channels.'],
-  ['Security', 'Supports deployment-aware auth, webhook bearer validation, and protected operator surfaces.'],
-  ['Frontend', 'Acts as the public entrypoint for product narrative, sign-in, and operator dashboard handoff.'],
+  ['Gateway', 'Routes sessions, messaging, IDE requests, browser actions, app control, memory, and workflows through one control plane.'],
+  ['Runtime', 'Invokes ChatGPT, Claude, local models, IDE adapters, browser tools, PC control, and delivery back into channels.'],
+  ['Permissions', 'Supports first-run consent gates for PC control, app access, browser access, elevated actions, and protected operator surfaces.'],
+  ['Frontend', 'Acts as the public entrypoint for product narrative, sign-in, operator dashboard handoff, and permission-aware setup flows.'],
 ]
 
 const deepDives = [
   {
     title: 'Session continuity',
-    text: 'Every connector and dashboard action should land in a session with preserved history, memory context, and visible delivery state. That is what makes the operator usable over time.',
+    text: 'Every connector, IDE prompt, browser action, and dashboard control should land in a session with preserved history, memory context, preferences, and visible delivery state. That is what makes the operator usable over time.',
   },
   {
     title: 'Tool governance',
-    text: 'Tool profiles, allowlists, deny rules, and typed catalog metadata exist so the runtime can reason safely about what it is permitted to execute in a given context.',
+    text: 'Tool profiles, allowlists, deny rules, typed catalog metadata, and elevation policies exist so the runtime can reason safely about what it is permitted to execute in a given context.',
   },
   {
     title: 'Deployment flexibility',
-    text: 'The same product can run as a local operator console, a browser-led dashboard flow, or a cloud-exposed gateway with stricter auth and webhook controls.',
+    text: 'The same product can run as a local operator console, an IDE-attached assistant, a browser-led dashboard flow, or a cloud-exposed gateway with stricter auth and webhook controls.',
   },
 ]
 
@@ -32,13 +32,13 @@ export function PlatformPage() {
           { text: 'One operator system,', className: 'font-normal' },
           { text: 'multiple surfaces.', className: 'font-serif italic font-normal' },
         ]}
-        body="The product is split deliberately: frontend for narrative and sign-in, backend for execution and control, and a gateway/runtime core that owns state."
+        body="The product is split deliberately: frontend for narrative and sign-in, backend for execution and control, and a gateway/runtime core that owns state across models, IDEs, apps, browsers, and the local machine."
       />
 
       <ContentSection
         eyebrow="System Layers"
         title="Each layer has a real job."
-        description="The platform only stays coherent when every visible surface maps back to the same runtime truth instead of pretending the system is simpler than it is."
+        description="The platform only stays coherent when every visible surface maps back to the same runtime truth instead of pretending that models, IDEs, apps, browsers, and local automation are separate systems."
       >
         <div className="grid gap-5 md:grid-cols-2">
           {blocks.map(([title, text]) => (
@@ -56,7 +56,7 @@ export function PlatformPage() {
           { text: 'Structured enough to govern,', className: 'font-normal' },
           { text: 'dynamic enough to think.', className: 'font-serif italic font-normal' },
         ]}
-        body="IMOS is not meant to be a fixed workflow runner disguised as an assistant. The goal is a runtime that can reason dynamically while still remaining observable and operable."
+        body="IMOS is not meant to be a fixed workflow runner disguised as an assistant. The goal is a runtime that can reason dynamically across services and machine controls while still remaining observable, consent-driven, and operable."
       />
 
       <ContentSection

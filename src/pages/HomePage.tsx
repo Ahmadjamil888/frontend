@@ -56,15 +56,15 @@ const FEATURE_VIDEO =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4'
 
 const ABOUT_BODY =
-  'Over the last several years, IMOS has evolved into a controlled operator system for teams that need AI sessions, routing, dashboard visibility, and real execution to stay aligned from prompt to delivery.'
+  'Over the last several years, IMOS has evolved into a controlled operator system for teams that need AI sessions, routing, dashboard visibility, and real execution to stay aligned from prompt to delivery across models, IDEs, apps, browsers, and the local machine.'
 const HOW_IT_WORKS_BODY =
-  'IMOS exists to solve AI fragmentation. Instead of bouncing between model tabs, code editors, terminals, and workflows with no continuity, it gives operators one runtime that keeps work, memory, and execution attached.'
+  'IMOS exists to solve AI fragmentation. Instead of bouncing between model tabs, Claude, ChatGPT, code editors, terminals, browsers, and workflows with no continuity, it gives operators one runtime that keeps work, memory, preferences, and execution attached.'
 
 const WHY_IT_WINS_BODY =
-  'That stack breaks the moment work spans multiple tools, people, and long-running tasks. IMOS is the coordination layer that keeps context persistent, execution visible, and handoffs operational instead of manual.'
+  'That stack breaks the moment work spans multiple tools, people, long-running tasks, and machine-level actions. IMOS is the coordination layer that keeps context persistent, execution visible, permissions explicit, and handoffs operational instead of manual.'
 
 const REAL_WORKFLOW_BODY =
-  'A practical example makes the runtime click: one launch, multiple models and tools, one shared operational state. This is where IMOS becomes more than atmosphere.'
+  'A practical example makes the runtime click: one launch, multiple models, IDEs, apps, browser actions, and local machine controls, all under one shared operational state. This is where IMOS becomes more than atmosphere.'
 
 const FEATURE_SECTIONS = [
   {
@@ -76,7 +76,7 @@ const FEATURE_SECTIONS = [
     items: [
       'Map runtime flows and operator objectives',
       'Keep sessions and delivery context attached',
-      'Coordinate tools without losing narrative state',
+      'Coordinate models, IDEs, apps, and browser sessions without losing narrative state',
       'Launch from one visible command surface',
     ],
   },
@@ -88,8 +88,8 @@ const FEATURE_SECTIONS = [
       'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171741_ed9845ab-f5b2-4018-8ce7-07cc01823522.png&w=1280&q=85',
     items: [
       'AI analysis tied to operator-visible reasoning',
-      'Creative notes, revisions, and execution feedback',
-      'Tool integrations that remain inspectable',
+      'Claude, ChatGPT, and IDE prompts coordinated in one session',
+      'Tool integrations and machine actions that remain inspectable',
     ],
   },
   {
@@ -101,7 +101,7 @@ const FEATURE_SECTIONS = [
     items: [
       'Silence noise during active launch windows',
       'Ambient dashboards for long-running sessions',
-      'Sync schedules to runtime state and readiness',
+      'Sync permissions, schedules, and runtime readiness in one operator state',
     ],
   },
 ]
@@ -127,15 +127,15 @@ const TESTIMONIALS = [
 const FAQS = [
   {
     question: 'What is IMOS actually for?',
-    answer: 'IMOS is an operator system that combines CLI control, dashboard visibility, sessions, memory, tools, and runtime execution into one surface.',
+    answer: 'IMOS is an operator system that combines CLI control, dashboard visibility, sessions, memory, tools, models, IDE actions, browser control, and runtime execution into one surface.',
   },
   {
-    question: 'Can it run locally and still expose a polished frontend?',
-    answer: 'Yes. The site handles public narrative and auth, while the local runtime and dashboard remain the execution layer.',
+    question: 'Can it ask for PC and app permissions before taking control?',
+    answer: 'Yes. IMOS is designed around first-run consent gates so the user can explicitly allow or deny PC control, browser control, app access, IDE access, and elevated actions before execution.',
   },
   {
     question: 'Which surfaces are available right now?',
-    answer: 'The current product includes the CLI, local dashboard, streaming chat, task and process views, audit logs, memory, skills, and terminal sessions.',
+    answer: 'The current product includes the CLI, local dashboard, streaming chat, task and process views, audit logs, memory, skills, terminal sessions, adapter routing, IDE integrations, browser automation, and machine-control layers.',
   },
 ]
 
@@ -223,7 +223,7 @@ export function HomePage() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
-                IMOS is a cinematic operator network for teams that need sessions, memory, tooling, and delivery to move as one controlled system.
+                IMOS is a cinematic operator network for teams that need sessions, memory, tooling, models, IDEs, apps, browser control, and delivery to move as one controlled system.
               </motion.p>
 
               <motion.div
@@ -264,7 +264,7 @@ export function HomePage() {
               segments={[
                 { text: 'We build runtime clarity,', className: 'font-normal' },
                 { text: 'not vague automation.', className: 'font-serif italic font-normal' },
-                { text: 'IMOS is shaped for routing, memory, dashboard control, and launch execution.', className: 'font-normal' },
+                { text: 'IMOS is shaped for routing, memory, dashboard control, permission-aware execution, and launch delivery.', className: 'font-normal' },
               ]}
               containerClassName="mx-auto max-w-3xl text-3xl leading-[0.95] sm:text-4xl sm:leading-[0.9] md:text-5xl lg:text-6xl xl:text-7xl"
             />
@@ -317,7 +317,7 @@ export function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-sm font-medium" style={{ color: '#E1E0CC' }}>
-                    Your creative canvas.
+                    Your universal operator canvas.
                   </p>
                 </div>
               </div>
@@ -368,7 +368,7 @@ export function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
           {[
             ['38', 'Loaded skills across the runtime'],
-            ['16+', 'Live API and dashboard endpoints'],
+            ['16+', 'Live API, adapter, and dashboard endpoints'],
             ['1', 'Unified operating system for AI execution'],
           ].map(([value, label]) => (
             <div key={label} className="rounded-3xl border border-white/8 bg-[#101010] p-8 text-center">

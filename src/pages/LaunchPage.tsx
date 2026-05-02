@@ -5,7 +5,7 @@ const checklist = [
   'Run a real IMOS task with `imos run "<prompt>"` and confirm the orchestrator returns a synthesized result.',
   'Open the local dashboard with `imos dashboard` and verify adapters, status, capabilities, history, and live output all load.',
   'Run `imos mcp install` and confirm the editor configs are written for supported IDEs.',
-  'Use `python ai_assistant.py --doctor` and confirm adapter health, missing credentials, and MCP install state are reported correctly.',
+  'Confirm first-run permission prompts cover PC control, browser control, IDE access, and elevated actions before they are enabled.',
 ]
 
 const phases = [
@@ -15,11 +15,11 @@ const phases = [
   },
   {
     title: 'Runtime wiring',
-    text: 'Confirm adapter discovery, dashboard route health, MCP config generation, and one real IMOS orchestration path before broader rollout.',
+    text: 'Confirm adapter discovery, dashboard route health, MCP config generation, permission gates, and one real IMOS orchestration path before broader rollout.',
   },
   {
     title: 'Shell compatibility',
-    text: 'Keep the `ai_assistant.py` interactive shell documented and working while the new IMOS CLI and dashboard ship on top of the same repo.',
+    text: 'Keep the `ai_assistant.py` interactive shell documented and working while the new IMOS CLI, dashboard, and universal-control surfaces ship on top of the same repo.',
   },
 ]
 
@@ -32,13 +32,13 @@ export function LaunchPage() {
           { text: 'A practical launch path,', className: 'font-normal' },
           { text: 'not a placeholder shell.', className: 'font-serif italic font-normal' },
         ]}
-        body="This frontend now reflects the real IMOS runtime and the existing shell that still ships with it. The launch sequence should match the commands operators can actually run today."
+        body="This frontend now reflects the real IMOS runtime and the existing shell that still ships with it. The launch sequence should match the commands, permission prompts, and control surfaces operators will actually use."
       />
 
       <ContentSection
         eyebrow="Checklist"
         title="Launch is a sequence."
-        description="A real launch requires the docs, CLI, dashboard route surface, adapter registry, MCP setup, and diagnostics path to agree with each other."
+        description="A real launch requires the docs, CLI, dashboard route surface, adapter registry, MCP setup, permission gates, and diagnostics path to agree with each other."
       >
         <div className={`${brandPanelStrongClass} p-8`}>
           <ol className="space-y-5 text-[15px] leading-7 text-[#DEDBC8]">
@@ -60,19 +60,38 @@ export function LaunchPage() {
           { text: 'Launch is a sequence,', className: 'font-normal' },
           { text: 'not a slogan.', className: 'font-serif italic font-normal' },
         ]}
-        body="The fastest way to catch broken launchers, missing adapter config, stale docs, bad MCP state, or dead dashboard routes is to validate the exact commands the operator will actually run."
+        body="The fastest way to catch broken launchers, missing adapter config, stale docs, bad MCP state, unsafe permission flows, or dead dashboard routes is to validate the exact commands and approvals the operator will actually run."
       />
 
       <ContentSection
         eyebrow="Phases"
         title="Readiness has to be proven."
-        description="The launch path only deserves trust when installation, runtime wiring, and shell compatibility all succeed through the real operator entrypoints."
+        description="The launch path only deserves trust when installation, runtime wiring, permission setup, and shell compatibility all succeed through the real operator entrypoints."
       >
         <div className="grid gap-5 md:grid-cols-3">
           {phases.map((phase) => (
             <article key={phase.title} className={`${brandPanelStrongClass} p-7`}>
               <h3 className="text-xl font-medium text-white">{phase.title}</h3>
               <p className="mt-4 text-[15px] leading-7 text-[#DEDBC8]">{phase.text}</p>
+            </article>
+          ))}
+        </div>
+      </ContentSection>
+
+      <ContentSection
+        eyebrow="Permissions"
+        title="Consent has to be visible."
+        description="The operator should be able to approve or deny PC control, browser control, IDE access, app access, and elevated actions from a dedicated setup surface before execution starts."
+      >
+        <div className="grid gap-5 md:grid-cols-3">
+          {[
+            ['PC and browser', 'Approve keyboard, mouse, hover, click, typing, screenshots, browser navigation, and website actions only when the operator explicitly allows them.'],
+            ['IDE and apps', 'Approve Cursor, VS Code, JetBrains, messaging tools, desktop apps, and connected services as first-class runtime surfaces.'],
+            ['Elevated actions', 'Keep destructive or admin-level operations behind explicit approval so the runtime can act powerfully without silently escalating.'],
+          ].map(([title, text]) => (
+            <article key={title} className={`${brandPanelStrongClass} p-7`}>
+              <h3 className="text-xl font-medium text-white">{title}</h3>
+              <p className="mt-4 text-[15px] leading-7 text-[#DEDBC8]">{text}</p>
             </article>
           ))}
         </div>
