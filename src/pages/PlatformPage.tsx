@@ -1,4 +1,4 @@
-import { SectionBlock } from '../components/SectionBlock'
+import { ContentSection, StatementSection } from '../components/MarketingSections'
 import { brandPanelStrongClass } from '../components/brandTheme'
 
 const blocks = [
@@ -25,62 +25,54 @@ const deepDives = [
 
 export function PlatformPage() {
   return (
-    <div className="pt-6 md:pt-10">
-      <SectionBlock
+    <div className="bg-black">
+      <StatementSection
         eyebrow="Architecture"
-        title="One operator system, multiple surfaces"
-        description="The product is split deliberately: frontend for narrative and sign-in, backend for execution and control, and a gateway/runtime core that owns state."
+        segments={[
+          { text: 'One operator system,', className: 'font-normal' },
+          { text: 'multiple surfaces.', className: 'font-serif italic font-normal' },
+        ]}
+        body="The product is split deliberately: frontend for narrative and sign-in, backend for execution and control, and a gateway/runtime core that owns state."
+      />
+
+      <ContentSection
+        eyebrow="System Layers"
+        title="Each layer has a real job."
+        description="The platform only stays coherent when every visible surface maps back to the same runtime truth instead of pretending the system is simpler than it is."
       >
         <div className="grid gap-5 md:grid-cols-2">
-          {blocks.map(([title, text], index) => (
+          {blocks.map(([title, text]) => (
             <div key={title} className={`${brandPanelStrongClass} p-7`}>
-              <div className="flex items-center gap-3">
-                <span className={`h-2.5 w-2.5 rounded-full ${index === 0 ? 'bg-[#E1E0CC]' : 'bg-[#E1E0CC]/35'}`} />
-                <h3 className="text-xl font-medium text-[#E1E0CC]">{title}</h3>
-              </div>
-              <p className="mt-4 text-[15px] leading-7 text-[#cfb69a]">{text}</p>
+              <h3 className="text-xl font-medium text-white">{title}</h3>
+              <p className="mt-4 text-[15px] leading-7 text-[#DEDBC8]">{text}</p>
             </div>
           ))}
         </div>
-      </SectionBlock>
+      </ContentSection>
 
-      <SectionBlock
-        eyebrow="Runtime model"
-        title="Structured enough to govern, dynamic enough to think."
-        description="IMOS is not meant to be a fixed workflow runner disguised as an assistant. The goal is a runtime that can reason dynamically while still remaining observable and operable."
+      <StatementSection
+        eyebrow="Runtime Model"
+        segments={[
+          { text: 'Structured enough to govern,', className: 'font-normal' },
+          { text: 'dynamic enough to think.', className: 'font-serif italic font-normal' },
+        ]}
+        body="IMOS is not meant to be a fixed workflow runner disguised as an assistant. The goal is a runtime that can reason dynamically while still remaining observable and operable."
+      />
+
+      <ContentSection
+        eyebrow="Deep Dives"
+        title="The architecture stays useful only if continuity survives."
+        description="Session continuity, tool governance, and deployment flexibility are not optional extras. They are the conditions required for a real operator system."
       >
         <div className="grid gap-5">
           {deepDives.map((item) => (
             <article key={item.title} className={`${brandPanelStrongClass} p-7`}>
-              <h3 className="text-2xl font-light tracking-[-0.04em] text-[#E1E0CC]">{item.title}</h3>
-              <p className="mt-4 text-[15px] leading-7 text-[#cfb69a]">{item.text}</p>
+              <h3 className="text-2xl font-light tracking-[-0.04em] text-white">{item.title}</h3>
+              <p className="mt-4 text-[15px] leading-7 text-[#DEDBC8]">{item.text}</p>
             </article>
           ))}
         </div>
-      </SectionBlock>
-
-      <SectionBlock
-        eyebrow="Experience"
-        title="The frontend and operator surfaces are separate on purpose."
-        description="A public product site should explain, convert, and authenticate. An operator surface should expose live state, execution, and control. IMOS treats those as different jobs."
-      >
-        <div className={`${brandPanelStrongClass} p-8`}>
-          <div className="grid gap-5 md:grid-cols-2">
-            {[
-              ['Public frontend', 'Long-form product narrative, sign-in, navigation, docs, and launch framing.'],
-              ['Operator backend', 'Dashboard, workflows, node pairing, messaging, gateway status, and live runtime control.'],
-            ].map(([title, text], index) => (
-              <div key={title} className="rounded-[1.2rem] border border-white/8 bg-black/30 p-6">
-                <div className="flex items-center gap-3">
-                  <span className={`h-2.5 w-2.5 rounded-full ${index === 0 ? 'bg-[#E1E0CC]' : 'bg-[#E1E0CC]/40'}`} />
-                  <h3 className="text-xl font-medium text-[#E1E0CC]">{title}</h3>
-                </div>
-                <p className="mt-4 text-[15px] leading-7 text-[#cfb69a]">{text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </SectionBlock>
+      </ContentSection>
     </div>
   )
 }

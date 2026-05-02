@@ -1,4 +1,4 @@
-import { SectionBlock } from '../components/SectionBlock'
+import { ContentSection, StatementSection } from '../components/MarketingSections'
 import { brandPanelStrongClass } from '../components/brandTheme'
 
 const integrationGroups = {
@@ -15,20 +15,26 @@ const notes = [
 
 export function IntegrationsPage() {
   return (
-    <div className="pt-6 md:pt-10">
-      <SectionBlock
+    <div className="bg-black">
+      <StatementSection
         eyebrow="Integrations"
-        title="Connectors and operators in one fabric"
-        description="The frontend presents the real connector families and operator surfaces with a cleaner structure that matches the product instead of overstating it."
+        segments={[
+          { text: 'Connectors and operators', className: 'font-normal' },
+          { text: 'in one fabric.', className: 'font-serif italic font-normal' },
+        ]}
+        body="The frontend presents the real connector families and operator surfaces with a cleaner structure that matches the product instead of overstating it."
+      />
+
+      <ContentSection
+        eyebrow="Connector Families"
+        title="Every integration should route back into the same runtime."
+        description="Messaging, automation, and operator surfaces only matter if they remain visible, accountable, and session-aware once they enter the system."
       >
         <div className="grid gap-5 md:grid-cols-3">
-          {Object.entries(integrationGroups).map(([group, items], groupIndex) => (
+          {Object.entries(integrationGroups).map(([group, items]) => (
             <div key={group} className={`${brandPanelStrongClass} p-7`}>
-              <div className="flex items-center gap-3">
-                <span className={`h-2.5 w-2.5 rounded-full ${groupIndex === 0 ? 'bg-[#E1E0CC]' : 'bg-[#E1E0CC]/35'}`} />
-                <h3 className="text-xl font-medium text-[#E1E0CC]">{group}</h3>
-              </div>
-              <ul className="mt-5 space-y-3 text-[15px] leading-7 text-[#cfb69a]">
+              <h3 className="text-xl font-medium text-white">{group}</h3>
+              <ul className="mt-5 space-y-3 text-[15px] leading-7 text-[#DEDBC8]">
                 {items.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <span className="mt-3 h-1.5 w-1.5 rounded-full bg-white/50" />
@@ -39,18 +45,27 @@ export function IntegrationsPage() {
             </div>
           ))}
         </div>
-      </SectionBlock>
+      </ContentSection>
 
-      <SectionBlock
-        eyebrow="Operational notes"
-        title="Integrations are only useful when they stay accountable."
-        description="IMOS treats messaging, workflows, and nodes as operator surfaces, not magical black boxes. That means state should remain observable and delivery should remain constrained."
+      <StatementSection
+        eyebrow="Operational Notes"
+        segments={[
+          { text: 'Integrations are only useful', className: 'font-normal' },
+          { text: 'when they stay accountable.', className: 'font-serif italic font-normal' },
+        ]}
+        body="IMOS treats messaging, workflows, and nodes as operator surfaces, not magical black boxes. That means state should remain observable and delivery should remain constrained."
+      />
+
+      <ContentSection
+        eyebrow="Discipline"
+        title="Visibility is the requirement."
+        description="The connector layer should never become a detached automation sink. It should remain traceable through sessions, policies, and delivery state."
       >
         <div className="grid gap-4">
           {notes.map((note, index) => (
-            <div key={note} className={`${brandPanelStrongClass} p-6 text-[15px] leading-7 text-[#e6ceb1]`}>
+            <div key={note} className={`${brandPanelStrongClass} p-6 text-[15px] leading-7 text-[#DEDBC8]`}>
               <div className="flex items-start gap-4">
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-[0.8rem] border border-white/10 bg-white/[0.04] text-sm text-[#E1E0CC]">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-[0.8rem] border border-white/10 bg-white/[0.04] text-sm text-white">
                   0{index + 1}
                 </span>
                 <span>{note}</span>
@@ -58,7 +73,7 @@ export function IntegrationsPage() {
             </div>
           ))}
         </div>
-      </SectionBlock>
+      </ContentSection>
     </div>
   )
 }

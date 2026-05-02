@@ -2,82 +2,135 @@ import { Link } from 'react-router-dom'
 import { DocsShell } from '../components/DocsShell'
 import { CLI_COMMAND_DOCS } from './docs/docsContent'
 
+const featuredCode = `imos setup
+imos login
+imos dashboard
+imos shell
+
+# inspect the current machine state
+imos status
+
+# switch the active model
+imos setmodel`
+
 const docCards = [
   {
-    title: 'Install the runtime',
-    body: 'Get the launcher onto the machine, install dependencies, and validate the real entrypoint.',
+    title: 'CLI Quickstart',
+    body: 'Get the launcher onto the machine, configure it, and validate the real terminal entrypoint.',
     href: '/docs/installation',
   },
   {
-    title: 'Authenticate locally',
-    body: 'Understand how the public sign-in flow hands control back into the local runtime.',
-    href: '/docs/authentication',
+    title: 'Command Guides',
+    body: 'Use separate pages for `imos shell`, `imos dashboard`, `imos login`, `imos setup`, and the rest.',
+    href: '/docs/cli',
   },
   {
-    title: 'Inspect runtime routes',
-    body: 'Review the gateway, dashboard, API surface, and the runtime responsibilities behind them.',
+    title: 'Runtime Routes',
+    body: 'Review the gateway, dashboard, and API surface that powers the local operator runtime.',
     href: '/docs/runtime',
   },
   {
-    title: 'Study the CLI',
-    body: 'Every top-level IMOS command now has its own guide page instead of being buried in one long section.',
-    href: '/docs/cli',
+    title: 'Auth Flow',
+    body: 'Understand how browser sign-in hands control back into the local CLI session.',
+    href: '/docs/authentication',
   },
 ]
 
 export function DocsPage() {
   return (
     <DocsShell
-      title="Runtime clarity, command by command."
-      description="The docs are now organized around the real operator flow: install the system, authenticate it, launch the runtime, open the dashboard, and understand every CLI command on its own page."
+      title="CLI Platform"
+      description="Documentation for a real operator CLI: installation, auth handoff, dashboard launch, runtime routes, and command-specific guides."
       eyebrow="Docs Home"
     >
-      <section className="rounded-[2rem] border border-white/10 bg-black p-6 sm:p-8">
-        <div className="text-[11px] uppercase tracking-[0.24em] text-white/40">How The Docs Work</div>
-        <div className="mt-5 max-w-4xl text-2xl leading-[1.02] tracking-[-0.04em] text-white sm:text-4xl">
-          We build runtime clarity, <span className="font-serif italic">not vague automation.</span>
+      <section className="rounded-[1.7rem] border border-white/8 bg-[#1b1b1b] p-7">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div className="pt-2">
+            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-white">Developer quickstart</h2>
+            <p className="mt-5 max-w-md text-lg leading-8 text-white/72">
+              Start the IMOS CLI in minutes. Learn the real launch path, auth handoff, and command structure without digging through one oversized page.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link to="/docs/installation" className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-[#ededed]">
+                Get started
+              </Link>
+              <Link to="/docs/cli" className="rounded-full bg-[#313131] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#3a3a3a]">
+                Browse commands
+              </Link>
+            </div>
+          </div>
+
+          <div className="rounded-[1.35rem] bg-[#1b1b1b]">
+            <div className="mb-3 flex items-center justify-between text-sm text-white/76">
+              <span>bash</span>
+              <span className="text-white/34">copy</span>
+            </div>
+            <pre className="overflow-x-auto text-sm leading-8 text-white">
+              <code>{featuredCode}</code>
+            </pre>
+          </div>
         </div>
-        <p className="mt-5 max-w-3xl text-sm leading-8 text-white/68 sm:text-base">
-          This documentation follows the actual backend behavior in `Desktop\connect`: the launcher, setup wizard,
-          auth bridge, dashboard boot path, gateway runtime, and top-level CLI commands exposed by `imos_cli.py`.
-        </p>
       </section>
 
-      <section className="grid gap-4 lg:grid-cols-2">
+      <section>
+        <h2 className="text-4xl font-semibold tracking-[-0.05em] text-white">Build paths</h2>
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          {docCards.slice(0, 2).map((item) => (
+            <Link
+              key={item.title}
+              to={item.href}
+              className="rounded-[1.2rem] border border-white/10 bg-[#1f1f1f] p-5 transition hover:border-white/16 hover:bg-[#242424]"
+            >
+              <h3 className="text-2xl font-medium text-white">{item.title}</h3>
+              <p className="mt-3 max-w-xl text-base leading-8 text-white/72">{item.body}</p>
+              <div className="mt-7 text-base font-medium text-white">Open guide ↗</div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="text-4xl font-semibold tracking-[-0.05em] text-white">Core guides</h2>
+          <Link to="/docs/overview" className="text-lg text-white/65 transition hover:text-white">
+            View all
+          </Link>
+        </div>
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">
         {docCards.map((item) => (
           <Link
             key={item.title}
             to={item.href}
-            className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6 transition hover:border-white/20 hover:bg-white hover:text-black"
+            className="rounded-[1.2rem] border border-white/10 bg-[#1f1f1f] p-5 transition hover:border-white/16 hover:bg-[#242424]"
           >
-            <div className="text-[11px] uppercase tracking-[0.24em] text-white/40">Section</div>
-            <h2 className="mt-4 text-2xl leading-tight text-white">{item.title}</h2>
-            <p className="mt-3 text-sm leading-7 text-white/68">{item.body}</p>
+            <h3 className="text-2xl font-medium leading-tight text-white">{item.title}</h3>
+            <p className="mt-3 text-base leading-8 text-white/72">{item.body}</p>
           </Link>
         ))}
+        </div>
       </section>
 
-      <section className="rounded-[2rem] border border-white/10 bg-black p-6 sm:p-8">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <section>
+        <div className="flex items-end justify-between gap-4">
           <div>
-            <div className="text-[11px] uppercase tracking-[0.24em] text-white/40">CLI Guides</div>
-            <h2 className="mt-4 text-3xl leading-[0.96] tracking-[-0.04em] text-white sm:text-4xl">Separate pages for each command.</h2>
+            <h2 className="text-4xl font-semibold tracking-[-0.05em] text-white">CLI commands</h2>
+            <p className="mt-3 text-base leading-8 text-white/72">The docs are organized around the actual terminal commands, not around an SDK or library product.</p>
           </div>
-          <Link to="/docs/cli" className="rounded-full border border-white bg-white px-5 py-2.5 text-sm text-black transition hover:bg-black hover:text-white">
-            Open CLI overview
+          <Link to="/docs/cli" className="text-lg text-white/65 transition hover:text-white">
+            View all
           </Link>
         </div>
 
-        <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {CLI_COMMAND_DOCS.map((item) => (
             <Link
               key={item.slug}
               to={`/docs/cli/${item.slug}`}
-              className="rounded-[1.3rem] border border-white/10 bg-[rgba(255,255,255,0.03)] px-4 py-4 transition hover:border-white/24 hover:bg-white hover:text-black"
+              className="rounded-[1.2rem] border border-white/10 bg-[#1f1f1f] px-4 py-4 transition hover:border-white/16 hover:bg-[#242424]"
             >
-              <div className="text-[11px] uppercase tracking-[0.22em] text-white/36">CLI</div>
+              <div className="text-[11px] font-medium text-white/55">CLI</div>
               <div className="mt-2 text-lg text-white">{item.label}</div>
-              <p className="mt-2 text-sm leading-6 text-white/62">{item.summary}</p>
+              <p className="mt-2 text-sm leading-7 text-white/62">{item.summary}</p>
             </Link>
           ))}
         </div>

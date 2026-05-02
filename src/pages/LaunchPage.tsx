@@ -1,4 +1,4 @@
-﻿import { SectionBlock } from '../components/SectionBlock'
+import { ContentSection, StatementSection } from '../components/MarketingSections'
 import { brandPanelStrongClass } from '../components/brandTheme'
 
 const checklist = [
@@ -25,17 +25,26 @@ const phases = [
 
 export function LaunchPage() {
   return (
-    <div className="pt-6 md:pt-10">
-      <SectionBlock
+    <div className="bg-black">
+      <StatementSection
         eyebrow="Launch"
-        title="A practical launch path"
-        description="This frontend now reflects the real local operator runtime instead of a placeholder shell. It gives you the public auth surface and the operator launch sequence that matches the current CLI."
+        segments={[
+          { text: 'A practical launch path,', className: 'font-normal' },
+          { text: 'not a placeholder shell.', className: 'font-serif italic font-normal' },
+        ]}
+        body="This frontend now reflects the real local operator runtime instead of a placeholder shell. It gives you the public auth surface and the operator launch sequence that matches the current CLI."
+      />
+
+      <ContentSection
+        eyebrow="Checklist"
+        title="Launch is a sequence."
+        description="A real launch requires the public site, auth flow, launcher path, runtime health, dashboard streaming, and connector validation to all agree with each other."
       >
         <div className={`${brandPanelStrongClass} p-8`}>
-          <ol className="space-y-5 text-[15px] leading-7 text-[#e6ceb1]">
+          <ol className="space-y-5 text-[15px] leading-7 text-[#DEDBC8]">
             {checklist.map((item, index) => (
               <li key={item} className="flex gap-4">
-                <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-[0.9rem] border border-white/10 bg-white/[0.04] text-sm font-medium text-[#E1E0CC]">
+                <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-[0.9rem] border border-white/10 bg-white/[0.04] text-sm font-medium text-white">
                   {index + 1}
                 </span>
                 <span>{item}</span>
@@ -43,57 +52,47 @@ export function LaunchPage() {
             ))}
           </ol>
         </div>
-      </SectionBlock>
+      </ContentSection>
 
-      <SectionBlock
+      <StatementSection
         eyebrow="Readiness"
-        title="Launch is a sequence, not a slogan."
-        description="A real launch requires the public site, auth flow, launcher path, runtime health, dashboard streaming, and connector validation to all agree with each other."
+        segments={[
+          { text: 'Launch is a sequence,', className: 'font-normal' },
+          { text: 'not a slogan.', className: 'font-serif italic font-normal' },
+        ]}
+        body="The fastest way to catch broken launchers, missing env, wrong workspace binding, dead providers, or stale docs is to validate the exact commands the operator will actually run."
+      />
+
+      <ContentSection
+        eyebrow="Phases"
+        title="Readiness has to be proven."
+        description="The launch path only deserves trust when installation, authentication, and runtime validation all succeed through the real operator entrypoint."
       >
         <div className="grid gap-5 md:grid-cols-3">
           {phases.map((phase) => (
             <article key={phase.title} className={`${brandPanelStrongClass} p-7`}>
-              <h3 className="text-xl font-medium text-[#E1E0CC]">{phase.title}</h3>
-              <p className="mt-4 text-[15px] leading-7 text-[#cfb69a]">{phase.text}</p>
+              <h3 className="text-xl font-medium text-white">{phase.title}</h3>
+              <p className="mt-4 text-[15px] leading-7 text-[#DEDBC8]">{phase.text}</p>
             </article>
           ))}
         </div>
-      </SectionBlock>
+      </ContentSection>
 
-      <SectionBlock
+      <ContentSection
         eyebrow="Contact"
         title="Reach the team directly."
         description="If you are opening IMOS for implementation, support, or deployment work, use the direct contact below."
       >
-        <div id="contact" className={`${brandPanelStrongClass} p-8`}>
-          <div className="text-xs font-medium uppercase tracking-[0.22em] text-orange-200/45">Email</div>
-          <a href="mailto:zehanxtech@gmail.com" className="mt-4 inline-block text-2xl font-light tracking-[-0.04em] text-[#E1E0CC] transition hover:text-orange-300">
+        <div id="contact" className={`${brandPanelStrongClass} mx-auto max-w-4xl p-8 text-center`}>
+          <div className="text-xs font-medium uppercase tracking-[0.22em] text-[#DEDBC8]/55">Email</div>
+          <a href="mailto:zehanxtech@gmail.com" className="mt-4 inline-block text-2xl font-light tracking-[-0.04em] text-white transition hover:text-[#DEDBC8]">
             zehanxtech@gmail.com
           </a>
-          <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#cfb69a]">
+          <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-[#DEDBC8]">
             Use this address for product inquiries, implementation questions, deployment requests, or operator support.
           </p>
         </div>
-      </SectionBlock>
-
-      <SectionBlock
-        eyebrow="Operator discipline"
-        title="Verify from the real launcher path."
-        description="The fastest way to catch broken launchers, missing env, wrong workspace binding, dead providers, or stale docs is to validate the exact commands the operator will actually run."
-      >
-        <div className={`${brandPanelStrongClass} p-7`}>
-          <div className="mb-4 text-xs font-medium uppercase tracking-[0.22em] text-orange-200/45">Launch commands</div>
-          <pre className="overflow-x-auto rounded-[1.1rem] border border-white/8 bg-black/35 p-5 text-sm leading-7 text-[#E1E0CC]">
-            <code>{`imos login
-imos dashboard
-imos
-/git status
-/tasks
-/processes
-/audit`}</code>
-          </pre>
-        </div>
-      </SectionBlock>
+      </ContentSection>
     </div>
   )
 }

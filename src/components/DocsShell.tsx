@@ -28,41 +28,64 @@ export function DocsShell({ title, description, eyebrow = 'Documentation', child
   }, [query])
 
   return (
-    <div className="site-page-shell h-dvh overflow-hidden bg-black px-4 pb-4 pt-4 text-white sm:px-6 lg:pb-6 lg:pt-6">
-      <div className="mx-auto flex h-full max-w-[1500px] flex-col gap-4 lg:flex-row lg:gap-6">
-        <DocSidebar groups={filteredGroups} query={query} onQueryChange={setQuery} />
-
-        <section className="min-h-0 min-w-0 flex-1 overflow-y-auto rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5 shadow-[0_40px_120px_rgba(0,0,0,0.65)] sm:p-8 lg:p-10">
-          <div className="mb-10 flex flex-col gap-8 border-b border-white/10 pb-8 lg:flex-row lg:items-start lg:justify-between">
-            <div className="max-w-3xl">
-              <Link to="/docs" className="mb-6 inline-flex items-center gap-3">
-                <img src="/favicon.svg" alt="IMOS" className="h-11 w-11 rounded-xl border border-white/10 bg-black p-1.5" />
-                <div>
-                  <div className="text-[11px] uppercase tracking-[0.24em] text-white/40">IMOS Docs</div>
-                  <div className="text-sm text-white/72">Operator runtime and CLI reference</div>
-                </div>
+    <div className="site-page-shell h-dvh overflow-hidden bg-black text-white">
+      <header className="border-b border-white/8 bg-black">
+        <div className="mx-auto flex h-16 max-w-[1880px] items-center justify-between gap-4 px-4 sm:px-6">
+          <div className="flex items-center gap-8">
+            <Link to="/docs" className="inline-flex items-center gap-3">
+              <img src="/favicon.svg" alt="IMOS" className="h-8 w-8 rounded-lg bg-black" />
+              <span className="text-[1.05rem] font-semibold tracking-[-0.03em] text-white">IMOS Developers</span>
+            </Link>
+            <nav className="hidden items-center gap-2 lg:flex">
+              <Link to="/" className="rounded-lg px-3 py-2 text-sm text-white/88 hover:bg-[#171717] hover:text-white">
+                Home
               </Link>
-              <div className="text-[11px] uppercase tracking-[0.26em] text-white/40">{eyebrow}</div>
-              <h1 className="mt-5 max-w-4xl text-4xl leading-[0.95] tracking-[-0.05em] text-white sm:text-5xl lg:text-6xl">
-                {title}
-              </h1>
-              <p className="mt-5 max-w-2xl text-sm leading-7 text-white/68 sm:text-base">{description}</p>
-            </div>
-
-            <div className="grid gap-3 text-sm text-white/72 sm:max-w-sm">
-              <Link to="/docs/cli" className="rounded-[1.2rem] border border-white/10 bg-black px-4 py-3 transition hover:border-white/20 hover:text-white">
-                Separate CLI command guides
+              <Link to="/docs" className="rounded-lg bg-[#1f1f1f] px-3 py-2 text-sm text-white">
+                Docs
               </Link>
-              <Link to="/docs/installation" className="rounded-[1.2rem] border border-white/10 bg-black px-4 py-3 transition hover:border-white/20 hover:text-white">
-                Installation and setup
+              <Link to="/docs/cli" className="rounded-lg px-3 py-2 text-sm text-white/74 hover:bg-[#171717] hover:text-white">
+                CLI
               </Link>
-              <Link to="/docs/api" className="rounded-[1.2rem] border border-white/10 bg-black px-4 py-3 transition hover:border-white/20 hover:text-white">
-                Runtime and API surface
+              <Link to="/docs/runtime" className="rounded-lg px-3 py-2 text-sm text-white/74 hover:bg-[#171717] hover:text-white">
+                Runtime
               </Link>
-            </div>
+              <Link to="/docs/operations" className="rounded-lg px-3 py-2 text-sm text-white/74 hover:bg-[#171717] hover:text-white">
+                Resources
+              </Link>
+            </nav>
           </div>
 
-          <div className="space-y-6 text-white">{children}</div>
+          <div className="flex items-center gap-3">
+            <div className="hidden md:block">
+              <input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Start searching"
+                className="w-[240px] rounded-full border border-white/10 bg-[#1f1f1f] px-5 py-2.5 text-sm text-white outline-none placeholder:text-white/45 focus:border-white/20 lg:w-[280px]"
+              />
+            </div>
+            <Link to="/launch" className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-[#ededed]">
+              Install CLI
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      <div className="mx-auto flex h-[calc(100dvh-4rem)] max-w-[1880px] overflow-hidden">
+        <DocSidebar groups={filteredGroups} query={query} onQueryChange={setQuery} />
+
+        <section className="min-h-0 min-w-0 flex-1 overflow-y-auto bg-black">
+          <div className="mx-auto max-w-[1320px] px-6 py-10 lg:px-10 lg:py-12">
+            <div className="mb-8">
+              <div className="text-[11px] uppercase tracking-[0.26em] text-white/40">{eyebrow}</div>
+              <h1 className="mt-4 max-w-5xl text-4xl leading-[0.96] tracking-[-0.05em] text-white sm:text-5xl">
+                {title}
+              </h1>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/68 sm:text-base">{description}</p>
+            </div>
+
+            <div className="space-y-6 text-white">{children}</div>
+          </div>
         </section>
       </div>
     </div>
