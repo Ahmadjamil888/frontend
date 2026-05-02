@@ -1,8 +1,7 @@
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, Check } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { useRef, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { SectionBlock } from '../components/SectionBlock'
 import { WordsPullUp } from '../components/WordsPullUp'
 import { WordsPullUpMultiStyle } from '../components/WordsPullUpMultiStyle'
 
@@ -58,51 +57,14 @@ const FEATURE_VIDEO =
 
 const ABOUT_BODY =
   'Over the last several years, IMOS has evolved into a controlled operator system for teams that need AI sessions, routing, dashboard visibility, and real execution to stay aligned from prompt to delivery.'
+const HOW_IT_WORKS_BODY =
+  'IMOS exists to solve AI fragmentation. Instead of bouncing between model tabs, code editors, terminals, and workflows with no continuity, it gives operators one runtime that keeps work, memory, and execution attached.'
 
-const HOW_IT_WORKS = [
-  {
-    label: 'Input',
-    title: 'Connect your systems',
-    body: 'Attach models, tools, repos, APIs, terminals, memory, and workflows into one runtime instead of scattering execution across separate tabs.',
-    points: ['Connect ChatGPT, Claude, Cursor, local agents, and APIs', 'Bind repos, terminals, deployment scripts, and workflow triggers'],
-  },
-  {
-    label: 'Process',
-    title: 'Coordinate execution',
-    body: 'Route tasks between models and tools with shared context, persistent memory, and one operational state that stays visible to the whole team.',
-    points: ['Route work across writing, coding, reviewing, and deployment steps', 'Keep memory, logs, reasoning, and session state attached'],
-  },
-  {
-    label: 'Output',
-    title: 'Ship with continuity',
-    body: 'Get live execution visibility, auditable logs, reusable memory, and real delivery outputs from one dashboard instead of piecing together screenshots and guesswork.',
-    points: ['Monitor launches, outputs, task state, and operator actions live', 'Preserve context across long-running workflows and handoffs'],
-  },
-]
+const WHY_IT_WINS_BODY =
+  'That stack breaks the moment work spans multiple tools, people, and long-running tasks. IMOS is the coordination layer that keeps context persistent, execution visible, and handoffs operational instead of manual.'
 
-const DASHBOARD_SURFACES = [
-  'Live agent sessions and multi-model activity',
-  'Task routing and workflow state transitions',
-  'Shared memory, context history, and state continuity',
-  'Execution logs, terminal output, and launch status',
-  'Audit trails for prompts, tools, and operator actions',
-  'Cross-tool coordination instead of isolated chat windows',
-]
-
-const REAL_WORKFLOW = [
-  ['ChatGPT', 'Drafts the campaign narrative and launch messaging.'],
-  ['Cursor', 'Updates the frontend implementation and content blocks.'],
-  ['Claude', 'Reviews architecture, logic, and release risk.'],
-  ['Terminal', 'Runs the build, checks env, and deploys the release.'],
-  ['IMOS Runtime', 'Tracks memory, task state, execution logs, and operator visibility in one dashboard.'],
-]
-
-const WHY_IMOS = [
-  'Shared memory instead of manual context transfer',
-  'Coordinated execution instead of isolated model sessions',
-  'Persistent runtime instead of one-off prompts',
-  'Unified visibility instead of scattered tabs and screenshots',
-]
+const REAL_WORKFLOW_BODY =
+  'A practical example makes the runtime click: one launch, multiple models and tools, one shared operational state. This is where IMOS becomes more than atmosphere.'
 
 const FEATURE_SECTIONS = [
   {
@@ -177,13 +139,13 @@ const FAQS = [
   },
 ]
 
-function AboutScrollText() {
+function ScrollRevealText({ body }: { body: string }) {
   const ref = useRef<HTMLParagraphElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start 0.8', 'end 0.2'],
   })
-  const chars = ABOUT_BODY.split('')
+  const chars = body.split('')
 
   return (
     <p ref={ref} className="text-xs leading-relaxed text-[#DEDBC8] sm:text-sm md:text-base">
@@ -197,6 +159,39 @@ function AboutScrollText() {
         />
       ))}
     </p>
+  )
+}
+
+function AboutScrollText() {
+  return <ScrollRevealText body={ABOUT_BODY} />
+}
+
+function OperatorStatementSection({
+  eyebrow,
+  segments,
+  body,
+}: {
+  eyebrow: string
+  segments: { text: string; className?: string }[]
+  body: string
+}) {
+  return (
+    <section className="flex min-h-screen items-center bg-black px-4 py-20 md:px-6 md:py-28">
+      <div className="mx-auto max-w-6xl rounded-3xl bg-[#101010] p-8 text-center md:p-14">
+        <div className="mb-8 text-[10px] text-[#DEDBC8]/65 sm:text-xs">{eyebrow}</div>
+
+        <div className="mx-auto mb-10 max-w-3xl text-3xl leading-[0.95] sm:text-4xl sm:leading-[0.9] md:text-5xl lg:text-6xl xl:text-7xl">
+          <WordsPullUpMultiStyle
+            segments={segments}
+            containerClassName="mx-auto max-w-3xl text-3xl leading-[0.95] sm:text-4xl sm:leading-[0.9] md:text-5xl lg:text-6xl xl:text-7xl"
+          />
+        </div>
+
+        <div className="mx-auto mt-8 max-w-2xl">
+          <ScrollRevealText body={body} />
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -238,11 +233,11 @@ export function HomePage() {
               >
                 <Link
                   to="/docs"
-                  className="group inline-flex items-center gap-2 rounded-full bg-white pl-5 pr-1.5 py-1.5 text-sm font-medium text-black transition-all hover:gap-3 sm:text-base"
+                  className="group inline-flex items-center gap-2 rounded-full border border-white bg-black pl-5 pr-1.5 py-1.5 text-sm font-medium text-white transition-all hover:gap-3 hover:bg-white hover:text-black sm:text-base"
                 >
                   Join the system
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-110 sm:h-10 sm:w-10">
-                    <ArrowRight size={16} className="text-white" />
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white transition-transform group-hover:scale-110 group-hover:bg-black sm:h-10 sm:w-10">
+                    <ArrowRight size={16} className="text-black group-hover:text-white" />
                   </span>
                 </Link>
               </motion.div>
@@ -251,37 +246,16 @@ export function HomePage() {
         </div>
       </section>
 
-      <SectionBlock
+      <OperatorStatementSection
         eyebrow="How It Works"
-        title="From connected inputs to visible execution."
-        description="IMOS exists to solve AI fragmentation. Instead of bouncing between model tabs, code editors, terminals, and workflows with no continuity, it gives operators one runtime that keeps work, memory, and execution attached."
-      >
-        <div className="grid gap-4 md:grid-cols-3">
-          {HOW_IT_WORKS.map((item, index) => (
-            <div
-              key={item.label}
-              className="rounded-[1.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6"
-            >
-              <div className="mb-5 flex items-center justify-between">
-                <span className="text-[10px] uppercase tracking-[0.24em] text-[#DEDBC8]/65">{item.label}</span>
-                <span className="font-mono text-[10px] text-[#DEDBC8]/60">0{index + 1}</span>
-              </div>
-              <h3 className="text-xl font-medium text-white">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-[#DEDBC8]">{item.body}</p>
-              <div className="mt-5 space-y-2">
-                {item.points.map((point) => (
-                  <div key={point} className="flex items-start gap-2 text-sm text-white">
-                    <Check size={14} className="mt-1 shrink-0 text-[#DEDBC8]" />
-                    <span>{point}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </SectionBlock>
+        segments={[
+          { text: 'From connected inputs', className: 'font-normal' },
+          { text: 'to visible execution.', className: 'font-serif italic font-normal' },
+        ]}
+        body={HOW_IT_WORKS_BODY}
+      />
 
-      <section id="about" className="bg-black px-4 py-20 md:px-6 md:py-28">
+      <section id="about" className="flex min-h-screen items-center bg-black px-4 py-20 md:px-6 md:py-28">
         <div className="mx-auto max-w-6xl rounded-3xl bg-[#101010] p-8 text-center md:p-14">
           <div className="mb-8 text-[10px] text-[#DEDBC8]/65 sm:text-xs">Operator systems</div>
 
@@ -302,37 +276,16 @@ export function HomePage() {
         </div>
       </section>
 
-      <SectionBlock
+      <OperatorStatementSection
         eyebrow="Why It Wins"
-        title="Why not just use ChatGPT and Cursor separately?"
-        description="That stack breaks the moment work spans multiple tools, people, and long-running tasks. IMOS is the coordination layer that keeps context persistent, execution visible, and handoffs operational instead of manual."
-      >
-        <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-[1.6rem] border border-white/10 bg-[#101010] p-6 md:p-8">
-            <div className="text-[10px] uppercase tracking-[0.24em] text-[#DEDBC8]/65">Shared runtime</div>
-            <div className="mt-5 grid gap-3">
-              {WHY_IMOS.map((item) => (
-                <div key={item} className="rounded-[1rem] border border-white/8 bg-white/[0.03] px-4 py-4 text-sm text-white">
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="rounded-[1.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(14,14,14,0.92))] p-6 md:p-8">
-            <div className="text-[10px] uppercase tracking-[0.24em] text-[#DEDBC8]/65">What the dashboard shows</div>
-            <div className="mt-5 space-y-3">
-              {DASHBOARD_SURFACES.map((item) => (
-                <div key={item} className="flex items-start gap-3 rounded-[1rem] border border-white/8 bg-black/20 px-4 py-4">
-                  <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-[#DEDBC8]" />
-                  <span className="text-sm leading-6 text-white">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </SectionBlock>
+        segments={[
+          { text: 'Why not just use', className: 'font-normal' },
+          { text: 'ChatGPT and Cursor separately?', className: 'font-serif italic font-normal' },
+        ]}
+        body={WHY_IT_WINS_BODY}
+      />
 
-      <section id="features" className="relative min-h-screen bg-black px-4 py-20 md:px-6 md:py-28">
+      <section id="features" className="relative flex min-h-screen items-center bg-black px-4 py-20 md:px-6 md:py-28">
         <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.15]" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-7xl">
@@ -383,7 +336,7 @@ export function HomePage() {
                   <ul className="flex-1 space-y-2">
                     {section.items.map((item) => (
                       <li key={item} className="flex items-start gap-2">
-                        <Check size={14} className="mt-0.5 shrink-0 text-[#DEDBC8]" />
+                        <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[#DEDBC8]" />
                         <span className="text-xs text-[#DEDBC8]/78">{item}</span>
                       </li>
                     ))}
@@ -402,50 +355,16 @@ export function HomePage() {
         </div>
       </section>
 
-      <SectionBlock
+      <OperatorStatementSection
         eyebrow="Real Workflow"
-        title="One product launch, fully coordinated."
-        description="A practical example makes the runtime click: one launch, multiple models and tools, one shared operational state. This is where IMOS becomes more than atmosphere."
-      >
-        <div className="rounded-[1.7rem] border border-white/10 bg-[#0f0f0f] p-5 md:p-8">
-          <div className="grid gap-3">
-            {REAL_WORKFLOW.map(([system, detail], index) => (
-              <div
-                key={system}
-                className="grid gap-3 rounded-[1.2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(0,0,0,0.18))] p-4 md:grid-cols-[120px_1fr_22px] md:items-center"
-              >
-                <div className="text-sm font-medium text-white">{system}</div>
-                <div className="text-sm leading-7 text-[#DEDBC8]">{detail}</div>
-                <div className="hidden text-right font-mono text-[10px] text-[#DEDBC8]/60 md:block">0{index + 1}</div>
-              </div>
-            ))}
-          </div>
+        segments={[
+          { text: 'One product launch,', className: 'font-normal' },
+          { text: 'fully coordinated.', className: 'font-serif italic font-normal' },
+        ]}
+        body={REAL_WORKFLOW_BODY}
+      />
 
-          <div className="mt-6 rounded-[1.2rem] border border-white/10 bg-white/[0.04] p-5">
-            <div className="text-[10px] uppercase tracking-[0.24em] text-[#DEDBC8]/65">Result</div>
-            <p className="mt-3 text-base leading-7 text-white">
-              Instead of copying context between tabs and hoping nothing gets lost, IMOS keeps the launch narrative,
-              code changes, review state, terminal output, and deployment history inside one continuous runtime.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <Link
-                to="/platform"
-                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white bg-white px-4 py-2.5 text-sm font-medium text-black transition hover:-translate-y-0.5 hover:bg-black hover:text-white"
-              >
-                See platform surface
-              </Link>
-              <Link
-                to="/docs"
-                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/12 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-white transition hover:border-white/22 hover:bg-white/[0.08]"
-              >
-                Read documentation
-              </Link>
-            </div>
-          </div>
-        </div>
-      </SectionBlock>
-
-      <section className="bg-black px-4 py-20 md:px-6 md:py-24">
+      <section className="flex min-h-screen items-center bg-black px-4 py-20 md:px-6 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
           {[
             ['38', 'Loaded skills across the runtime'],
@@ -462,7 +381,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="bg-black px-4 py-20 md:px-6 md:py-28">
+      <section className="flex min-h-screen items-center bg-black px-4 py-20 md:px-6 md:py-28">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center md:mb-16">
             <WordsPullUpMultiStyle
@@ -492,7 +411,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="bg-black px-4 py-20 md:px-6 md:py-28">
+      <section className="flex min-h-screen items-center bg-black px-4 py-20 md:px-6 md:py-28">
         <div className="mx-auto max-w-5xl rounded-3xl bg-[#101010] p-8 md:p-12">
           <div className="mb-10 text-center">
             <WordsPullUpMultiStyle
@@ -520,11 +439,11 @@ export function HomePage() {
           <div className="mt-10 flex justify-center">
             <Link
               to="/launch"
-              className="group inline-flex items-center gap-2 rounded-full bg-white pl-5 pr-1.5 py-1.5 text-sm font-medium text-black transition-all hover:gap-3 sm:text-base"
+              className="group inline-flex items-center gap-2 rounded-full border border-white bg-black pl-5 pr-1.5 py-1.5 text-sm font-medium text-white transition-all hover:gap-3 hover:bg-white hover:text-black sm:text-base"
             >
               Plan your launch
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-110 sm:h-10 sm:w-10">
-                <ArrowRight size={16} className="text-white" />
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white transition-transform group-hover:scale-110 group-hover:bg-black sm:h-10 sm:w-10">
+                <ArrowRight size={16} className="text-black group-hover:text-white" />
               </span>
             </Link>
           </div>
