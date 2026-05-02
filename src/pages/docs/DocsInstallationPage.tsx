@@ -4,7 +4,7 @@ import { DocsShell } from '../../components/DocsShell'
 const repoInstall = 'git clone https://github.com/Ahmadjamil888/connect && cd connect'
 const runtimeDeps = './install.sh'
 const windowsSetup = 'install.bat'
-const setupFlow = 'imos\nimos status\nimos dashboard'
+const setupFlow = 'imos\nimos wake status\nimos status\nimos dashboard'
 
 export function DocsInstallationPage() {
   return (
@@ -39,7 +39,9 @@ prepare the local environment
 install dependencies with progress output
 create the global imos command
 initialize local IMOS config
-run setup checks and editor bridge install`}
+install the editor bridge
+install the always-on wake listener
+run setup checks`}
         />
       </div>
     </DocsShell>

@@ -12,7 +12,16 @@ imos adapters test openai_main
 imos adapters remove openai_main
 imos history
 imos status
-imos mcp install`
+imos mcp install
+imos install mcp
+imos wake install
+imos wake start
+imos wake status
+imos wake stop
+imos wake uninstall
+imos install wake
+imos palette list
+imos palette set --shell matrix --dashboard ocean`
 
 export function DocsCliPage() {
   return (
@@ -31,6 +40,10 @@ export function DocsCliPage() {
         <p>
           IMOS stays the central brain. Editors, models, browser sessions, services, and integrations are connected to
           IMOS as controlled runtime surfaces rather than treated as separate operator entrypoints.
+        </p>
+        <p>
+          If you want hands-free startup, install the wake listener. That allows IMOS to listen in the background for
+          phrases like <code>imos</code> or <code>hey imos</code> and launch the runtime when the wake phrase is heard.
         </p>
 
         <section className="rounded-[1.8rem] border border-white/10 bg-black p-6">
