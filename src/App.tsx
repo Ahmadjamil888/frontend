@@ -27,8 +27,8 @@ function AppRoutes() {
 
   return (
     <div className="site-page-shell min-h-screen text-white">
-      {!isAuthRoute ? <SiteHeader /> : null}
-      <main className={!isAuthRoute && !isHomeRoute ? 'pt-16 md:pt-18' : ''}>
+      {!isAuthRoute && !isDocsRoute ? <SiteHeader /> : null}
+      <main className={!isAuthRoute && !isHomeRoute && !isDocsRoute ? 'pt-16 md:pt-18' : ''}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/auth/cli" element={<AuthCliPage />} />
