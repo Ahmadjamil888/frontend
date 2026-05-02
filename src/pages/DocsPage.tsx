@@ -3,36 +3,36 @@ import { brandPrimaryButtonClass, brandSecondaryButtonClass } from '../component
 import { DocsShell } from '../components/DocsShell'
 import { CLI_COMMAND_DOCS } from './docs/docsContent'
 
-const featuredCode = `imos setup
-imos login
+const featuredCode = `imos run "Write a Python hello world, commit it, and send the result to Slack"
+imos adapters list
 imos dashboard
-imos shell
+imos mcp install
 
 # inspect the current machine state
 imos status
 
-# switch the active model
-imos setmodel`
+# start the shell from the repo entry file
+python ai_assistant.py`
 
 const docCards = [
   {
     title: 'CLI Quickstart',
-    body: 'Get the launcher onto the machine, configure it, and validate the real terminal entrypoint.',
+    body: 'Install the repo, register adapters, and validate the real IMOS terminal entrypoints.',
     href: '/docs/installation',
   },
   {
     title: 'Command Guides',
-    body: 'Use separate pages for `imos shell`, `imos dashboard`, `imos login`, `imos setup`, and the rest.',
+    body: 'Use separate pages for `imos run`, adapter management, MCP install, doctor checks, and the existing shell launched from `ai_assistant.py`.',
     href: '/docs/cli',
   },
   {
     title: 'Runtime Routes',
-    body: 'Review the gateway, dashboard, and API surface that powers the local operator runtime.',
+    body: 'Review the IMOS orchestrator, router, MCP server, dashboard routes, and adapter runtime.',
     href: '/docs/runtime',
   },
   {
     title: 'Auth Flow',
-    body: 'Understand how browser sign-in hands control back into the local CLI session.',
+    body: 'Understand how the existing interactive shell and browser-authenticated surfaces relate to IMOS.',
     href: '/docs/authentication',
   },
 ]
@@ -41,7 +41,7 @@ export function DocsPage() {
   return (
     <DocsShell
       title="CLI Platform"
-      description="Documentation for a real operator CLI: installation, auth handoff, dashboard launch, runtime routes, and command-specific guides."
+      description="Documentation for the current repo terminal surfaces: the `imos` command, the IMOS dashboard, and the interactive shell launched from `ai_assistant.py`."
       eyebrow="Docs Home"
     >
       <section className="rounded-[1.7rem] border border-white/8 bg-[#1b1b1b] p-7">
@@ -49,7 +49,8 @@ export function DocsPage() {
           <div className="pt-2">
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-white">Developer quickstart</h2>
             <p className="mt-5 max-w-md text-lg leading-8 text-white/72">
-              Start the IMOS CLI in minutes. Learn the real launch path, auth handoff, and command structure without digging through one oversized page.
+              Start the IMOS runtime in minutes. Learn the real command paths, dashboard routes, adapter workflow, and
+              legacy shell boundary without digging through one oversized page.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link to="/docs/installation" className={brandPrimaryButtonClass}>
@@ -84,7 +85,7 @@ export function DocsPage() {
             >
               <h3 className="text-2xl font-medium text-white">{item.title}</h3>
               <p className="mt-3 max-w-xl text-base leading-8 text-white/72">{item.body}</p>
-              <div className="mt-7 text-base font-medium text-white/92 transition group-hover:text-white">Open guide ↗</div>
+              <div className="mt-7 text-base font-medium text-white/92 transition group-hover:text-white">Open guide -&gt;</div>
             </Link>
           ))}
         </div>
@@ -98,16 +99,16 @@ export function DocsPage() {
           </Link>
         </div>
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
-        {docCards.map((item) => (
+          {docCards.map((item) => (
             <Link
               key={item.title}
               to={item.href}
               className="group rounded-[1.2rem] border border-white/10 bg-[#1f1f1f] p-5 transition hover:border-white/16 hover:bg-[#242424]"
-          >
+            >
               <h3 className="text-2xl font-medium leading-tight text-white">{item.title}</h3>
               <p className="mt-3 text-base leading-8 text-white/72 transition group-hover:text-white/82">{item.body}</p>
-          </Link>
-        ))}
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -115,7 +116,7 @@ export function DocsPage() {
         <div className="flex items-end justify-between gap-4">
           <div>
             <h2 className="text-4xl font-semibold tracking-[-0.05em] text-white">CLI commands</h2>
-            <p className="mt-3 text-base leading-8 text-white/72">The docs are organized around the actual terminal commands, not around an SDK or library product.</p>
+            <p className="mt-3 text-base leading-8 text-white/72">The docs are organized around the actual entrypoints in this repo: the `imos` command and the `ai_assistant.py` launcher.</p>
           </div>
           <Link to="/docs/cli" className="text-lg text-white/65 transition hover:text-white">
             View all

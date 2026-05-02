@@ -3,60 +3,50 @@ import { CodeBlock } from '../../components/CodeBlock'
 import { DocsShell } from '../../components/DocsShell'
 import { CLI_COMMAND_DOCS } from './docsContent'
 
-const cliCommands = `imos
-imos shell
+const cliCommands = `imos run "Write a Python hello world and save it"
 imos dashboard
-imos server
-imos setup
+imos adapters list
+imos adapters add model openai_main
+imos adapters test openai_main
+imos adapters remove openai_main
+imos history
 imos status
-imos skills
-imos model
-imos setmodel
-imos login
-imos logout
-imos whoami
-imos version
-imos help`
+imos mcp install
+python ai_assistant.py --imos "Summarize the repo state"`
 
-const shellCommands = `/help
-/exit
-/clear
+const shellCommands = `python ai_assistant.py
+/help
 /model
-/setmodel
+/provider
 /skills
-/status
-/dashboard
-/setup
-/login
-/logout
-/whoami
-/github
-/deploy
-/workspace
-/voice on|off
+/workflows
 /tasks
 /audit
-/history`
+/git
+/mcp
+/memory
+/dashboard
+/config`
 
 export function DocsCliPage() {
   return (
     <DocsShell
-      title="The CLI is now broken into separate guides."
-      description="Each top-level backend command from `imos_cli.py` has its own page so operators can jump directly to the exact launcher path they need."
+      title="Use `imos` as the primary start command and `ai_assistant.py` as the file-based launcher."
+      description="The command pages below now center the new IMOS CLI while still documenting the interactive shell that starts from `ai_assistant.py`."
       eyebrow="CLI Overview"
     >
       <div className="space-y-8 text-sm leading-8 text-neutral-300">
         <p>
-          The backend launcher supports direct commands like <code>imos dashboard</code>, <code>imos setup</code>,{' '}
-          <code>imos login</code>, and <code>imos setmodel</code>. It also exposes shell-level slash commands once the
-          operator is inside the interactive session.
+          The IMOS CLI is the primary orchestration surface. It runs task graphs, manages adapters, installs MCP
+          config, prints history and status, and can open the IMOS dashboard. The original interactive shell still
+          exists, but the file-based launcher for that path is <code>ai_assistant.py</code>.
         </p>
         <CodeBlock label="Primary CLI commands" code={cliCommands} />
         <p>
-          Inside the shell, IMOS exposes runtime-focused shortcuts for dashboard launch, model management, task review,
-          audit inspection, and account status.
+          The interactive shell remains useful for terminal-first operator sessions. Those slash commands are separate
+          from the new IMOS subcommands and are launched directly from <code>ai_assistant.py</code>.
         </p>
-        <CodeBlock label="Interactive shell commands" code={shellCommands} />
+        <CodeBlock label="Shell commands from ai_assistant.py" code={shellCommands} />
 
         <section className="rounded-[1.8rem] border border-white/10 bg-black p-6">
           <div className="text-[11px] uppercase tracking-[0.24em] text-white/40">Command Pages</div>

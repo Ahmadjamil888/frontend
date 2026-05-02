@@ -1,24 +1,39 @@
-﻿import { CodeBlock } from '../../components/CodeBlock'
+import { CodeBlock } from '../../components/CodeBlock'
 import { DocsShell } from '../../components/DocsShell'
 
 export function DocsDashboardPage() {
   return (
     <DocsShell
-      title="The dashboard is the live operator surface for the runtime."
-      description="It now exposes streamed chat, tasks, sessions, memory, audit events, managed processes, MCP tools, token and cost tracking, and an embedded terminal pane."
+      title="The IMOS dashboard is now a real adapter-management and orchestration surface."
+      description="It keeps the existing style language, but now adds the new IMOS route surface: run tasks, inspect adapters, update settings, review history, and watch live execution output."
       eyebrow="Dashboard"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
-          Users can open the operator dashboard through the CLI. If no verified local session exists yet, the
-          dashboard launch path triggers the existing sign-in handoff first and then continues locally.
+          The IMOS dashboard is served at <code>/imos</code> and talks directly to the IMOS runtime APIs instead of the
+          earlier placeholder shell routes.
         </p>
         <CodeBlock label="Run the dashboard locally" code={'imos dashboard'} />
         <p>
-          The dashboard now includes a responsive chat panel with streamed assistant output, a live activity feed for
-          tool and process events, token and cost counters, task and process registries, MCP tool visibility, and a
-          local terminal session attached to the active workspace.
+          The page now includes a prompt runner, adapter cards with test/configure/remove actions, capability and
+          status counters, a settings panel, recent task history, quick adapter targeting, and a WebSocket-backed live
+          execution log.
         </p>
+        <CodeBlock
+          label="Dashboard route surface"
+          code={`POST /imos/run
+GET  /imos/adapters
+GET  /imos/adapters/{name}
+POST /imos/adapters
+DELETE /imos/adapters/{name}
+POST /imos/adapters/{name}/test
+GET  /imos/history
+GET  /imos/status
+GET  /imos/settings
+POST /imos/settings
+GET  /imos/capabilities
+WS   /imos/ws`}
+        />
       </div>
     </DocsShell>
   )

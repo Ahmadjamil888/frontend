@@ -3,30 +3,30 @@ import { DocsShell } from '../../components/DocsShell'
 export function DocsOverviewPage() {
   return (
     <DocsShell
-      title="Everything needed to install, authenticate, operate, and extend IMOS."
-      description="This section is split into real pages so operators can move directly to the exact part of the system they need without scrolling through one oversized document."
+      title="Everything needed to install, route, operate, and extend IMOS."
+      description="This docs set now distinguishes the new IMOS orchestration runtime from the interactive shell launched through `ai_assistant.py` so operators can move directly to the exact surface they need."
       eyebrow="Overview"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
-          IMOS combines a public frontend, a browser-authenticated entry flow, a local or cloud gateway, and an AI
-          runtime that manages sessions, memory, tools, messaging, workflows, and delivery.
+          IMOS now sits on top of the existing assistant codebase as a universal orchestration runtime. It adds
+          adapters, routing, result synthesis, an MCP server, a dedicated dashboard route surface, and a task history
+          layer without removing the earlier interactive shell.
         </p>
         <p>
-          The frontend is intentionally separate from the runtime. That lets you host the site publicly, handle sign-in
-          on the web, and then bridge the user into the local or cloud dashboard only when they are ready
-          to operate the system.
+          That means this repo now exposes two operator shapes. <code>imos</code> is the primary one-shot
+          orchestration CLI and dashboard. <code>python ai_assistant.py</code> starts the existing interactive shell
+          and slash-command environment.
         </p>
         <p>
-          The backend is where actual work happens. It owns the gateway server, operator dashboard, orchestration jobs,
-          node pairing state, messaging connectors, workflow triggers, and the local session established after
-          verification.
+          The backend work now spans adapter discovery, YAML-backed config, orchestration routing, model synthesis,
+          messaging fan-out, MCP editor integration, dashboard APIs, and the existing shell runtime.
         </p>
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            ['Public frontend', 'Landing pages, docs, changelog, sign-in, and the Vercel-hosted browser surface.'],
-            ['Operator backend', 'Dashboard, gateway, workflows, memory, sessions, connectors, and service mode.'],
-            ['Identity bridge', 'Browser sign-in on the web and verified session handoff back into the local CLI or dashboard session.'],
+            ['IMOS runtime', 'Adapters, routing, synthesis, MCP, dashboard APIs, and orchestration history.'],
+            ['Interactive shell', 'The existing `ai_assistant.py` terminal loop with slash commands, workflows, sessions, audit, and Git tooling.'],
+            ['Frontend docs', 'Public docs pages that now describe both the IMOS CLI and the existing shell accurately.'],
           ].map(([title, text]) => (
             <div key={title} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-5">
               <h2 className="text-xl text-white">{title}</h2>

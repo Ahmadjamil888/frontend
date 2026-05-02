@@ -50,8 +50,11 @@ export function DocsShell({ title, description, eyebrow = 'Documentation', child
               <Link to="/docs/runtime" className="rounded-lg px-3 py-2 text-sm text-white/74 hover:bg-[#171717] hover:text-white">
                 Runtime
               </Link>
+              <Link to="/docs/dashboard" className="rounded-lg px-3 py-2 text-sm text-white/74 hover:bg-[#171717] hover:text-white">
+                Dashboard
+              </Link>
               <Link to="/docs/operations" className="rounded-lg px-3 py-2 text-sm text-white/74 hover:bg-[#171717] hover:text-white">
-                Resources
+                Operations
               </Link>
             </nav>
           </div>

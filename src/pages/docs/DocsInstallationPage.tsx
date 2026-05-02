@@ -1,41 +1,35 @@
-﻿import { CodeBlock } from '../../components/CodeBlock'
+import { CodeBlock } from '../../components/CodeBlock'
 import { DocsShell } from '../../components/DocsShell'
 
-const macLinuxInstall = 'curl -fsSL https://raw.githubusercontent.com/Ahmadjamil888/imos/main/install.sh | bash'
-const windowsInstall =
-  'powershell -ExecutionPolicy Bypass -Command "Invoke-WebRequest https://raw.githubusercontent.com/Ahmadjamil888/imos/main/install.bat -OutFile $env:TEMP\\imos-install.bat; & $env:TEMP\\imos-install.bat"'
-const gitBashInstall = 'curl -fsSL https://raw.githubusercontent.com/Ahmadjamil888/imos/main/install.sh | bash'
-const repoInstall = 'git clone https://github.com/Ahmadjamil888/imos && cd imos && ./install.sh'
-const runtimeDeps = 'pip install -r requirements.txt\npython -m playwright install chromium'
+const repoInstall = 'git clone https://github.com/Ahmadjamil888/connect && cd connect'
+const runtimeDeps = 'pip install -r requirements.txt\nplaywright install chromium'
+const setupFlow = 'python -c "from imos.config import ensure_default_files; ensure_default_files()"\nimos mcp install'
 
 export function DocsInstallationPage() {
   return (
     <DocsShell
       title="Install IMOS on the machine the operator will actually use."
-      description="The current launcher installs the local runtime, dashboard server, auth handoff, operator skills, and browser automation dependencies into one consistent CLI entrypoint."
+      description="The current repo now carries the IMOS runtime, dashboard route surface, MCP server, and the older shell. Installation should make all of those paths coherent on one workstation."
       eyebrow="Installation"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
-        <p>Use the installation path that matches your machine and shell.</p>
-        <CodeBlock label="Mac and Linux" code={macLinuxInstall} />
-        <CodeBlock label="Windows PowerShell or Command Prompt" code={windowsInstall} />
-        <CodeBlock label="Windows with Git Bash" code={gitBashInstall} />
-        <CodeBlock label="Install from a local clone" code={repoInstall} />
+        <p>Install from the current repository and initialize the IMOS runtime locally.</p>
+        <CodeBlock label="Clone the repository" code={repoInstall} />
         <p>
-          After installation, the launcher should be available as <code>imos</code>. If you are running from a local
-          clone, install the runtime dependencies and Playwright browser once before using browser automation or the
-          dashboard browser panel.
+          After cloning, install the Python dependencies and the Playwright runtime once. The IMOS dashboard, browser
+          adapter, and MCP server all depend on that local runtime being present.
         </p>
         <CodeBlock label="Runtime dependencies" code={runtimeDeps} />
         <p>
-          The active launcher now supports local chat, streamed dashboard chat, token and cost tracking, managed
-          processes, MCP registration, Git autopilot, and the embedded terminal session.
+          Then create the IMOS config home and install the editor MCP config if you want Cursor or Windsurf to connect
+          immediately.
         </p>
+        <CodeBlock label="Initialize IMOS" code={setupFlow} />
         <CodeBlock
           label="Validate the launcher"
-          code={`imos login
+          code={`imos status
 imos dashboard
-imos`}
+python ai_assistant.py --doctor`}
         />
       </div>
     </DocsShell>

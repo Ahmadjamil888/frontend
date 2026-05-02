@@ -1,30 +1,33 @@
-﻿import { CodeBlock } from '../../components/CodeBlock'
+import { CodeBlock } from '../../components/CodeBlock'
 import { DocsShell } from '../../components/DocsShell'
 
 export function DocsOperationsPage() {
   return (
     <DocsShell
       title="Operational confidence starts with the exact command the user will run."
-      description="The launcher path, auth state, provider configuration, MCP registry, Git state, dashboard reachability, and workspace execution path should all be verified from the real CLI entrypoint."
+      description="The IMOS command path, adapter health, dashboard reachability, MCP install state, and the `ai_assistant.py` shell launcher all need to be validated from the real entrypoints."
       eyebrow="Operations"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
-      <p>
-          Common operator commands now include <code>imos</code>, <code>imos dashboard</code>,{' '}
-          <code>imos login</code>, <code>imos logout</code>, <code>/setmodel</code>, <code>/status</code>,{' '}
-          <code>/workspace</code>, <code>/tasks</code>, <code>/audit</code>, and <code>/history</code>.
+        <p>
+          Common operator checks now include <code>imos status</code>, <code>imos adapters list</code>,{' '}
+          <code>imos adapters test &lt;name&gt;</code>, <code>imos mcp install</code>,{' '}
+          <code>python ai_assistant.py --imos "&lt;prompt&gt;"</code>, and <code>python ai_assistant.py --doctor</code>.
         </p>
         <p>
-          For launch builds, verify the launcher path, auth environment variables, workspace binding, provider readiness,
-          dashboard streaming, and at least one real task that creates files or starts a process.
+          For a real rollout, verify the launcher path, <code>.env</code> credentials,{' '}
+          <code>~/.imos/connections.yaml</code>, dashboard route reachability, MCP registration, and at least one real
+          IMOS run that touches a file, Git adapter, or messaging adapter.
         </p>
         <CodeBlock
           label="Recommended checks"
-          code={`imos login
+          code={`imos status
+imos adapters list
+imos adapters test openai_main
+imos mcp install
 imos dashboard
-imos
-/tasks
-/audit`}
+python ai_assistant.py --imos "Summarize the repo state"
+python ai_assistant.py --doctor`}
         />
       </div>
     </DocsShell>

@@ -11,7 +11,7 @@ export function AuthCliPage() {
   const { user } = useUser()
   const callbackUrl = searchParams.get('callback') || ''
   const [bridgeState, setBridgeState] = useState<BridgeState>('idle')
-  const [message, setMessage] = useState('Sign in with Clerk to finish the IMOS CLI handoff.')
+  const [message, setMessage] = useState('Sign in with Clerk to finish the existing shell or dashboard handoff.')
   const returnUrl = typeof window !== 'undefined' ? window.location.href : '/auth/cli'
 
   const callbackOriginOk = useMemo(() => {
@@ -31,7 +31,7 @@ export function AuthCliPage() {
       }
       try {
         setBridgeState('posting')
-        setMessage('Completing secure handoff to your local IMOS CLI...')
+        setMessage('Completing secure handoff to your local shell or dashboard session...')
         const token = await getToken()
         if (!token) {
           throw new Error('Clerk token is unavailable for this session.')
@@ -49,7 +49,7 @@ export function AuthCliPage() {
           throw new Error(payload.error || 'CLI callback rejected the sign-in.')
         }
         setBridgeState('success')
-        setMessage('Signed in successfully. You can return to the IMOS CLI.')
+        setMessage('Signed in successfully. You can return to the local shell or dashboard.')
       } catch (error) {
         setBridgeState('error')
         setMessage(error instanceof Error ? error.message : 'Sign-in handoff failed.')

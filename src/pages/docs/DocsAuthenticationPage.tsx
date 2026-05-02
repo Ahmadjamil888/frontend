@@ -1,29 +1,30 @@
-﻿import { CodeBlock } from '../../components/CodeBlock'
+import { CodeBlock } from '../../components/CodeBlock'
 import { DocsShell } from '../../components/DocsShell'
 
 export function DocsAuthenticationPage() {
   return (
     <DocsShell
-      title="Authentication is shared between the deployed frontend and the local runtime."
-      description="IMOS uses a secure browser sign-in flow and validates the local session before the operator runtime or dashboard is allowed to continue."
+      title="Authentication now belongs to the existing shell and browser surfaces, not to the new IMOS CLI."
+      description="The docs need to separate the new adapter-based IMOS command set from the older browser-authenticated shell flow launched through `ai_assistant.py`."
       eyebrow="Authentication"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
-          The public site handles sign-in. The local runtime verifies the returned session handoff before opening the
-          operator shell or dashboard.
+          The <code>imos</code> CLI added in this repo is primarily a local orchestration surface. It uses local config
+          and adapter credentials rather than a dedicated <code>imos login</code> command.
         </p>
         <p>
-          When the user runs <code>imos login</code>, the CLI opens the existing browser sign-in flow, waits for the
-          localhost callback, validates the returned session, and persists the verified local operator session.
+          The browser-authenticated handoff still matters for the existing <code>ai_assistant.py</code> shell and related
+          dashboard flows. That is what the current auth page supports: browser sign-in, a localhost callback, and
+          returning control to the earlier interactive runtime.
         </p>
-        <CodeBlock label="Start sign-in from the terminal" code={'imos login'} />
+        <CodeBlock label="Existing shell and launcher paths" code={'python ai_assistant.py\nimos dashboard'} />
         <p>
-          Authentication is mandatory for the active runtime. If the user launches <code>imos</code> or{' '}
-          <code>imos dashboard</code> without a valid local session, the CLI automatically redirects to sign-in,
-          completes the callback, and resumes after the successful auth message.
+          For IMOS itself, the important authentication questions are provider credentials, messaging tokens, Git
+          tokens, payment keys, and editor integration config. Those are documented through <code>.env.example</code>,{' '}
+          <code>connections.yaml</code>, and the dashboard adapter wizard instead of a separate browser login command.
         </p>
-        <CodeBlock label="Common auth flow" code={`imos\nimos dashboard\nimos logout`} />
+        <CodeBlock label="IMOS credential surfaces" code={`.env\n~/.imos/connections.yaml\nimos adapters add <type> <name>`} />
       </div>
     </DocsShell>
   )

@@ -4,17 +4,18 @@ export function DocsConnectorsPage() {
   return (
     <DocsShell
       title="Connectors only matter if they remain visible and accountable."
-      description="IMOS keeps messaging and trigger surfaces tied to the same gateway and runtime model so their behavior stays debuggable and operator-visible."
+      description="The new IMOS adapter layer now exposes messaging, meeting, Git, webapp, payment, and OS connectors through one registry, so their behavior stays visible from both the CLI and dashboard."
       eyebrow="Connectors"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
-          IMOS supports multiple messaging and trigger surfaces including Telegram, Slack webhooks, Slack bot mode,
-          Discord webhooks, and Twilio-style WhatsApp paths.
+          IMOS now supports multiple adapter families: model providers, IDE integrations, messaging platforms, meeting
+          services, VCS hosts, web-app APIs, payment gateways, browser automation, and OS control.
         </p>
         <p>
-          Workflows and scheduled jobs can also inject prompts into sessions without direct human intervention.
-          Connectors are useful only if they map cleanly into sessions and visible runtime state.
+          Messaging connectors include Slack, Discord, Telegram, WhatsApp, Email, Teams, Signal, Matrix, IRC,
+          Mattermost, and Rocket.Chat. The same runtime also exposes Zoom, Google Meet, Calendly, GitHub, GitLab,
+          Bitbucket, Notion, Airtable, Google Workspace, Stripe, PayPal, Docker, SSH, and generic REST adapters.
         </p>
       </div>
     </DocsShell>

@@ -2,24 +2,24 @@ import { ContentSection, StatementSection } from '../components/MarketingSection
 import { brandPanelStrongClass } from '../components/brandTheme'
 
 const checklist = [
-  'Run the local operator with `imos` or open the responsive local dashboard with `imos dashboard`.',
-  'If no local session exists, the CLI opens the Clerk sign-in handoff automatically and resumes after login.',
-  'Use the dashboard for streamed chat, tasks, processes, audit, cost tracking, MCP visibility, and the embedded terminal.',
-  'Pick any provider/model pair from setup or later through the CLI model picker and verify one real executable task.',
+  'Run a real IMOS task with `imos run "<prompt>"` and confirm the orchestrator returns a synthesized result.',
+  'Open the local dashboard with `imos dashboard` and verify adapters, status, capabilities, history, and live output all load.',
+  'Run `imos mcp install` and confirm the editor configs are written for supported IDEs.',
+  'Use `python ai_assistant.py --doctor` and confirm adapter health, missing credentials, and MCP install state are reported correctly.',
 ]
 
 const phases = [
   {
     title: 'Installation',
-    text: 'Install the repo, verify the global launcher path, and confirm the runtime resolves from any working directory.',
+    text: 'Install the repo, bootstrap `.env` and `~/.imos`, and confirm both the `imos` CLI and the `ai_assistant.py` shell launcher resolve from the right workspace.',
   },
   {
-    title: 'Authentication',
-    text: 'Ensure Clerk env is present on the frontend and backend. If no local session exists, `imos` and `imos dashboard` trigger the browser-to-localhost sign-in handoff automatically.',
+    title: 'Runtime wiring',
+    text: 'Confirm adapter discovery, dashboard route health, MCP config generation, and one real IMOS orchestration path before broader rollout.',
   },
   {
-    title: 'Runtime validation',
-    text: 'Confirm provider readiness, streamed dashboard availability, session creation, model selection, and at least one working task, process, or MCP path before broad rollout.',
+    title: 'Shell compatibility',
+    text: 'Keep the `ai_assistant.py` interactive shell documented and working while the new IMOS CLI and dashboard ship on top of the same repo.',
   },
 ]
 
@@ -32,13 +32,13 @@ export function LaunchPage() {
           { text: 'A practical launch path,', className: 'font-normal' },
           { text: 'not a placeholder shell.', className: 'font-serif italic font-normal' },
         ]}
-        body="This frontend now reflects the real local operator runtime instead of a placeholder shell. It gives you the public auth surface and the operator launch sequence that matches the current CLI."
+        body="This frontend now reflects the real IMOS runtime and the existing shell that still ships with it. The launch sequence should match the commands operators can actually run today."
       />
 
       <ContentSection
         eyebrow="Checklist"
         title="Launch is a sequence."
-        description="A real launch requires the public site, auth flow, launcher path, runtime health, dashboard streaming, and connector validation to all agree with each other."
+        description="A real launch requires the docs, CLI, dashboard route surface, adapter registry, MCP setup, and diagnostics path to agree with each other."
       >
         <div className={`${brandPanelStrongClass} p-8`}>
           <ol className="space-y-5 text-[15px] leading-7 text-[#DEDBC8]">
@@ -60,13 +60,13 @@ export function LaunchPage() {
           { text: 'Launch is a sequence,', className: 'font-normal' },
           { text: 'not a slogan.', className: 'font-serif italic font-normal' },
         ]}
-        body="The fastest way to catch broken launchers, missing env, wrong workspace binding, dead providers, or stale docs is to validate the exact commands the operator will actually run."
+        body="The fastest way to catch broken launchers, missing adapter config, stale docs, bad MCP state, or dead dashboard routes is to validate the exact commands the operator will actually run."
       />
 
       <ContentSection
         eyebrow="Phases"
         title="Readiness has to be proven."
-        description="The launch path only deserves trust when installation, authentication, and runtime validation all succeed through the real operator entrypoint."
+        description="The launch path only deserves trust when installation, runtime wiring, and shell compatibility all succeed through the real operator entrypoints."
       >
         <div className="grid gap-5 md:grid-cols-3">
           {phases.map((phase) => (
