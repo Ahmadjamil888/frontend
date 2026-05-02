@@ -233,11 +233,11 @@ export function HomePage() {
               >
                 <Link
                   to="/docs"
-                  className="group inline-flex items-center gap-2 rounded-full border border-white bg-black pl-5 pr-1.5 py-1.5 text-sm font-medium text-white transition-all hover:gap-3 hover:bg-white hover:text-black sm:text-base"
+                  className="group inline-flex items-center gap-2 rounded-full bg-[#f28c28] pl-5 pr-1.5 py-1.5 text-sm font-medium text-white transition-all sm:text-base"
                 >
                   Join the system
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white transition-transform group-hover:scale-110 group-hover:bg-black sm:h-10 sm:w-10">
-                    <ArrowRight size={16} className="text-black group-hover:text-white" />
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform duration-200 group-hover:scale-[1.06] sm:h-10 sm:w-10">
+                    <ArrowRight size={16} className="text-white" />
                   </span>
                 </Link>
               </motion.div>
