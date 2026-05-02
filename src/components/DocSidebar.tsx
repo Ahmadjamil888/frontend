@@ -10,10 +10,10 @@ type DocSidebarProps = {
 export function DocSidebar({ groups, query, onQueryChange }: DocSidebarProps) {
   return (
     <aside
-      className="min-h-0 overflow-auto border-r border-white/8 bg-black px-0 py-6 lg:w-[280px] lg:min-w-[240px] lg:max-w-[420px] lg:resize-x"
+      className="docs-sidebar min-h-0 overflow-auto border-r border-white/8 bg-black px-0 py-6 lg:w-[280px] lg:min-w-[240px] lg:max-w-[420px] lg:resize-x"
       style={{ resize: 'horizontal' }}
     >
-      <div className="sticky top-0 z-10 bg-black px-4 pb-4">
+      <div className="px-4 pb-4">
         <div className="text-[11px] font-medium text-white/90">Get started</div>
       </div>
       <div className="px-4">

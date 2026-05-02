@@ -5,17 +5,17 @@ export function DocsAuthenticationPage() {
   return (
     <DocsShell
       title="Authentication is shared between the deployed frontend and the local runtime."
-      description="IMOS uses Clerk on the frontend and validates the local session before the operator runtime or dashboard is allowed to continue."
+      description="IMOS uses a secure browser sign-in flow and validates the local session before the operator runtime or dashboard is allowed to continue."
       eyebrow="Authentication"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
-          The frontend reads <code>NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY</code>. The backend reads both{' '}
-          <code>NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY</code> and <code>CLERK_SECRET_KEY</code>.
+          The public site handles sign-in. The local runtime verifies the returned session handoff before opening the
+          operator shell or dashboard.
         </p>
         <p>
           When the user runs <code>imos login</code>, the CLI opens the existing browser sign-in flow, waits for the
-          localhost callback, validates the Clerk token, and persists the verified local operator session.
+          localhost callback, validates the returned session, and persists the verified local operator session.
         </p>
         <CodeBlock label="Start sign-in from the terminal" code={'imos login'} />
         <p>

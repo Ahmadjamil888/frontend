@@ -15,7 +15,7 @@ export function DocsOperationsPage() {
           <code>/workspace</code>, <code>/tasks</code>, <code>/audit</code>, and <code>/history</code>.
         </p>
         <p>
-          For launch builds, verify the launcher path, Clerk env variables, workspace binding, provider readiness,
+          For launch builds, verify the launcher path, auth environment variables, workspace binding, provider readiness,
           dashboard streaming, and at least one real task that creates files or starts a process.
         </p>
         <CodeBlock

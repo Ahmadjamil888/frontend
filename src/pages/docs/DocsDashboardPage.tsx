@@ -10,7 +10,7 @@ export function DocsDashboardPage() {
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
-          Users can open the operator dashboard through the CLI. If no verified local Clerk session exists yet, the
+          Users can open the operator dashboard through the CLI. If no verified local session exists yet, the
           dashboard launch path triggers the existing sign-in handoff first and then continues locally.
         </p>
         <CodeBlock label="Run the dashboard locally" code={'imos dashboard'} />
