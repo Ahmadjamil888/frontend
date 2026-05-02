@@ -8,6 +8,7 @@ import { DocsPage } from './pages/DocsPage'
 import { DocsAuthenticationPage } from './pages/docs/DocsAuthenticationPage'
 import { DocsApiPage } from './pages/docs/DocsApiPage'
 import { DocsCliPage } from './pages/docs/DocsCliPage'
+import { DocsCommandPage } from './pages/docs/DocsCommandPage'
 import { DocsConnectorsPage } from './pages/docs/DocsConnectorsPage'
 import { DocsDashboardPage } from './pages/docs/DocsDashboardPage'
 import { DocsInstallationPage } from './pages/docs/DocsInstallationPage'
@@ -40,6 +41,7 @@ function AppRoutes() {
           <Route path="/docs/installation" element={<DocsInstallationPage />} />
           <Route path="/docs/authentication" element={<DocsAuthenticationPage />} />
           <Route path="/docs/cli" element={<DocsCliPage />} />
+          <Route path="/docs/cli/:slug" element={<DocsCommandPage />} />
           <Route path="/docs/runtime" element={<DocsRuntimePage />} />
           <Route path="/docs/dashboard" element={<DocsDashboardPage />} />
           <Route path="/docs/api" element={<DocsApiPage />} />

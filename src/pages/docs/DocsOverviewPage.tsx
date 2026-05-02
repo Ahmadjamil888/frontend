@@ -5,8 +5,9 @@ export function DocsOverviewPage() {
     <DocsShell
       title="Everything needed to install, authenticate, operate, and extend IMOS."
       description="This section is split into real pages so operators can move directly to the exact part of the system they need without scrolling through one oversized document."
+      eyebrow="Overview"
     >
-      <div className="space-y-6 text-sm leading-8 text-neutral-400">
+      <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
           IMOS combines a public frontend, a Clerk-authenticated entry flow, a local or cloud gateway, and an AI
           runtime that manages sessions, memory, tools, messaging, workflows, and delivery.
@@ -27,9 +28,9 @@ export function DocsOverviewPage() {
             ['Operator backend', 'Dashboard, gateway, workflows, memory, sessions, connectors, and service mode.'],
             ['Identity bridge', 'Clerk sign-in on the web and verified token handoff back into the local CLI or dashboard session.'],
           ].map(([title, text]) => (
-            <div key={title} className="rounded-[1.2rem] border border-white/10 bg-white/[0.03] p-5">
+            <div key={title} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-5">
               <h2 className="text-xl text-white">{title}</h2>
-              <p className="mt-3 text-sm leading-7 text-neutral-400">{text}</p>
+              <p className="mt-3 text-sm leading-7 text-neutral-300">{text}</p>
             </div>
           ))}
         </div>

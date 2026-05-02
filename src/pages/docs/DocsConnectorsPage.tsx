@@ -5,8 +5,9 @@ export function DocsConnectorsPage() {
     <DocsShell
       title="Connectors only matter if they remain visible and accountable."
       description="IMOS keeps messaging and trigger surfaces tied to the same gateway and runtime model so their behavior stays debuggable and operator-visible."
+      eyebrow="Connectors"
     >
-      <div className="space-y-6 text-sm leading-8 text-neutral-400">
+      <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
           IMOS supports multiple messaging and trigger surfaces including Telegram, Slack webhooks, Slack bot mode,
           Discord webhooks, and Twilio-style WhatsApp paths.

@@ -36,8 +36,9 @@ export function DocsApiPage() {
     <DocsShell
       title="The dashboard and runtime are backed by a real Flask API surface."
       description="The active routes in `imos_server.py` cover auth state, system stats, tasks, processes, sessions, chat, streamed chat, shell execution, config writes, terminals, memory, and server-sent events."
+      eyebrow="API"
     >
-      <div className="space-y-6 text-sm leading-8 text-[#cfb69a]">
+      <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
           The backend is not a placeholder. It exposes status, live operator data, streamed runtime output, terminal
           session management, config endpoints, and memory retrieval directly from the Flask server that powers the

@@ -6,8 +6,9 @@ export function DocsAuthenticationPage() {
     <DocsShell
       title="Authentication is shared between the deployed frontend and the local runtime."
       description="IMOS uses Clerk on the frontend and validates the local session before the operator runtime or dashboard is allowed to continue."
+      eyebrow="Authentication"
     >
-      <div className="space-y-6 text-sm leading-8 text-neutral-400">
+      <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
           The frontend reads <code>NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY</code>. The backend reads both{' '}
           <code>NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY</code> and <code>CLERK_SECRET_KEY</code>.

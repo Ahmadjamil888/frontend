@@ -13,8 +13,9 @@ export function DocsInstallationPage() {
     <DocsShell
       title="Install IMOS on the machine the operator will actually use."
       description="The current launcher installs the local runtime, dashboard server, auth handoff, operator skills, and browser automation dependencies into one consistent CLI entrypoint."
+      eyebrow="Installation"
     >
-      <div className="space-y-6 text-sm leading-8 text-neutral-400">
+      <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>Use the installation path that matches your machine and shell.</p>
         <CodeBlock label="Mac and Linux" code={macLinuxInstall} />
         <CodeBlock label="Windows PowerShell or Command Prompt" code={windowsInstall} />

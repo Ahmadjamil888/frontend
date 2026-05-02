@@ -5,8 +5,9 @@ export function DocsRuntimePage() {
     <DocsShell
       title="The gateway routes. The runtime thinks and executes."
       description="The current system is split into a control surface and an execution surface so sessions, tools, MCP connectors, tasks, streaming output, and local state stay consistent across the CLI and dashboard."
+      eyebrow="Runtime"
     >
-      <div className="space-y-6 text-sm leading-8 text-neutral-400">
+      <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
           The gateway acts as the control plane. It accepts routed commands, session traffic, dashboard requests,
           connector payloads, and workflow triggers, then passes them into the runtime.

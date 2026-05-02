@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom'
 import { CodeBlock } from '../../components/CodeBlock'
 import { DocsShell } from '../../components/DocsShell'
+import { CLI_COMMAND_DOCS } from './docsContent'
 
 const cliCommands = `imos
 imos shell
@@ -39,10 +41,11 @@ const shellCommands = `/help
 export function DocsCliPage() {
   return (
     <DocsShell
-      title="The CLI is the real front door into IMOS."
-      description="The current launcher in `imos_cli.py` starts the shell, dashboard, server mode, setup flow, auth commands, and the operator slash commands that stay available during live sessions."
+      title="The CLI is now broken into separate guides."
+      description="Each top-level backend command from `imos_cli.py` has its own page so operators can jump directly to the exact launcher path they need."
+      eyebrow="CLI Overview"
     >
-      <div className="space-y-6 text-sm leading-8 text-[#cfb69a]">
+      <div className="space-y-8 text-sm leading-8 text-neutral-300">
         <p>
           The backend launcher supports direct commands like <code>imos dashboard</code>, <code>imos setup</code>,{' '}
           <code>imos login</code>, and <code>imos setmodel</code>. It also exposes shell-level slash commands once the
@@ -54,6 +57,22 @@ export function DocsCliPage() {
           audit inspection, and account status.
         </p>
         <CodeBlock label="Interactive shell commands" code={shellCommands} />
+
+        <section className="rounded-[1.8rem] border border-white/10 bg-black p-6">
+          <div className="text-[11px] uppercase tracking-[0.24em] text-white/40">Command Pages</div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2">
+            {CLI_COMMAND_DOCS.map((item) => (
+              <Link
+                key={item.slug}
+                to={`/docs/cli/${item.slug}`}
+                className="rounded-[1.2rem] border border-white/10 bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white hover:text-black"
+              >
+                <div className="text-base text-white">{item.label}</div>
+                <div className="mt-2 text-sm leading-6 text-white/60">{item.summary}</div>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
     </DocsShell>
   )
