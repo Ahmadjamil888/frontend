@@ -1,11 +1,11 @@
-import { ContentSection, StatementSection } from '../components/MarketingSections'
+﻿import { ContentSection, StatementSection } from '../components/MarketingSections'
 import { brandPanelStrongClass } from '../components/brandTheme'
 
 const checklist = [
   'Run a real IMOS task with `imos run "<prompt>"` and confirm the orchestrator returns a synthesized result.',
-  'Open the local dashboard with `imos dashboard` and verify adapters, status, capabilities, history, and live output all load.',
+  'Open the local dashboard with `imos dashboard` and verify adapters, status, sessions, settings, permissions, history, and live output all load.',
   'Run `imos mcp install` and confirm the editor configs are written for supported IDEs.',
-  'Confirm first-run permission prompts cover PC control, browser control, IDE access, and elevated actions before they are enabled.',
+  'Confirm first-run permission prompts cover PC control, browser control, IDE access, app access, and elevated actions before they are enabled.',
 ]
 
 const phases = [
@@ -15,7 +15,7 @@ const phases = [
   },
   {
     title: 'Runtime wiring',
-    text: 'Confirm adapter discovery, dashboard route health, MCP config generation, permission gates, and one real IMOS orchestration path before broader rollout.',
+    text: 'Confirm adapter discovery, dashboard route health, MCP config generation, permission gates, session routing, and one real IMOS orchestration path before broader rollout.',
   },
   {
     title: 'Unified control',
@@ -32,7 +32,7 @@ export function LaunchPage() {
           { text: 'A practical launch path,', className: 'font-normal' },
           { text: 'not a placeholder shell.', className: 'font-serif italic font-normal' },
         ]}
-        body="This frontend now reflects the real IMOS runtime. The launch sequence should match the commands, permission prompts, and control surfaces operators will actually use."
+        body="This frontend reflects the real IMOS runtime. The launch sequence should match the commands, permission prompts, and control surfaces operators will actually use."
       />
 
       <ContentSection
