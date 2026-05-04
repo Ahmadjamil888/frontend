@@ -3,8 +3,8 @@ import { brandPanelStrongClass } from '../components/brandTheme'
 
 const integrationGroups = {
   Models: ['ChatGPT / OpenAI', 'Claude / Anthropic', 'Local Ollama and LM Studio', 'OpenAI-compatible model APIs'],
-  IDEs and Apps: ['Cursor', 'VS Code', 'JetBrains', 'Generic desktop and web app adapters'],
-  Machine Control: ['Browser automation', 'Typing, hover, click, and form control', 'PC access with permission gates', 'Session-aware app handoff'],
+  'IDEs and Apps': ['Cursor', 'VS Code', 'JetBrains', 'Generic desktop and web app adapters'],
+  'Machine Control': ['Browser automation', 'Typing, hover, click, and form control', 'PC access with permission gates', 'Session-aware app handoff'],
 }
 
 const notes = [
