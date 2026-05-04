@@ -4,7 +4,7 @@ import { DocsShell } from '../../components/DocsShell'
 import { CLI_COMMAND_DOCS } from './docsContent'
 
 const cliCommands = `imos
-imos run "Write a Python hello world and save it"
+imos run "Summarize the repo state"
 imos dashboard
 imos adapters list
 imos adapters add model openai_main
@@ -26,15 +26,14 @@ imos palette set --shell matrix --dashboard ocean`
 export function DocsCliPage() {
   return (
     <DocsShell
-      title="Use `imos` as the start command from any terminal."
-      description="The command pages below stay on the public CLI surface only: start the runtime, run tasks, manage adapters, open the dashboard, and connect editor bridges."
+      title="Use the public CLI, not internal script files."
+      description="The command pages below stay on the supported CLI surface only: start the runtime, run tasks, manage adapters, open the dashboard, and connect editor bridges."
       eyebrow="CLI Overview"
     >
       <div className="space-y-8 text-sm leading-8 text-neutral-300">
         <p>
-          IMOS is the primary orchestration surface. Start it with <code>imos</code>, prompt it directly, and let the
-          central runtime coordinate models, editors, browser actions, apps, files, system tasks, and delivery
-          workflows from one command surface.
+          These docs intentionally use only the installed CLI surface. Internal file entrypoints are not part of the
+          operator docs. Start with <code>imos</code> and use the command pages below for the supported flows.
         </p>
         <CodeBlock label="Primary CLI commands" code={cliCommands} />
         <p>
@@ -47,7 +46,7 @@ export function DocsCliPage() {
         </p>
 
         <section className="rounded-[1.8rem] border border-white/10 bg-black p-6">
-          <div className="text-[11px] uppercase tracking-[0.24em] text-white/40">Command Pages</div>
+          <div className="text-[11px] uppercase tracking-[0.24em] text-white/40">Command Guides</div>
           <div className="mt-5 grid gap-3 md:grid-cols-2">
             {CLI_COMMAND_DOCS.map((item) => (
               <Link

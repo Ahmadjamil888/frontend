@@ -26,7 +26,6 @@ export function DocsOperationsPage() {
 imos status
 imos adapters list
 imos sessions list
-imos shell --beast
 imos mcp install
 imos wake status
 imos dashboard

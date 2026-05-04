@@ -11,6 +11,7 @@ export type DocGroup = {
 export type CliCommandDoc = {
   slug: string
   label: string
+  navLabel?: string
   command: string
   title: string
   summary: string
@@ -24,6 +25,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'start',
     label: 'imos',
+    navLabel: 'Start CLI',
     command: 'imos',
     title: 'Start IMOS from any terminal.',
     summary: 'Launches the main IMOS interactive session with one unified runtime.',
@@ -43,6 +45,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'run',
     label: 'imos run',
+    navLabel: 'Run Prompt',
     command: 'imos run "<prompt>"',
     title: 'Run one orchestration request through IMOS.',
     summary: 'Executes a prompt through the IMOS router, adapter registry, and result synthesizer.',
@@ -62,6 +65,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'dashboard',
     label: 'imos dashboard',
+    navLabel: 'Open Dashboard',
     command: 'imos dashboard',
     title: 'Open the IMOS dashboard.',
     summary: 'Launches the IMOS management dashboard for adapters, history, settings, and live output.',
@@ -78,6 +82,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'adapters-list',
     label: 'imos adapters list',
+    navLabel: 'List Adapters',
     command: 'imos adapters list',
     title: 'Inspect the loaded adapter roster.',
     summary: 'Shows which adapters were discovered from IMOS config and loaded into runtime state.',
@@ -93,6 +98,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'adapters-add',
     label: 'imos adapters add',
+    navLabel: 'Add Adapter',
     command: 'imos adapters add <type> <name>',
     title: 'Add a new adapter entry.',
     summary: 'Registers a new adapter into IMOS config from the terminal.',
@@ -108,6 +114,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'adapters-test',
     label: 'imos adapters test',
+    navLabel: 'Test Adapter',
     command: 'imos adapters test <name>',
     title: 'Run a health check against one adapter.',
     summary: 'Tests one adapter in isolation through its runtime health-check path.',
@@ -123,6 +130,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'adapters-remove',
     label: 'imos adapters remove',
+    navLabel: 'Remove Adapter',
     command: 'imos adapters remove <name>',
     title: 'Remove a configured adapter.',
     summary: 'Deletes one adapter entry from the IMOS config store.',
@@ -138,6 +146,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'history',
     label: 'imos history',
+    navLabel: 'Task History',
     command: 'imos history',
     title: 'Review recent IMOS task history.',
     summary: 'Prints the recent prompt/result history stored in the IMOS context layer.',
@@ -153,6 +162,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'status',
     label: 'imos status',
+    navLabel: 'Runtime Status',
     command: 'imos status',
     title: 'Inspect overall IMOS status.',
     summary: 'Shows configured adapters and runtime-loaded adapter state.',
@@ -168,6 +178,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'mcp-install',
     label: 'imos mcp install',
+    navLabel: 'Install MCP Bridge',
     command: 'imos mcp install',
     title: 'Install IMOS MCP configs for supported editors.',
     summary: 'Registers local editor bridge configs so IMOS can coordinate with supported editors.',
@@ -183,6 +194,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'wake-install',
     label: 'imos wake install',
+    navLabel: 'Install Wake Listener',
     command: 'imos wake install',
     title: 'Install the always-on wake listener.',
     summary: 'Registers the background IMOS wake service and starts it.',
@@ -202,6 +214,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'wake-status',
     label: 'imos wake status',
+    navLabel: 'Wake Status',
     command: 'imos wake status',
     title: 'Check the wake listener state.',
     summary: 'Shows whether the background wake service is running and whether autostart is installed.',
@@ -217,6 +230,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'wake-start',
     label: 'imos wake start',
+    navLabel: 'Start Wake Listener',
     command: 'imos wake start',
     title: 'Start the wake listener immediately.',
     summary: 'Starts the background wake service without reinstalling it.',
@@ -231,6 +245,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'wake-stop',
     label: 'imos wake stop',
+    navLabel: 'Stop Wake Listener',
     command: 'imos wake stop',
     title: 'Stop the wake listener.',
     summary: 'Stops the background wake service.',
@@ -245,6 +260,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'wake-uninstall',
     label: 'imos wake uninstall',
+    navLabel: 'Remove Wake Listener',
     command: 'imos wake uninstall',
     title: 'Remove the wake listener startup config.',
     summary: 'Stops the wake service and removes the login-time autostart registration.',
@@ -259,6 +275,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'palette-set',
     label: 'imos palette set',
+    navLabel: 'Set Palette',
     command: 'imos palette set --shell ember --dashboard ember',
     title: 'Change the shell and dashboard color palettes.',
     summary: 'Updates the IMOS shell and dashboard palette preferences.',
@@ -274,6 +291,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'install-wake',
     label: 'imos install wake',
+    navLabel: 'Install Wake Alias',
     command: 'imos install wake',
     title: 'Install the wake listener through the generic install surface.',
     summary: 'Alias for wake listener installation.',
@@ -288,6 +306,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
   {
     slug: 'install-mcp',
     label: 'imos install mcp',
+    navLabel: 'Install MCP Alias',
     command: 'imos install mcp',
     title: 'Install the editor bridge through the generic install surface.',
     summary: 'Alias for editor bridge installation.',
@@ -321,7 +340,7 @@ const coreDocs: DocGroup[] = [
 const cliDocs: DocGroup[] = [
   {
     label: 'CLI Guides',
-    items: [{ path: '/docs/cli', label: 'CLI Overview' }, ...CLI_COMMAND_DOCS.map((item) => ({ path: `/docs/cli/${item.slug}`, label: item.label }))],
+    items: [{ path: '/docs/cli', label: 'CLI Overview' }, ...CLI_COMMAND_DOCS.map((item) => ({ path: `/docs/cli/${item.slug}`, label: item.navLabel ?? item.label }))],
   },
 ]
 

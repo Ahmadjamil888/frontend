@@ -1,11 +1,12 @@
 import { Navigate, useParams } from 'react-router-dom'
 import { CodeBlock } from '../../components/CodeBlock'
 import { DocsShell } from '../../components/DocsShell'
-import { getCliCommandDoc } from './docsContent'
+import { DOC_ITEMS, getCliCommandDoc } from './docsContent'
 
 export function DocsCommandPage() {
   const { slug } = useParams<{ slug: string }>()
   const doc = slug ? getCliCommandDoc(slug) : undefined
+  const relatedLabels = new Map(DOC_ITEMS.map((item) => [item.path, item.label]))
 
   if (!doc) {
     return <Navigate to="/docs/cli" replace />
@@ -48,7 +49,7 @@ export function DocsCommandPage() {
             <div className="mt-4 flex flex-wrap gap-3">
               {doc.related.map((item) => (
                 <a key={item} href={item} className="rounded-full border border-white/12 px-4 py-2 text-sm text-white transition hover:bg-white hover:text-black">
-                  {item.replace('/docs/', '').replace('/cli/', 'CLI / ')}
+                  {relatedLabels.get(item) ?? item.replace('/docs/', '').replace('/cli/', 'CLI / ')}
                 </a>
               ))}
             </div>

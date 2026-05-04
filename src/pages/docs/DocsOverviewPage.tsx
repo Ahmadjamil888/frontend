@@ -4,7 +4,7 @@ export function DocsOverviewPage() {
   return (
     <DocsShell
       title="Everything needed to install, route, operate, and extend IMOS."
-      description="This docs set presents IMOS as one central runtime that coordinates models, editors, apps, browser sessions, machine actions, messaging, and delivery from a single command surface."
+      description="This docs set presents IMOS as one central runtime installed from the `connect` repo and operated through public CLI commands rather than internal script files."
       eyebrow="Overview"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
@@ -16,7 +16,7 @@ export function DocsOverviewPage() {
         <p>
           The central idea is simple: start IMOS with <code>imos</code>, keep memory and preferences attached, and let
           the runtime decide how to use connected services without turning the operator into a manual relay between
-          separate tools.
+          separate tools or exposing internal Python filenames in the docs surface.
         </p>
         <p>
           Editors like Cursor are connected work surfaces inside the larger IMOS runtime. They are not the brain.
