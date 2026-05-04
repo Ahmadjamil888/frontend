@@ -4,14 +4,14 @@ import { DocsShell } from '../../components/DocsShell'
 export function DocsDashboardPage() {
   return (
     <DocsShell
-      title="The IMOS dashboard is a live operator surface."
-      description="It exposes the IMOS route surface for running tasks, inspecting adapters, updating settings, configuring permissions, reviewing session history, and watching live execution output."
+      title="Use `imos dashboard` for the live operator surface."
+      description="The dashboard is the visual companion to the CLI for running tasks, inspecting adapters, updating settings, configuring permissions, reviewing session history, and watching live execution output."
       eyebrow="Dashboard"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
-          The IMOS dashboard is served at <code>/imos</code> and talks directly to the IMOS runtime APIs. It is the
-          visual companion to the CLI, not a separate execution stack.
+          Launch the dashboard with <code>imos dashboard</code>. It talks directly to the runtime APIs and stays a
+          visual companion to the CLI rather than a separate execution stack.
         </p>
         <CodeBlock label="Run the dashboard locally" code={'imos dashboard'} />
         <p>
@@ -24,24 +24,24 @@ export function DocsDashboardPage() {
           the dashboard captures prompts hands-free and routes them into the same runtime.
         </p>
         <CodeBlock
-          label="Dashboard route surface"
-          code={`POST /imos/run
-GET  /imos/adapters
-GET  /imos/adapters/{name}
-POST /imos/adapters
-DELETE /imos/adapters/{name}
-POST /imos/adapters/{name}/test
-GET  /imos/history
-GET  /imos/sessions
-GET  /imos/sessions/{session_id}
-GET  /imos/status
-GET  /imos/settings
-POST /imos/settings
-GET  /imos/permissions
-POST /imos/permissions
-GET  /imos/capabilities
-GET  /imos/system-prompt
-WS   /imos/ws`}
+          label="Dashboard API surface"
+          code={`GET    /api/status
+GET    /api/runtime
+GET    /api/models
+POST   /api/models
+POST   /api/models/test
+GET    /api/apikeys
+GET    /api/voice/status
+GET    /api/skills
+GET    /api/integrations
+GET    /api/workflows
+GET    /api/settings
+GET    /api/sessions
+GET    /api/routing
+GET    /api/contacts
+POST   /api/chat
+POST   /api/prompt
+GET    /api/events`}
         />
       </div>
     </DocsShell>

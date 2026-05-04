@@ -4,8 +4,8 @@ import { DocsShell } from '../../components/DocsShell'
 export function DocsAuthenticationPage() {
   return (
     <DocsShell
-      title="Authentication and permissions belong to the IMOS runtime."
-      description="IMOS separates service credentials from runtime permissions so the system can connect to tools while still asking for explicit approval before browser, editor, app, PC, or elevated actions are enabled."
+      title="Use `imos dashboard` and the CLI to set credentials and permissions explicitly."
+      description="The public operator flow separates service credentials from runtime permissions so the system can connect to tools while still asking for explicit approval before browser, editor, app, PC, or elevated actions are enabled."
       eyebrow="Authentication"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">

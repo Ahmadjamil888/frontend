@@ -27,7 +27,7 @@ export function DocsCliPage() {
   return (
     <DocsShell
       title="Use `imos` as the start command from any terminal."
-      description="The command pages below present only the public IMOS command surface: start the runtime, run tasks, manage adapters, open the dashboard, and connect editor bridges."
+      description="The command pages below stay on the public CLI surface only: start the runtime, run tasks, manage adapters, open the dashboard, and connect editor bridges."
       eyebrow="CLI Overview"
     >
       <div className="space-y-8 text-sm leading-8 text-neutral-300">
@@ -38,8 +38,8 @@ export function DocsCliPage() {
         </p>
         <CodeBlock label="Primary CLI commands" code={cliCommands} />
         <p>
-          IMOS stays the central brain. Editors, models, browser sessions, services, and integrations are connected to
-          IMOS as controlled runtime surfaces rather than treated as separate operator entrypoints.
+          The runtime stays central. Editors, models, browser sessions, services, and integrations are connected as
+          controlled operator surfaces rather than treated as separate entrypoints.
         </p>
         <p>
           If you want hands-free startup, install the wake listener. That allows IMOS to listen in the background for

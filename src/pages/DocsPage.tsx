@@ -13,17 +13,17 @@ imos status`
 const docCards = [
   {
     title: 'CLI Quickstart',
-    body: 'Install IMOS from the GitHub repository, start it with one command, and validate the live runtime.',
+    body: 'Install the runtime from the GitHub repository, start it with the public CLI, and validate the live operator surface.',
     href: '/docs/installation',
   },
   {
     title: 'Command Guides',
-    body: 'Use separate pages for `imos`, `imos run`, adapter management, dashboard control, and runtime setup.',
+    body: 'Use separate pages for `imos`, `imos run`, adapter management, dashboard control, and operator setup.',
     href: '/docs/cli',
   },
   {
     title: 'Runtime Routes',
-    body: 'Review the IMOS orchestrator, dashboard routes, permission model, and service integration runtime.',
+    body: 'Review the public runtime routes, permission model, and service integration surfaces.',
     href: '/docs/runtime',
   },
   {
@@ -37,7 +37,7 @@ export function DocsPage() {
   return (
     <DocsShell
       title="CLI Platform"
-      description="Documentation for the public IMOS command surface: start the runtime with `imos`, open the dashboard, connect services, and coordinate one unified AI workforce."
+      description="Documentation for the public CLI surface: start the runtime with `imos`, open the dashboard, connect services, and operate the system through stable commands and routes."
       eyebrow="Docs Home"
     >
       <section className="rounded-[1.7rem] border border-white/8 bg-[#1b1b1b] p-7">
@@ -45,8 +45,8 @@ export function DocsPage() {
           <div className="pt-2">
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-white">Developer quickstart</h2>
             <p className="mt-5 max-w-md text-lg leading-8 text-white/72">
-              Start the IMOS runtime in minutes. Learn the real command path, dashboard flow, adapter workflow,
-              permission model, and service coordination surface without digging through internal launch details.
+              Start the runtime in minutes. Learn the public command path, dashboard flow, adapter workflow,
+              permission model, and service coordination surface without relying on internal implementation details.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link to="/docs/installation" className={brandPrimaryButtonClass}>
@@ -112,7 +112,7 @@ export function DocsPage() {
         <div className="flex items-end justify-between gap-4">
           <div>
             <h2 className="text-4xl font-semibold tracking-[-0.05em] text-white">CLI commands</h2>
-            <p className="mt-3 text-base leading-8 text-white/72">The docs are organized around the public IMOS command surface, with `imos` as the start command from any terminal.</p>
+            <p className="mt-3 text-base leading-8 text-white/72">The docs are organized around the public CLI surface, with `imos` as the start command from any terminal.</p>
           </div>
           <Link to="/docs/cli" className="text-lg text-white/65 transition hover:text-white">
             View all

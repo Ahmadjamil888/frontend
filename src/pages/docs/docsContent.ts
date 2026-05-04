@@ -36,7 +36,7 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
     ],
     notes: [
       'After installation, `imos` should be available globally from any terminal.',
-      'Use the dashboard and adapter controls to connect services without exposing internal launch details.',
+      'Use the dashboard and adapter controls to connect services without exposing implementation details.',
     ],
     related: ['/docs/installation', '/docs/runtime', '/docs/dashboard'],
   },
@@ -70,9 +70,9 @@ export const CLI_COMMAND_DOCS: CliCommandDoc[] = [
     whenToUse: [
       'You want to manage adapters visually.',
       'You want to watch execution events and recent history while a task runs.',
-      'You are validating the `/imos/*` route surface after changes.',
+      'You are validating the dashboard API surface after changes.',
     ],
-    notes: ['The dashboard talks to `/imos/run`, `/imos/adapters`, `/imos/history`, `/imos/status`, `/imos/settings`, `/imos/capabilities`, and `/imos/ws`.'],
+    notes: ['The dashboard talks to public runtime endpoints such as `/api/status`, `/api/runtime`, `/api/models`, `/api/workflows`, and `/api/events`.'],
     related: ['/docs/dashboard', '/docs/runtime'],
   },
   {

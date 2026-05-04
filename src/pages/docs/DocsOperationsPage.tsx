@@ -4,8 +4,8 @@ import { DocsShell } from '../../components/DocsShell'
 export function DocsOperationsPage() {
   return (
     <DocsShell
-      title="Operational confidence starts with the exact command the user will run."
-      description="The IMOS command path, adapter health, dashboard reachability, MCP bridge state, permission setup, and service routing all need to be validated from the real public entrypoints."
+      title="Operational confidence starts with the exact public command path."
+      description="The CLI path, adapter health, dashboard reachability, MCP bridge state, permission setup, and service routing all need to be validated from the real public entrypoints."
       eyebrow="Operations"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
@@ -18,7 +18,7 @@ export function DocsOperationsPage() {
         <p>
           For a real rollout, verify the global <code>imos</code> command, service credentials, local adapter config,
           dashboard route reachability, permission gates, editor bridge registration, beast-mode routing, and at least
-          one real IMOS run that touches a file, Git adapter, deployment target, or messaging adapter.
+          one real run that touches a file, Git adapter, deployment target, or messaging adapter.
         </p>
         <CodeBlock
           label="Recommended checks"
