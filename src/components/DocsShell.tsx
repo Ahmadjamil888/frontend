@@ -68,9 +68,9 @@ export function DocsShell({ title, description, eyebrow = 'Documentation', child
                 className="w-[240px] rounded-full border border-white/10 bg-[#1f1f1f] px-5 py-2.5 text-sm text-white outline-none placeholder:text-white/45 focus:border-white/20 lg:w-[280px]"
               />
             </div>
-            <Link to="/launch" className={brandPrimaryButtonClass}>
+            <a href="https://imos-ai.vercel.app/docs/installation" className={brandPrimaryButtonClass}>
               Install CLI
-            </Link>
+            </a>
           </div>
         </div>
       </header>
