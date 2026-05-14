@@ -4,7 +4,7 @@ export function DocsOverviewPage() {
   return (
     <DocsShell
       title="Everything needed to install, route, operate, and extend IMOS."
-      description="This docs set presents IMOS as one central runtime installed from the `connect` repo and operated through public CLI commands rather than internal script files."
+      description="This docs set presents IMOS as one central runtime installed through the supported platform installers and operated through public CLI commands rather than internal script files."
       eyebrow="Overview"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">

@@ -13,7 +13,7 @@ imos status`
 const docCards = [
   {
     title: 'CLI Quickstart',
-    body: 'Install the runtime from the GitHub repository, start it with the public CLI, and validate the live operator surface.',
+    body: 'Install the runtime with the supported Windows, Linux, or macOS installer commands, start it with the public CLI, and validate the live operator surface.',
     href: '/docs/installation',
   },
   {
@@ -37,7 +37,7 @@ export function DocsPage() {
   return (
     <DocsShell
       title="CLI Platform"
-      description="Documentation for the public CLI surface: install from Git Bash, start the runtime with `imos`, open the dashboard, connect services, and operate the system through stable commands and routes."
+      description="Documentation for the public CLI surface: install with the supported platform installer commands, start the runtime with `imos`, open the dashboard, connect services, and operate the system through stable commands and routes."
       eyebrow="Docs Home"
     >
       <section className="rounded-[1.7rem] border border-white/8 bg-[#1b1b1b] p-7">
@@ -45,7 +45,7 @@ export function DocsPage() {
           <div className="pt-2">
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-white">Developer quickstart</h2>
             <p className="mt-5 max-w-md text-lg leading-8 text-white/72">
-              Start the runtime in minutes. Learn the public command path, Git Bash install flow, dashboard flow,
+              Start the runtime in minutes. Learn the public command path, supported installer flow, dashboard flow,
               adapter workflow, permission model, and service coordination surface without relying on internal implementation details.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
