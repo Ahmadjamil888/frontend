@@ -1,20 +1,20 @@
 ﻿import { CodeBlock } from '../../components/CodeBlock'
 import { DocsShell } from '../../components/DocsShell'
 
-const windowsCmdOption1 = 'curl -L -o install.bat https://raw.githubusercontent.com/Ahmadjamil888/connect/main/install.bat && install.bat'
+const windowsCmdOption1 = 'curl -L -o install.bat https://raw.githubusercontent.com/Ahmadjamil888/imos/main/install.bat && install.bat'
 const windowsCmdOption2 =
-  'irm https://raw.githubusercontent.com/Ahmadjamil888/connect/main/install.bat -OutFile install.bat; .\\install.bat'
+  'irm https://raw.githubusercontent.com/Ahmadjamil888/imos/main/install.bat -OutFile install.bat; .\\install.bat'
 const windowsPowerShellOnly = `Set-ExecutionPolicy Bypass -Scope Process -Force
-irm https://raw.githubusercontent.com/Ahmadjamil888/connect/main/install.bat | cmd`
-const bashOption1 = 'curl -fsSL https://raw.githubusercontent.com/Ahmadjamil888/connect/main/install.sh | bash'
-const bashOption2 = 'wget -qO- https://raw.githubusercontent.com/Ahmadjamil888/connect/main/install.sh | bash'
-const bashOption3 = `curl -O https://raw.githubusercontent.com/Ahmadjamil888/connect/main/install.sh
+irm https://raw.githubusercontent.com/Ahmadjamil888/imos/main/install.bat | cmd`
+const bashOption1 = 'curl -fsSL https://raw.githubusercontent.com/Ahmadjamil888/imos/main/install.sh | bash'
+const bashOption2 = 'wget -qO- https://raw.githubusercontent.com/Ahmadjamil888/imos/main/install.sh | bash'
+const bashOption3 = `curl -O https://raw.githubusercontent.com/Ahmadjamil888/imos/main/install.sh
 chmod +x install.sh
 ./install.sh`
 const universalInstall = `if [ -f /etc/os-release ]; then
-  curl -fsSL https://raw.githubusercontent.com/Ahmadjamil888/connect/main/install.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/Ahmadjamil888/imos/main/install.sh | bash
 elif [ "$OS" = "Windows_NT" ]; then
-  curl -L -o install.bat https://raw.githubusercontent.com/Ahmadjamil888/connect/main/install.bat && install.bat
+  curl -L -o install.bat https://raw.githubusercontent.com/Ahmadjamil888/imos/main/install.bat && install.bat
 fi`
 const setupFlow = `imos
 imos status
@@ -26,12 +26,13 @@ export function DocsInstallationPage() {
   return (
     <DocsShell
       title="Install with the official platform installers, then use the public CLI."
-      description="Use the supported Windows, Linux, and macOS installer commands, then start the operator with the documented CLI commands."
+      description="Install the open-source IMOS runtime from the public GitHub repository with the supported Windows, Linux, and macOS commands, then start it with the documented CLI."
       eyebrow="Installation"
     >
       <div className="space-y-6 text-sm leading-8 text-neutral-300">
         <p>
-          Use only the installer methods below. These are the documented installation paths for Windows, Linux, and macOS.
+          IMOS is open source. Use the public installer methods below from{' '}
+          <code>github.com/Ahmadjamil888/imos</code>. These are the documented installation paths for Windows, Linux, and macOS.
         </p>
         <p>
           Windows CMD:
